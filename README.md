@@ -1,9 +1,35 @@
-# My game
+# Raptor
+
+## Initial Schedule
+
+By **Jun 25**, by 1hr before end of class:
+- [x] Choose game
+- [ ] Wireframe main game screen
+- [ ] Pseudocode gameplay
+
+By **Jun 25**, by end of class:
+- [ ] Share GitHub repo
+
+By **Jun 29**, end of class:
+- [ ] Deploy game
+
+Be prepared to:
+- Intro project (paraphrase README)
+- Demonstrate project
+  - Launch game from link in README
+  - Play the game
+- Discuss code
+  - Briefly show HTML & CSS
+  - Show the JS + fav function
+- Share experience
+  - What was the biggest challenge?
+  - What are the key takeaways/learnings?
 
 ## Getting Started:
 
 1. [Go to the game](https://www.google.com)
-2. Then that
+2. Do this
+3. Then that
 
 ## Screenshots:
 
@@ -34,28 +60,3 @@
 - [ ] Enhancement 1
 - [ ] Enhancement 2
 - [ ] Enhancement 3
-
-## Initial Schedule
-
-By **Jun 25**, by 1hr before end of class:
-- [ ] Choose game
-- [ ] Wireframe main game screen
-- [ ] Pseudocode gameplay
-
-By **Jun 25**, by end of class:
-- [ ] Share GitHub repo
-
-By **Jun 29**, end of class:
-- [ ] Deploy game
-
-Be prepared to:
-- Intro project (paraphrase README)
-- Demonstrate project
-  - Launch game from link in README
-  - Play the game
-- Discuss code
-  - Briefly show HTML & CSS
-  - Show the JS + fav function
-- Share experience
-  - What was the biggest challenge?
-  - What are the key takeaways/learnings?
