@@ -4,7 +4,7 @@
 
 By **Jun 25**, by 1hr before end of class:
 - [x] Choose game
-- [ ] Wireframe main game screen
+- [x] Wireframe main game screen (view on [Whimsical](https://whimsical.com/unit-1-project-game-raptor-UbVWrjmUwfCWsbGL3T4fVK))
 - [ ] Pseudocode gameplay
 
 By **Jun 25**, by end of class:
@@ -57,6 +57,8 @@ Be prepared to:
 - [ ] Has theme
 
 ## Next Steps:
-- [ ] Enhancement 1
-- [ ] Enhancement 2
-- [ ] Enhancement 3
+- [ ] Play against the computer
+- [ ] Provide tooltips
+- [ ] Improve styling for playing pieces
+- [ ] Improve styling for board
+- [ ] Randomize board terrain
