@@ -4,7 +4,8 @@ let introContent = {
     altText: "The jungle awaits",
     pText: "A group of scientists are on the hunt to capture three, live, baby raptors to study and then display in a brand new exhibit. A ferocious mother raptor will never let this happen. She'll either kill all the invading scientists, or hang on long enough to allow three of her babies to escape deep into the jungle, never to be found again.",
     btnText: "Next",
-    btnId: "next-btn"
+    btnId: "next-btn",
+    btnType: "primary"
 }
 
 let howToPlay = {
@@ -14,7 +15,8 @@ let howToPlay = {
     instructions: ["Pick a team.", "Place your pieces in their starting positions.", "Pick a card.", "Take your actions based on who goes first."],
     victoryConditions: ["Raptors win by helping three baby raptors escape or killing all scientists on the board.", "Scientists win by capturing three baby raptors or neutralizing the mother raptor."],
     btnText: "Ready?",
-    btnId: "ready-btn"
+    btnId: "ready-btn",
+    btnType: "primary"
 }
 
 
