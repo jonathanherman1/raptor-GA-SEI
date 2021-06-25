@@ -7,6 +7,56 @@ function renderRemove(parent, child){
 } // for removing elements
 
 
+function renderBootstrapButton(btnType, btnId, btnText, addCustomClassBool, customBtnClass){
+    if(addCustomClassBool === true){
+        switch(btnType){
+            case "primary":
+                return `<button type="button" id="${btnId}" class="btn btn-primary ${customBtnClass}">${btnText}</button>`           
+            case "secondary":
+                return `<button type="button" id="${btnId}" class="btn btn-secondary ${customBtnClass}">${btnText}</button>`           
+            case "success":
+                return `<button type="button" id="${btnId}" class="btn btn-success ${customBtnClass}">${btnText}</button>`           
+            case "danger":
+                return `<button type="button" id="${btnId}" class="btn btn-danger ${customBtnClass}">${btnText}</button>`           
+            case "warning":
+                return `<button type="button" id="${btnId}" class="btn btn-warning ${customBtnClass}">${btnText}</button>`           
+            case "info":
+                return `<button type="button" id="${btnId}" class="btn btn-info ${customBtnClass}">${btnText}</button>`           
+            case "light":
+                return `<button type="button" id="${btnId}" class="btn btn-light ${customBtnClass}">${btnText}</button>`           
+            case "dark":
+                return `<button type="button" id="${btnId}" class="btn btn-dark ${customBtnClass}">${btnText}</button>`           
+            case "link":
+                return `<button type="button" id="${btnId}" class="btn btn-link ${customBtnClass}">${btnText}</button>`           
+            default:
+                return `<button type="button" id="${btnId}" class="btn btn-primary">${btnText}</button>`
+        }
+    } else {
+        switch(btnType){
+            case "primary":
+                return `<button type="button" id="${btnId}" class="btn btn-primary">${btnText}</button>`           
+            case "secondary":
+                return `<button type="button" id="${btnId}" class="btn btn-secondary">${btnText}</button>`           
+            case "success":
+                return `<button type="button" id="${btnId}" class="btn btn-success">${btnText}</button>`           
+            case "danger":
+                return `<button type="button" id="${btnId}" class="btn btn-danger">${btnText}</button>`           
+            case "warning":
+                return `<button type="button" id="${btnId}" class="btn btn-warning">${btnText}</button>`           
+            case "info":
+                return `<button type="button" id="${btnId}" class="btn btn-info">${btnText}</button>`           
+            case "light":
+                return `<button type="button" id="${btnId}" class="btn btn-light">${btnText}</button>`           
+            case "dark":
+                return `<button type="button" id="${btnId}" class="btn btn-dark">${btnText}</button>`           
+            case "link":
+                return `<button type="button" id="${btnId}" class="btn btn-link">${btnText}</button>`           
+            default:
+                return `<button type="button" id="${btnId}" class="btn btn-primary">${btnText}</button>`
+        }
+    }
+}
+
 function renderBootstrapCard(content, h1Bool, btnInsideCardBool){
     if(h1Bool === true){
        return `
@@ -49,17 +99,16 @@ function renderHeaders(content, headerLevel){
 }
 
 function renderLists(contentArr, orderedBool){
-    let listContentStr;
+    let listContentStr = "";
     contentArr.forEach(el => listContentStr += `<li>${el}</li>`);
-    return orderedBool === true ? `<ol>${listContent}</ol>` : `<ul>${listContent}</ul>`;
+    return orderedBool === true ? `<ol>${listContentStr}</ol>` : `<ul>${listContentStr}</ul>`;
 }
 
 function renderParagraphs(contentArr){
-    let paraContentStr;
+    let paraContentStr = "";
     contentArr.forEach(el => paraContentStr += `<p>${el}</p>`);
     return paraContentStr;
 }
-
 
 
 function renderWelcome(){
@@ -82,6 +131,7 @@ function renderHowToPlay(target, howToPlayContent){
        ${renderHeaders(howToPlayContent.h1Text, 1)}
        ${renderLists(howToPlayContent.instructions, true)}
        ${renderParagraphs(howToPlayContent.victoryConditions)}
+       ${renderBootstrapButton(howToPlayContent.btnType, howToPlayContent.btnId, howToPlayContent.btnText, false)}
     </section>
     `
 }
