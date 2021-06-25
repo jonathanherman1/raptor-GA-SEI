@@ -7,7 +7,19 @@ function renderRemove(parent, child){
 } // for removing elements
 
 
-function renderBootstrapButton(btnType, btnId, btnText, addCustomClassBool, customBtnClass){
+function renderBootstrapCard(cardId, content){
+    return `
+    <div id="#${cardId}" class="card" style="width: 18rem;">
+        <img src="${content.imgURL}" class="card-img-top" alt="${content.altText}">
+        <div class="card-body">
+            <p class="card-text">${content.pText}</p>
+        </div>
+        ${renderBootstrapButton(content)}
+    </div>`;
+}
+
+function renderBootstrapButton(content){
+    let {btnType, btnId, btnText, addCustomClassBool, customBtnClass} = content;
     if(addCustomClassBool === true){
         switch(btnType){
             case "primary":
@@ -57,54 +69,6 @@ function renderBootstrapButton(btnType, btnId, btnText, addCustomClassBool, cust
     }
 }
 
-function renderBootstrapCard(content, cardId, removeImgBool, removeBtnBool, removeImgAndButtonBool, btnOutsideCardBool){
-    
-    if (removeImgBool === true){
-        return `
-        <div id="#${cardId}" class="card" style="width: 18rem;">
-            <div class="card-body">
-                <p class="card-text">${content.pText}</p>
-            </div>
-            <button id="${content.btnId}", class="btn btn-primary" type="button">${content.btnText}</button>
-        </div>`
-    } else if (removeBtnBool === true){
-        return `
-        <div id="#${cardId}" class="card" style="width: 18rem;">
-            <img src="${content.imgURL}" class="card-img-top" alt="${content.altText}">
-            <div class="card-body">
-                <p class="card-text">${content.pText}</p>
-            </div>
-        </div>
-        `
-    } else if (removeImgAndButtonBool === true) {
-        return `
-        <div id="#${cardId}" class="card" style="width: 18rem;">
-            <div class="card-body">
-                <p class="card-text">${content.pText}</p>
-            </div>
-        </div>   
-        `
-    } else if (btnOutsideCardBool === true) {
-        return `
-        <div id="#${cardId}" class="card" style="width: 18rem;">
-            <img src="${content.imgURL}" class="card-img-top" alt="${content.altText}">
-            <div class="card-body">
-                <p class="card-text">${content.pText}</p>
-            </div>
-        </div>   
-        <button id="${content.btnId}" class="btn btn-primary" type="button">${content.btnText}</button>
-        `
-    } else {
-       return `
-       <div id="#${cardId}" class="card" style="width: 18rem;">
-            <img src="${content.imgURL}" class="card-img-top" alt="${content.altText}">     
-            <div class="card-body">
-                <p class="card-text">${content.pText}</p>
-            </div>
-            <button id="${content.btnId}", class="btn btn-primary" type="button">${content.btnText}</button>
-       </div>`
-    }
-}
 
 function renderHeaders(content, headerLevel){
     for(let i = 1; i <= headerLevel; i++){
@@ -134,7 +98,7 @@ function renderIntro(target, introContent){
     `
     <section id="intro">
        ${renderHeaders(introContent.h1Text, 1)}
-       ${renderBootstrapCard(introContent, "intro-card")}
+       ${renderBootstrapCard("intro-card", introContent)}
     </section>
     `
 }
@@ -146,13 +110,24 @@ function renderHowToPlay(target, howToPlayContent){
        ${renderHeaders(howToPlayContent.h1Text, 1)}
        ${renderLists(howToPlayContent.instructions, true)}
        ${renderParagraphs(howToPlayContent.victoryConditions)}
-       ${renderBootstrapButton(howToPlayContent.btnType, howToPlayContent.btnId, howToPlayContent.btnText, false)}
+       ${renderBootstrapButton(howToPlayContent)}
     </section>
     `
 }
 
-function renderPickTeams(){
-        
+function renderPickTeams(target, pickTeamsContent){
+    let raptors = pickTeamsContent.raptors;
+    let scientists = pickTeamsContent.scientists;
+    target.innerHTML = 
+    `
+    <section id="pick-teams">
+        ${renderHeaders(pickTeamsContent.h1Text, 1)}
+        ${renderHeaders(raptors.h2Text, 2)}
+        ${renderBootstrapCard("pick-raptors-card", raptors)}
+        ${renderHeaders(scientists.h2Text, 2)}
+        ${renderBootstrapCard("pick-scientists-card", scientists)}
+    </section>
+    `
 }
 
 
@@ -167,4 +142,4 @@ function renderJeepMovement(){}
 function renderMotherRaptorDisappears(){}
 function renderMotherRaptorReappears(){}
 
-export {render, renderRemove, renderIntro, renderHowToPlay};
+export {render, renderRemove, renderIntro, renderHowToPlay, renderPickTeams};
