@@ -51,8 +51,12 @@ Future enhancements:
          - [ ]    5.  Copy `rounds` to `rounds`
          - [x]    6.  Update player names
      - [x]    2. Remove elements from previous screen
-- [ ] 3. Intro the game.
-  - [ ]    1. Render intro: Add HTML for game title, welcome image, game overview, and next button
+- [x] 3. Intro the game.
+  - [x]    1. Render intro: Add HTML for game title, welcome image, game overview, and next button
+  - [x]    2. Add modules directory
+  - [x]    3. Add gameData directory 
+  - [x]    4. Add gameText.js module containing the above content
+  - [x]    5. Add `handleNext()` function to move to how to play
 - [ ] 4. Display how to play.
   - [ ]    1. Render how to play: Add HTML for how to play title, paragraphs, and ready to play button
   - [ ]    2. Cache ready button as `readyToPlayBtn`
@@ -224,6 +228,7 @@ Cached Game Elements:
 
 Event Handlers:
 - handleNewGame()
+- handleNext()
 - handleReadyToPlay()
 - handlePickTeam()
 - handlePieceClick()
