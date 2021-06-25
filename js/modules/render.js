@@ -19,52 +19,52 @@ function renderBootstrapCard(cardId, content){
 }
 
 function renderBootstrapButton(content){
-    let {btnType, btnId, btnText, addCustomClassBool, customBtnClass} = content;
+    let {btnType, btnId, btnText, btnValue, addCustomClassBool, customBtnClass} = content;
     if(addCustomClassBool === true){
         switch(btnType){
             case "primary":
-                return `<button type="button" id="${btnId}" class="btn btn-primary ${customBtnClass}">${btnText}</button>`           
+                return `<button type="button" id="${btnId}" value="${btnValue}" class="btn btn-primary ${customBtnClass}">${btnText}</button>`           
             case "secondary":
-                return `<button type="button" id="${btnId}" class="btn btn-secondary ${customBtnClass}">${btnText}</button>`           
+                return `<button type="button" id="${btnId}" value="${btnValue}" class="btn btn-secondary ${customBtnClass}">${btnText}</button>`           
             case "success":
-                return `<button type="button" id="${btnId}" class="btn btn-success ${customBtnClass}">${btnText}</button>`           
+                return `<button type="button" id="${btnId}" value="${btnValue}" class="btn btn-success ${customBtnClass}">${btnText}</button>`           
             case "danger":
-                return `<button type="button" id="${btnId}" class="btn btn-danger ${customBtnClass}">${btnText}</button>`           
+                return `<button type="button" id="${btnId}" value="${btnValue}" class="btn btn-danger ${customBtnClass}">${btnText}</button>`           
             case "warning":
-                return `<button type="button" id="${btnId}" class="btn btn-warning ${customBtnClass}">${btnText}</button>`           
+                return `<button type="button" id="${btnId}" value="${btnValue}" class="btn btn-warning ${customBtnClass}">${btnText}</button>`           
             case "info":
-                return `<button type="button" id="${btnId}" class="btn btn-info ${customBtnClass}">${btnText}</button>`           
+                return `<button type="button" id="${btnId}" value="${btnValue}" class="btn btn-info ${customBtnClass}">${btnText}</button>`           
             case "light":
-                return `<button type="button" id="${btnId}" class="btn btn-light ${customBtnClass}">${btnText}</button>`           
+                return `<button type="button" id="${btnId}" value="${btnValue}" class="btn btn-light ${customBtnClass}">${btnText}</button>`           
             case "dark":
-                return `<button type="button" id="${btnId}" class="btn btn-dark ${customBtnClass}">${btnText}</button>`           
+                return `<button type="button" id="${btnId}" value="${btnValue}" class="btn btn-dark ${customBtnClass}">${btnText}</button>`           
             case "link":
-                return `<button type="button" id="${btnId}" class="btn btn-link ${customBtnClass}">${btnText}</button>`           
+                return `<button type="button" id="${btnId}" value="${btnValue}" class="btn btn-link ${customBtnClass}">${btnText}</button>`           
             default:
-                return `<button type="button" id="${btnId}" class="btn btn-primary">${btnText}</button>`
+                return `<button type="button" id="${btnId}" value="${btnValue}" class="btn btn-primary">${btnText}</button>`
         }
     } else {
         switch(btnType){
             case "primary":
-                return `<button type="button" id="${btnId}" class="btn btn-primary">${btnText}</button>`           
+                return `<button type="button" id="${btnId}" value="${btnValue}" class="btn btn-primary">${btnText}</button>`           
             case "secondary":
-                return `<button type="button" id="${btnId}" class="btn btn-secondary">${btnText}</button>`           
+                return `<button type="button" id="${btnId}" value="${btnValue}" class="btn btn-secondary">${btnText}</button>`           
             case "success":
-                return `<button type="button" id="${btnId}" class="btn btn-success">${btnText}</button>`           
+                return `<button type="button" id="${btnId}" value="${btnValue}" class="btn btn-success">${btnText}</button>`           
             case "danger":
-                return `<button type="button" id="${btnId}" class="btn btn-danger">${btnText}</button>`           
+                return `<button type="button" id="${btnId}" value="${btnValue}" class="btn btn-danger">${btnText}</button>`           
             case "warning":
-                return `<button type="button" id="${btnId}" class="btn btn-warning">${btnText}</button>`           
+                return `<button type="button" id="${btnId}" value="${btnValue}" class="btn btn-warning">${btnText}</button>`           
             case "info":
-                return `<button type="button" id="${btnId}" class="btn btn-info">${btnText}</button>`           
+                return `<button type="button" id="${btnId}" value="${btnValue}" class="btn btn-info">${btnText}</button>`           
             case "light":
-                return `<button type="button" id="${btnId}" class="btn btn-light">${btnText}</button>`           
+                return `<button type="button" id="${btnId}" value="${btnValue}" class="btn btn-light">${btnText}</button>`           
             case "dark":
-                return `<button type="button" id="${btnId}" class="btn btn-dark">${btnText}</button>`           
+                return `<button type="button" id="${btnId}" value="${btnValue}" class="btn btn-dark">${btnText}</button>`           
             case "link":
-                return `<button type="button" id="${btnId}" class="btn btn-link">${btnText}</button>`           
+                return `<button type="button" id="${btnId}" value="${btnValue}" class="btn btn-link">${btnText}</button>`           
             default:
-                return `<button type="button" id="${btnId}" class="btn btn-primary">${btnText}</button>`
+                return `<button type="button" id="${btnId}" value="${btnValue}" class="btn btn-primary">${btnText}</button>`
         }
     }
 }
