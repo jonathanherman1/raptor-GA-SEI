@@ -1,5 +1,5 @@
 function render(){
-
+    
 }
 
 function renderRemove(parent, child){
@@ -88,6 +88,10 @@ function renderParagraphs(contentArr){
     return paraContentStr;
 }
 
+function renderBootstrapImage(content){
+    const {imgURL, altText, imgId} = content
+    return `<img src="${imgURL}" class="img-fluid" alt="${altText}">`
+}
 
 function renderWelcome(){
 
@@ -130,8 +134,21 @@ function renderPickTeams(target, pickTeamsContent){
     `
 }
 
+function renderTeamChoices(target, players){
+    const player1 = players[0];
+    const player2 = players[1];
+    let player1ChoiceText = `${player1.name} is the ${player1.team}.`
+    let player2ChoiceText = `${player2.name} is the ${player2.team}.`
+    console.log(player1, player2, player1ChoiceText, player2ChoiceText);
+    console.log(target.innerHTML = `
+    <section id="team-choices">
+        ${renderHeaders(player1ChoiceText, 1)}
+        ${renderHeaders(player2ChoiceText, 1)}
+    </section>
+    `)
+}
 
-function renderTeamChoices(){}
+
 function renderButtons(){} // confirm, back, etc.
 function renderCards(){}
 function renderPieces(){}
@@ -142,4 +159,4 @@ function renderJeepMovement(){}
 function renderMotherRaptorDisappears(){}
 function renderMotherRaptorReappears(){}
 
-export {render, renderRemove, renderIntro, renderHowToPlay, renderPickTeams};
+export {render, renderRemove, renderIntro, renderHowToPlay, renderPickTeams, renderTeamChoices};
