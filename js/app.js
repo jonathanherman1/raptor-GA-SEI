@@ -9,12 +9,12 @@ let players = [];
 
 /*--------- Cached HTML References ---------*/
 const mainContent = document.querySelector("#main-content");
-const newGameForm = document.querySelector("#new-game-form");
+const newGameFormEl = document.querySelector("#new-game-form");
 
 /*--------- Event Listeners ---------*/
 mainContent.addEventListener("click", handleNewGame);
 mainContent.addEventListener("click", handleNext);
-// newGameForm.addEventListener("click", handleNewGame);
+mainContent.addEventListener("click", handleReadytoPlay);
 
 /*--------- Functions ---------*/
 
@@ -37,7 +37,7 @@ function handleNewGame(e){
         let name1 = e.target.parentNode[0].value;
         let name2 = e.target.parentNode[1].value;
         init(name1, name2);
-        Renderer.renderRemove(mainContent, newGameForm);
+        Renderer.renderRemove(mainContent, newGameFormEl);
         Renderer.renderIntro(mainContent, GameText.introContent);
         mainContent.removeEventListener("click", handleNewGame);
     }
@@ -46,10 +46,21 @@ function handleNewGame(e){
 function handleNext(e){
     e.preventDefault();
     if(e.target.id === "next-btn"){
-        const intro = document.querySelector('#intro');
-        Renderer.renderRemove(mainContent, intro);
-        Renderer.renderHowToPlay(mainContent, GameText.howToPlay);
+        const introEl = document.querySelector('#intro');
+        Renderer.renderRemove(mainContent, introEl);
+        Renderer.renderHowToPlay(mainContent, GameText.howToPlayContent);
         mainContent.removeEventListener("click", handleNext);
     }
 }
+
+function handleReadytoPlay(e){
+    e.preventDefault();
+    if(e.target.id === "ready-btn"){
+        const howToPlayEl = document.querySelector('#how-to-play');
+        Renderer.renderRemove(mainContent, howToPlayEl);
+        Renderer.renderPickTeams(mainContent, GameText.pickTeamsContent);
+        mainContent.removeEventListener("click", handleReadytoPlay);
+    }
+}
+
 /*--------- Main ---------*/
