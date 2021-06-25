@@ -1,5 +1,6 @@
 /*--------- Imports ---------*/
-import * as Renderer from './render.js';
+import * as Renderer from './modules/render.js';
+import {introContent} from './modules/gameData/intro.js';
 
 /*--------- Variables ---------*/
 
@@ -7,16 +8,16 @@ let gameActive, board, activePlayer, numActionPoints, actionsTaken
 let players = [];
 
 /*--------- Cached HTML References ---------*/
-const mainContent = document.querySelector('#main-content');
-const newGameForm = document.querySelector('#new-game-form');
+const mainContent = document.querySelector("#main-content");
+const newGameForm = document.querySelector("#new-game-form");
 
 /*--------- Event Listeners ---------*/
-newGameForm.addEventListener('click', handleNewGame);
+mainContent.addEventListener("click", handleNewGame);
+// newGameForm.addEventListener("click", handleNewGame);
 
 /*--------- Functions ---------*/
 
 function init(name1, name2){
-    console.log("hello world")
     // 1.  Copy `players` to `players`
     // 2.  Copy `board`   to `board`
     // 3.  Copy `teams`   to `teams`
@@ -31,14 +32,13 @@ function init(name1, name2){
 
 function handleNewGame(e){
     e.preventDefault();
-    if(e.target.id === 'new-game-btn'){
+    if(e.target.id === "new-game-btn"){
         let name1 = e.target.parentNode[0].value;
         let name2 = e.target.parentNode[1].value;
         init(name1, name2);
         Renderer.renderRemove(mainContent, newGameForm);
+        Renderer.renderIntro(mainContent, introContent, Renderer.renderBootstrapCard);
     }
-    // renderRemove() elements from screen
-    // render next screen
 }
 
 /*--------- Main ---------*/
