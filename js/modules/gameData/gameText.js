@@ -6,6 +6,7 @@ let introContent = {
     btnText: "Next",
     btnId: "next-btn",
     btnType: "primary",
+    btnValue: "Next",
     addCustomClassBool: false,
     customBtnClass: null
 }
@@ -19,6 +20,7 @@ let howToPlayContent = {
     btnText: "Ready?",
     btnId: "ready-btn",
     btnType: "primary",
+    btnValue: "Ready",
     addCustomClassBool: false,
     customBtnClass: null
 }
@@ -33,6 +35,7 @@ let pickTeamsContent = {
         btnText: "Play Raptors",
         btnId: "play-raptors-btn",
         btnType: "primary",
+        btnValue: "Raptors",
         addCustomClassBool: false,
         customBtnClass: null
     },
@@ -44,6 +47,7 @@ let pickTeamsContent = {
         btnText: "Play Scientists",
         btnId: "play-scientists-btn",
         btnType: "primary",
+        btnValue: "Scientists",
         addCustomClassBool: false,
         customBtnClass: null   
     }
