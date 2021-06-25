@@ -4,6 +4,7 @@
 - As a user (AAU), I need hotseat play at a minimum so I can play against a friend in person.
 - AAU, I expect to see a splash screen that welcomes me to the game and briefly introduces how to play.
 - AAU, I need mobile features such as drag and drop.
+- AAU, I expect the game to provide full accessibility.
 - AAU, I need to pick a team.
 - AAU, I expect the game to assign the other player the opposite team.
 - AAU, I expect to see a blank game board with instructions on how to proceed.
@@ -33,81 +34,82 @@ Future enhancements:
 
 ## Pseudocode
 
-1. File setup: Connect Bootstrap and local files to `index.html` and modules to `app.js`.
-2. Prepare to initialize game.
-   1. Add empty `init()` to `app.js`
-   2. Add empty `render()`
-   3. Add constants: `gameActive`, `board`, `activePlayer`, `numActionPoints`, `actionsTaken`, `players`
-   4. Render welcome: Add HTML for overlay, form to collect player names, and new game button
-   5. Cache new game button as `newGameBtn`
-   6. Add `handleNewGame()` function
-   7.  Add event listener with `handleNewGame` to new game button.
-      1.  Invoke `init(name1, name2)`
-          1.  Copy `players` to `players`
-          2.  Copy `board`   to `board`
-          3.  Copy `teams`   to `teams`
-          4.  Copy `cards`   to `cards`
-          5.  Copy `rounds` to `rounds`
-          6.  Update player names
-3. Intro the game.
-   1. Render intro: Add HTML for game title, welcome image, game overview, and next button
-4. Display how to play.
-   1. Render how to play: Add HTML for how to play title, paragraphs, and ready to play button
-   2. Cache ready button as `readyToPlayBtn`
-   3. Add `handleReadyToPlay()` function
-   4. Add event listener with `handleReadyToPlay` to ready button
-5. Player picks a team. The game assigns the opposite team to the other player. Display selected teams.
-   1. Render pick teams: Add HTML for two cards to select teams and instructions inside of `div#pick-team`.
-   2. Cache the div as `pickTeamDiv`
-   3. Add `handlePickTeam()` function
-   4. Add event listener with `handlePickTeam` to div
-      1. Update `players` arr
-      2. Render choices: HTML for two seconds showing two cards displaying selected teams
-      3. Remove HTML showing selected teams
-      4. Render game board, turn, instructions, pieces, title
-6. Raptors place starting pieces.
-   1. Render raptor pieces
-   2. Cache body, boardEl, `gameControlDiv`, and raptor pieces
-   3. Add event listeners to `gameControlDiv` and `boardEl` with all necessary event types
-   4. Add mouse and touch event handlers
-   5. Add mouse and touch event listeners with handlers.
-   6. Update `board` and `raptors` team state as raptors are placed
-   7. Add HTML for confirm placement button when all raptors are placed `confirmPlacementBtn`
-   8. Confirm placement of raptors
-   9. Remove confirm placement button
-7. Scientists place starting pieces.
-   1. Render scientist pieces
-   2. Cache scientist pieces
-   3. Update `board` and `scientists` team state as scientists are placed
-   4. Confirm placement of scientists
-   5. Remove confirm placement button
-8. Raptors pick a card and confirm it.
-   1. Render raptor cards
-   2. Add `handlePickCard()` function to event listener attached to `gameControlsDiv`
-   3. Add confirm and back buttons to HTML
-   4. Listen to these buttons
-   5. Remove buttons once raptor choice confirmed
-9.  Scientists pick a card and confirm it.
-    1.  Render scientist cards
-    2.  `handlePickCard` records choice in `round`
-    3.  Render confirm and back buttons
-    4.  Handle confirm or back
-10. Determine initiative: 
-    1.  Add `determineInitiative()` function
-    2.  Invoke `determineInitiative` after scientists confirm card choice
-        1.  If tie, draw a new card to return to a hand of three cards with `dealCard()` function
-        2.  Repeat steps for picking cards
-11. (Temporary) player 1 is the player who picked the lower card. Player 1 plays their special action, if possible.
-    1.  Add validity check functions
-    2.  Add special action functions for raptors and scientists
-12. The game processes state and renders based on special action. If victory achieved, game ends.
-    1.  Add victory check functions
-13. Player 1 draws a card to return to a hand of three cards.
-    1.  Call `dealCard`
-14. Player with the higher card goes second and plays their regular actions, if any. 
-    1.  Add regular action functions for raptors and scientists
-15. The game processes state and renders based on regular action(s). If victory achieved, game ends.
-16. Player 2 draws a card to return to a hand of three cards.
+- [x] 1. File setup: Connect Bootstrap and local files to `index.html` and modules to `app.js`.
+- [ ] 2. Prepare to initialize game.
+  - [x]    1. Add empty `init()` to `app.js`
+  - [x]    2. Add empty `render()`
+  - [x]    3. Add variables: `gameActive`, `board`, `activePlayer`, `numActionPoints`, `actionsTaken`, `players`
+  - [x]    4. Render welcome: Add HTML for overlay, form to collect player names, and new game button
+  - [x]    5. Cache new game button as `newGameBtn`
+  - [x]    6. Add `handleNewGame()` function
+  - [x]    7.  Add event listener with `handleNewGame` to new game button.
+     - [x]    1.  Invoke `init(name1, name2)`
+         - [ ]    1.  Copy `players` to `players`
+         - [ ]    2.  Copy `board`   to `board`
+         - [ ]    3.  Copy `teams`   to `teams`
+         - [ ]    4.  Copy `cards`   to `cards`
+         - [ ]    5.  Copy `rounds` to `rounds`
+         - [x]    6.  Update player names
+     - [x]    2. Remove elements from previous screen
+- [ ] 3. Intro the game.
+  - [ ]    1. Render intro: Add HTML for game title, welcome image, game overview, and next button
+- [ ] 4. Display how to play.
+  - [ ]    1. Render how to play: Add HTML for how to play title, paragraphs, and ready to play button
+  - [ ]    2. Cache ready button as `readyToPlayBtn`
+  - [ ]    3. Add `handleReadyToPlay()` function
+  - [ ]    4. Add event listener with `handleReadyToPlay` to ready button
+- [ ] 5. Player picks a team. The game assigns the opposite team to the other player. Display selected teams.
+  - [ ]    1. Render pick teams: Add HTML for two cards to select teams and instructions inside of `div#pick-team`.
+  - [ ]    2. Cache the div as `pickTeamDiv`
+  - [ ]    3. Add `handlePickTeam()` function
+  - [ ]    4. Add event listener with `handlePickTeam` to div
+     - [ ]    1. Update `players` arr
+     - [ ]    2. Render choices: HTML for two seconds showing two cards displaying selected teams
+     - [ ]    3. Remove HTML showing selected teams
+     - [ ]    4. Render game board, turn, instructions, pieces, title
+- [ ] 6. Raptors place starting pieces.
+  - [ ]    1. Render raptor pieces
+  - [ ]    2. Cache body, boardEl, `gameControlDiv`, and raptor pieces
+  - [ ]    3. Add event listeners to `gameControlDiv` and `boardEl` with all necessary event types
+  - [ ]    4. Add mouse and touch event handlers
+  - [ ]    5. Add mouse and touch event listeners with handlers.
+  - [ ]    6. Update `board` and `raptors` team state as raptors are placed
+  - [ ]    7. Add HTML for confirm placement button when all raptors are placed `confirmPlacementBtn`
+  - [ ]    8. Confirm placement of raptors
+  - [ ]    9. Remove confirm placement button
+- [ ] 7. Scientists place starting pieces.
+  - [ ]    1. Render scientist pieces
+  - [ ]    2. Cache scientist pieces
+  - [ ]    3. Update `board` and `scientists` team state as scientists are placed
+  - [ ]    4. Confirm placement of scientists
+  - [ ]    5. Remove confirm placement button
+- [ ] 8. Raptors pick a card and confirm it.
+  - [ ]    1. Render raptor cards
+  - [ ]    2. Add `handlePickCard()` function to event listener attached to `gameControlsDiv`
+  - [ ]    3. Add confirm and back buttons to HTML
+  - [ ]    4. Listen to these buttons
+  - [ ]    5. Remove buttons once raptor choice confirmed
+- [ ] 9.  Scientists pick a card and confirm it.
+   - [ ]    1.  Render scientist cards
+   - [ ]    2.  `handlePickCard` records choice in `round`
+   - [ ]    3.  Render confirm and back buttons
+   - [ ]    4.  Handle confirm or back
+- [ ] 10. Determine initiative: 
+   - [ ]    1.  Add `determineInitiative()` function
+   - [ ]    2.  Invoke `determineInitiative` after scientists confirm card choice
+       - [ ]    1.  If tie, draw a new card to return to a hand of three cards with `dealCard()` function
+       - [ ]    2.  Repeat steps for picking cards
+- [ ] 11. (Temporary) player 1 is the player who picked the lower card. Player 1 plays their special action, if possible.
+   - [ ]    1.  Add validity check functions
+   - [ ]    2.  Add special action functions for raptors and scientists
+- [ ] 12. The game processes state and renders based on special action. If victory achieved, game ends.
+   - [ ]    1.  Add victory check functions
+- [ ] 13. Player 1 draws a card to return to a hand of three cards.
+   - [ ]    1.  Call `dealCard`
+- [ ] 14. Player with the higher card goes second and plays their regular actions, if any. 
+   - [ ]    1.  Add regular action functions for raptors and scientists
+- [ ] 15. The game processes state and renders based on regular action(s). If victory achieved, game ends.
+- [ ] 16. Player 2 draws a card to return to a hand of three cards.
 
 ### Model
 
