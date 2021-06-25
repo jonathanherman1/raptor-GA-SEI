@@ -57,38 +57,52 @@ function renderBootstrapButton(btnType, btnId, btnText, addCustomClassBool, cust
     }
 }
 
-function renderBootstrapCard(content, h1Bool, btnInsideCardBool){
-    if(h1Bool === true){
-       return `
-        <h1>${content.h1Text}</h1>
-        <div class="card" style="width: 18rem;">
+function renderBootstrapCard(content, cardId, removeImgBool, removeBtnBool, removeImgAndButtonBool, btnOutsideCardBool){
+    
+    if (removeImgBool === true){
+        return `
+        <div id="#${cardId}" class="card" style="width: 18rem;">
+            <div class="card-body">
+                <p class="card-text">${content.pText}</p>
+            </div>
+            <button id="${content.btnId}", class="btn btn-primary" type="button">${content.btnText}</button>
+        </div>`
+    } else if (removeBtnBool === true){
+        return `
+        <div id="#${cardId}" class="card" style="width: 18rem;">
             <img src="${content.imgURL}" class="card-img-top" alt="${content.altText}">
             <div class="card-body">
                 <p class="card-text">${content.pText}</p>
             </div>
         </div>
-        <button id="${content.btnId}" class="btn btn-primary" type="button">${content.btnText}</button>
         `
-    } else if (btnInsideCardBool === true) {
+    } else if (removeImgAndButtonBool === true) {
         return `
-        <div class="card" style="width: 18rem;">
+        <div id="#${cardId}" class="card" style="width: 18rem;">
+            <div class="card-body">
+                <p class="card-text">${content.pText}</p>
+            </div>
+        </div>   
+        `
+    } else if (btnOutsideCardBool === true) {
+        return `
+        <div id="#${cardId}" class="card" style="width: 18rem;">
             <img src="${content.imgURL}" class="card-img-top" alt="${content.altText}">
             <div class="card-body">
                 <p class="card-text">${content.pText}</p>
             </div>
-            <button id="${content.btnId}" class="btn btn-primary" type="button">${content.btnText}</button>
         </div>   
+        <button id="${content.btnId}" class="btn btn-primary" type="button">${content.btnText}</button>
         `
     } else {
        return `
-        <div class="card" style="width: 18rem;">
-            <img src="${content.imgURL}" class="card-img-top" alt="${content.altText}">
+       <div id="#${cardId}" class="card" style="width: 18rem;">
+            <img src="${content.imgURL}" class="card-img-top" alt="${content.altText}">     
             <div class="card-body">
                 <p class="card-text">${content.pText}</p>
             </div>
-        </div>
-        <button id="${content.btnId}", class="btn btn-primary" type="button">${content.btnText}</button>
-        `
+            <button id="${content.btnId}", class="btn btn-primary" type="button">${content.btnText}</button>
+       </div>`
     }
 }
 
@@ -119,7 +133,8 @@ function renderIntro(target, introContent){
     target.innerHTML = 
     `
     <section id="intro">
-       ${renderBootstrapCard(introContent, true, false)}
+       ${renderHeaders(introContent.h1Text, 1)}
+       ${renderBootstrapCard(introContent, "intro-card")}
     </section>
     `
 }
@@ -136,7 +151,11 @@ function renderHowToPlay(target, howToPlayContent){
     `
 }
 
-function renderPickTeams(){}
+function renderPickTeams(){
+        
+}
+
+
 function renderTeamChoices(){}
 function renderButtons(){} // confirm, back, etc.
 function renderCards(){}
