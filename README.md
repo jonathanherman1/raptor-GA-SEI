@@ -253,3 +253,13 @@ Each regular action costs 1 action point.
       - Move as many spaces as you like in an unobstructed straight line
       - Moving through fire removes it
 - Card 9: No effect
+
+
+## Credits
+
+Raptor was designed by Bruno Cathala and Bruno Faidutti, and is copyright of [Matagot](www.matagot.com).
+
+[Buy the physical board game](https://www.matagot.com/shop/en/for-all/19-raptor-3760146641136.html?search_query=raptor&results=2) from Matagot (also distributed by Asmodee).
+
+Images used:
+- [Jungle](https://unsplash.com/photos/NbPaOTi0DJ4) by Michael Hystead ([img](https://images.unsplash.com/photo-1610227514387-d50bbb97d1c8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80))
