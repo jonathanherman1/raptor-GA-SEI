@@ -1,4 +1,5 @@
 import {getRandomIntNotIncl} from "../helpers.js";
+import {gameCardsContent} from "./gameText.js";
 
 function createBoard(){
     let board = [];
@@ -6,19 +7,23 @@ function createBoard(){
     let numLShapedTiles = 4;
     let numSpacesOnLargeTiles = 9;
     let numSpacesOnLShapedTiles = 4;
+    let numMountains = calcNumMountains(numLargeTiles, numSpacesOnLargeTiles, numLShapedTiles, numSpacesOnLShapedTiles); // 9 mountains in a normal game
     let types = ["Mountain", "Normal", "Exit"];
     let environments = ["Jungle", "Desert"];
 
     // one environment for the selected game (so not inside the loop)
-    let environment = getRandomIntNotIncl(0, environments.length);
-
+    let randEnvIdx = getRandomIntNotIncl(0, environments.length);
+    let environment = environments[randEnvIdx];
+    
+    // big tiles
     for(let i = 1; i <= numLargeTiles; i++){
         for(let j = 1; j <= numSpacesOnLargeTiles; j++){
             let space = {
-                id: `${i}.${j}`, // tile.space
+                spaceInTile: j,
+                name: `${i}.${j}`, // tile.space
                 tile: i,
                 lShaped: false,
-                type: getRandomIntNotIncl(0, types.length),
+                type: types[1],
                 environment: environment,
                 occupied: false,
                 occupiedBy: null,
@@ -27,10 +32,19 @@ function createBoard(){
             board.push(space);
         }
     }
+
+    // place random mountains on normal tiles
+    for(let i = 1; i <= numMountains; i++){
+        let randSpaceIdx = getRandomIntNotIncl(0, board.length);
+        board[randSpaceIdx].type = types[0];
+    }
+
+    // L-shaped tiles
     for(let i = 1; i <= numLShapedTiles; i++){
         for(let j = 1; j <= numSpacesOnLShapedTiles; j++){
             let space = {
-                id: `${i}.${j}`,
+                spaceInTile: j,
+                name: `${i}.${j}`,
                 tile: i,
                 lShaped: true,
                 environment: environment,
@@ -43,7 +57,45 @@ function createBoard(){
             board.push(space);
         }   
     }
+
+    // give each space a global id
+    board.forEach((space, idx) => space.id = idx + 1);
+
     return board;
 }
 
-export {createBoard};
+function calcNumMountains(tiles, spaces, lTiles, lSpaces){
+    let normNumSpaces = tiles * spaces;
+    let lShapedNumSpaces = lTiles * lSpaces;
+    let totalSpaces = normNumSpaces + lShapedNumSpaces;
+    let numMountains = Math.floor(totalSpaces * .13);
+    return numMountains;
+}
+
+function createCards(){
+    let cards = [];
+    let scientistVal = 0;
+    for(let i = 0; i < gameCardsContent.length; i++){
+        let card = {
+            id: i,
+            name: gameCardsContent[i].name,
+            actions: gameCardsContent[i].actions,
+            notes: gameCardsContent[i].notes,
+            usedThisRound: false,
+            usedAsSpecial: false
+        }
+        if(i < 9){
+            card.value = i+1;
+            card.team = "Raptors";
+        } else {
+            scientistVal++;
+            card.value = scientistVal;
+            card.team = "Scientists";
+        }
+        cards.push(card);
+    }
+    return cards;
+}
+
+
+export {createBoard, createCards};
