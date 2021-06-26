@@ -41,7 +41,7 @@ By **Jun 29**, end of class:
 - Bootstrap
 
 ## Technical Requirements:
-- [ ] Renders in browser
+- [ ] Renders a working game in browser
 - [ ] Win/loss logic and renders win/loss messages in HTML
 - [ ] Properly indented HTML, CSS, and JS with consistent vertical white space
 - [ ] Light/Dark mode
@@ -263,3 +263,5 @@ Raptor was designed by Bruno Cathala and Bruno Faidutti, and is copyright of [Ma
 
 Images used:
 - [Jungle](https://unsplash.com/photos/NbPaOTi0DJ4) by Michael Hystead ([img](https://images.unsplash.com/photo-1610227514387-d50bbb97d1c8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80))
+- [Raptor](https://unsplash.com/photos/-15ZMeUKtJM) by Mehmet Turgut Kirkgoz ([img](https://images.unsplash.com/photo-1606856110002-d0991ce78250?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80))
+- [Scientist](https://unsplash.com/photos/vGzmLshPjbc) by Peter Larsen ([img](https://images.unsplash.com/photo-1584696993692-a53190f76609?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3334&q=80))
