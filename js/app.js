@@ -1,11 +1,12 @@
 /*--------- Imports ---------*/
-import * as Renderer from './modules/render.js';
-import * as GameText from './modules/gameData/gameText.js';
+import * as State from "./modules/gameData/state.js"
+import * as Renderer from "./modules/render.js";
+import * as GameText from "./modules/gameData/gameText.js";
 
 /*--------- Variables ---------*/
 
-let gameActive, board, numActionPoints, actionsTaken, teams;
-let players = [];
+let gameActive, players, teams, board, cards, rounds, numActionPoints, actionsTaken;
+
 
 /*--------- Cached HTML References ---------*/
 const mainContent = document.querySelector("#main-content");
@@ -19,15 +20,14 @@ mainContent.addEventListener("click", handlePickTeam);
 
 /*--------- Functions ---------*/
 
-function init(name1, name2){
-    // Copy `board`   to `board`
+function init(name1, name2){    
     // Copy `cards`   to `cards`
     // Copy `rounds` to `rounds`
+    gameActive = true;
     players = [
         {name: name1, team: null, teamId: null, activePlayer: null},
         {name: name2, team: null, teamId: null, activePlayer: null}
     ]
-
     teams = [
         {
             name: "Raptors",
@@ -58,6 +58,9 @@ function init(name1, name2){
             ]
         }
     ]
+    board = State.createBoard();
+    cards = State.createCards();
+    console.log(cards);
 }
 
 function handleNewGame(e){
@@ -100,7 +103,6 @@ function handlePickTeam(e){
         const raptors = teams[0];
         const scientists = teams[1];
         const pickTeamsEl = document.querySelector("#pick-teams");
-        console.log(e);
         if(player1.team === null){
             player1.team = e.target.value;
             player1.team === raptors.name ? player1.teamId = raptors.id : player1.teamId = scientists.id;
