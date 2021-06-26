@@ -1,4 +1,4 @@
-import {getRandomIntNotIncl} from './helpers.js';
+import {getRandomIntNotIncl} from "../helpers.js";
 
 function createBoard(){
     let board = [];
