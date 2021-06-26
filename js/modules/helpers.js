@@ -1,5 +1,10 @@
 // from MDN
-function getRandomIntInclusive(min, max) {
+function getRandomIntNotIncl(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+// from MDN
+function getRandomIntIncl(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
@@ -18,4 +23,4 @@ function clearDelay(){
     window.clearTimeout(timeoutId);
 }
 
-export {getRandomIntInclusive, timeoutId, delayFunc, clearDelay};
+export {getRandomIntNotIncl, getRandomIntIncl, timeoutId, delayFunc, clearDelay};
