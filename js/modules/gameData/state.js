@@ -97,5 +97,30 @@ function createCards(){
     return cards;
 }
 
+function createRound(roundNum){
+    let round = {
+        id: roundNum,
+        name: `Round ${roundNum}`,
+        raptorCardChoice: null,
+        scientistCardChoice: null,
+        activePlayer: null,
+        activeTeam: null,
+        activeCard: null,
+        numActionPoints: null,
+        actionsTaken: [
+            {
+                action: {},
+                team: null,
+                type: null
+            }
+        ]
+    }
+    return round;
+}
 
-export {createBoard, createCards};
+function updateRound(){
+
+}
+
+
+export {createBoard, createCards, createRound};
