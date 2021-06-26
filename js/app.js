@@ -5,8 +5,7 @@ import * as GameText from "./modules/gameData/gameText.js";
 
 /*--------- Variables ---------*/
 
-let gameActive, players, teams, board, cards, rounds, numActionPoints, actionsTaken;
-
+let gameActive, players, teams, board, cards, rounds;
 
 /*--------- Cached HTML References ---------*/
 const mainContent = document.querySelector("#main-content");
@@ -60,7 +59,9 @@ function init(name1, name2){
     ]
     board = State.createBoard();
     cards = State.createCards();
-    console.log(cards);
+    rounds = [];
+    let round = State.createRound(1);
+    rounds.push(round);
 }
 
 function handleNewGame(e){
