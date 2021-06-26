@@ -1,6 +1,6 @@
 // from MDN
 function getRandomIntNotIncl(min, max) {
-    return Math.random() * (max - min) + min;
+    return Math.floor(Math.random() * (max - min)) + min;
   }
 
 // from MDN
@@ -22,5 +22,6 @@ function delayFunc(func, delayMs){
 function clearDelay(){
     window.clearTimeout(timeoutId);
 }
+
 
 export {getRandomIntNotIncl, getRandomIntIncl, timeoutId, delayFunc, clearDelay};
