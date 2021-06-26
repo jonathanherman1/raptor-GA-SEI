@@ -81,30 +81,30 @@ body {
     background-color: rgb(63, 20, 20);
 }
 
-#bottom-left, #bottom-right, #top-left, #top-right {
+.bottom-left, .bottom-right, .top-left, .top-right {
     background-color: lightgray;   
 }
 
-#exit1 {
+.exit1 {
     background-color: darkgreen;
     color: white;
     grid-column: 3;
     justify-self: end;
 }
 
-#exit2 {
+.exit2 {
     background-color: darkgreen;
     color: white;
     grid-column: 1;
 }
 
-#exit3 {
+.exit3 {
     background-color: darkgreen;
     color: white;
     grid-column: 1;
 }
 
-#exit4 {
+.exit4 {
     background-color: darkgreen;
     color: white;
     grid-column: 3;
