@@ -35,7 +35,7 @@ Future enhancements:
 ## Pseudocode
 
 - [x] 1. File setup: Connect Bootstrap and local files to `index.html` and modules to `app.js`.
-- [ ] 2. Prepare to initialize game.
+- [x] 2. Prepare to initialize game.
   - [x]    1. Add empty `init()` to `app.js`
   - [x]    2. Add empty `render()`
   - [x]    3. Add variables: `gameActive`, `board`, `activePlayer`, `numActionPoints`, `actionsTaken`, `players`
@@ -44,11 +44,11 @@ Future enhancements:
   - [x]    6. Add `handleNewGame()` function
   - [x]    7.  Add event listener with `handleNewGame` to new game button.
      - [x]    1.  Invoke `init(name1, name2)`
-         - [ ]    1.  Copy `players` to `players`
-         - [ ]    2.  Copy `board`   to `board`
-         - [ ]    3.  Copy `teams`   to `teams`
-         - [ ]    4.  Copy `cards`   to `cards`
-         - [ ]    5.  Copy `rounds` to `rounds`
+         - [x]    1.  Copy `players` to `players`
+         - [x]    2.  Copy `board`   to `board`
+         - [x]    3.  Copy `teams`   to `teams`
+         - [x]    4.  Copy `cards`   to `cards`
+         - [x]    5.  Copy `rounds` to `rounds`
          - [x]    6.  Update player names
      - [x]    2. Remove elements from previous screen
 - [x] 3. Intro the game.
@@ -57,30 +57,29 @@ Future enhancements:
   - [x]    3. Add gameData directory 
   - [x]    4. Add gameText.js module containing the above content
   - [x]    5. Add `handleNext()` function to move to how to play
-- [ ] 4. Display how to play.
-  - [ ]    1. Render how to play: Add HTML for how to play title, paragraphs, and ready to play button
-  - [ ]    2. Cache ready button as `readyToPlayBtn`
-  - [ ]    3. Add `handleReadyToPlay()` function
-  - [ ]    4. Add event listener with `handleReadyToPlay` to ready button
-- [ ] 5. Player picks a team. The game assigns the opposite team to the other player. Display selected teams.
-  - [ ]    1. Render pick teams: Add HTML for two cards to select teams and instructions inside of `div#pick-team`.
-  - [ ]    2. Cache the div as `pickTeamDiv`
-  - [ ]    3. Add `handlePickTeam()` function
-  - [ ]    4. Add event listener with `handlePickTeam` to div
-     - [ ]    1. Update `players` arr
+- [x] 4. Display how to play.
+  - [x]    1. Render how to play: Add HTML for how to play title, paragraphs, and ready to play button
+  - [x]    2. Add `handleReadyToPlay()` function
+  - [x]    3. Add event listener with `handleReadyToPlay` to ready button
+- [x] 5. Player picks a team. The game assigns the opposite team to the other player. Display selected teams.
+  - [x]    1. Render pick teams: Add HTML for two cards to select teams and instructions inside of `div#pick-team`.
+  - [x]    2. Add `handlePickTeam()` function
+  - [x]    3. Add event listener with `handlePickTeam` to div
+     - [x]    1. Update `players` arr
      - [ ]    2. Render choices: HTML for two seconds showing two cards displaying selected teams
      - [ ]    3. Remove HTML showing selected teams
-     - [ ]    4. Render game board, turn, instructions, pieces, title
 - [ ] 6. Raptors place starting pieces.
-  - [ ]    1. Render raptor pieces
-  - [ ]    2. Cache body, boardEl, `gameControlDiv`, and raptor pieces
-  - [ ]    3. Add event listeners to `gameControlDiv` and `boardEl` with all necessary event types
-  - [ ]    4. Add mouse and touch event handlers
-  - [ ]    5. Add mouse and touch event listeners with handlers.
-  - [ ]    6. Update `board` and `raptors` team state as raptors are placed
-  - [ ]    7. Add HTML for confirm placement button when all raptors are placed `confirmPlacementBtn`
-  - [ ]    8. Confirm placement of raptors
-  - [ ]    9. Remove confirm placement button
+  - [x]    1. Add `createBoard()` function, and call it in `init()`
+  - [ ]    2. Render game board, turn, instructions, pieces, title
+  - [ ]    3. Render raptor pieces
+  - [ ]    4. Cache body, boardEl, `gameControlDiv`, and raptor pieces
+  - [ ]    5. Add event listeners to `gameControlDiv` and `boardEl` with all necessary event types
+  - [ ]    6. Add mouse and touch event handlers
+  - [ ]    7. Add mouse and touch event listeners with handlers.
+  - [ ]    8. Update `board` and `raptors` team state as raptors are placed
+  - [ ]    9. Add HTML for confirm placement button when all raptors are placed `confirmPlacementBtn`
+  - [ ]    10. Confirm placement of raptors
+  - [ ]    11. Remove confirm placement button
 - [ ] 7. Scientists place starting pieces.
   - [ ]    1. Render scientist pieces
   - [ ]    2. Cache scientist pieces
@@ -149,19 +148,19 @@ Players:
 
 Teams:
 
-- scientists `arr`
-  - scientist `obj`
-    - `id: str` (ex. s1)
-    - `health: int` (1)
-    - `awake: bool`
-    - `aggressiveActionTaken: bool` (resets next turn)
-    - `location: int`
 - raptors `arr`
   - raptor `obj`
     - `id: str` (ex. r1)
     - `health: int` (5 if mother raptor; 1 if baby raptor)
     - `awake: bool`
     - `mother: bool`
+    - `location: int`
+- scientists `arr`
+  - scientist `obj`
+    - `id: str` (ex. s1)
+    - `health: int` (1)
+    - `awake: bool`
+    - `aggressiveActionTaken: bool` (resets next turn)
     - `location: int`
 
 Locations:
@@ -172,6 +171,7 @@ Locations:
     - `tile: int` (part of tile 1-6)
     - `lShaped: bool` (L-shaped tile)
     - `type: str` (mountain, normal, exit)
+    - `environment: str` (jungle, desert)
     - `occupied: bool`
     - `occupiedBy: str` (link to piece id)
     - `hasFire: bool` (only possible on normal)
@@ -182,9 +182,11 @@ Cards & Actions:
   - raptorCards `arr`
     - card1 `obj`
       - `id: str` (ex. cardR1)
-      - `name: str` (ex. Mother's Call and Shuffle)
       - `value: int` (ex. 1)
-      - `description: str` (ex. Move active baby raptor to free space on tile where mother raptor is located.)
+      - `team: str` (pull reference from teams)
+      - `name: str` (ex. Mother's Call and Shuffle)
+      - `actions: arr` (ex. Move active baby raptor to free space on tile where mother raptor is located.)
+      - `notes: arr`
       - `usedThisRound: bool`
       - `usedAsSpecial: bool`
     - card2 ... card9
@@ -196,17 +198,17 @@ Help Text: `obj`
 - overview `obj`
 - how to play `obj`
 - end of game `arr`
-  - scientist victory `obj`
   - raptor victory
+  - scientist victory `obj`
 - rules `arr`
   - general `obj`
   - determine who goes first `obj`
   - regular actions `arr`
-    - scientist `obj`
     - raptor `obj`
+    - scientist `obj`
   - special actions `arr`
-    - scientist `obj`
     - raptor `obj`
+    - scientist `obj`
 - tips `obj`
 
 
@@ -214,6 +216,7 @@ Help Text: `obj`
 
 Setup:
 - init() // makes the game active
+- createBoard()
 - placeStartingPieces() // probably unnecessary since these steps will be broken into separate funcs called in the event listeners
 
 Cached Game Elements:
