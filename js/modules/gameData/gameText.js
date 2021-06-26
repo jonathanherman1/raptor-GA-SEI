@@ -15,7 +15,7 @@ let howToPlayContent = {
     h1Text: "How to play:",
     imgURL: null,
     altText: null,
-    instructions: ["Pick a team.", "Place your pieces in their starting positions.", "Pick a card.", "Take your actions based on who goes first."],
+    instructions: ["Pick a team.", "Place your pieces in their starting positions.", "Pick a card.", "Take your actionss based on who goes first."],
     victoryConditions: ["Raptors win by helping three baby raptors escape or killing all scientists on the board.", "Scientists win by capturing three baby raptors or neutralizing the mother raptor."],
     btnText: "Ready?",
     btnId: "ready-btn",
@@ -53,5 +53,97 @@ let pickTeamsContent = {
     }
 }
 
+let gameCardsContent = [
+    {
+        name: "Mother's Call and Shuffle", 
+        actions: ["Move active baby raptor to free space on tile where mother raptor is located."], 
+        notes: ["Shuffles your deck","Babies already on tile can go to another space on the same tile.","Babies cannot move through obstacles."]
+    },
+    {
+        name: "Disappearance and Observation", 
+        actions: ["Remove mother raptor from board.","Wait for scientist to spend actions points.","Place mother raptor back on board."], 
+        notes: ["Next round, see what card the scientists plays before you choose yours."]
+    },
+    {
+        name: "Fear", 
+        actions: ["Frighten one scientist"], 
+        notes: ["Scientist is inactive until revived","Scientists cannot be revived the same round they were put to sleep"]
+    },
+    {
+        name: "Mother's Call (x2)", 
+        actions: ["Move one or two baby raptors to free space on the tile where the mother raptor is located"], 
+        notes: ["Babies on the same tile can move to a new space","There must be an open path for the babies to follow"]
+    },
+    {
+        name: "Recovery (x2)", 
+        actions: ["Heal the mother raptor two times, wake up two babies, or do one of both"], 
+        notes: []
+    },
+    {
+        name: "Disappearance and Observation", 
+        actions: ["Remove the mother raptor","Wait for the scientist to use actions points","Place the mother raptor back on a space"], 
+        notes: ["Next round, the raptors get to see what card the scientist will play before revealing theirs."]
+    },
+    {
+        name: "Recovery (x3)", 
+        actions: ["Heal the mother raptor three times, wake up three babies, or do a combination of each."], 
+        notes: []
+    },
+    {
+        name: "Fear (x2)", 
+        actions: ["Frighten one or two scientists"], 
+        notes: ["Scientist(s) are inactive until revived","Scientists cannot be revived the same round they were put to sleep"]
+    },
+    {
+        name: "No effect", 
+        actions: ["No effect"], 
+        notes: []
+    },
+    {
+        name: "Sleeping Gas and Shuffle", 
+        actions: ["Put a baby raptor to sleep"], 
+        notes: ["Baby raptor cannot be awakened until next round","Only works if the scientist is on the same or an adjacent tile to the baby","Shuffles your deck"]
+    },
+    {
+        name: "Reinforcements", 
+        actions: ["Place one or two scientists from the reserve on empty spaces located along the long edges of the board"], notes: ["If you have no scientists left, you're out of reinforcements and do nothing this round!","L-shaped tiles are not permissable landing zones"]
+    },
+    {
+        name: "Jeep (x2)", 
+        actions: ["Move one or two scientists with a Jeep."], 
+        notes: ["Move as many spaces as you like in an unobstructed straight line","Moving through fire removes it","The same scientist may move as many times as available"]
+    },
+    {
+        name: "Sleeping Gas (x2)", 
+        actions: ["Put one or two baby raptors to sleep"], 
+        notes: ["Baby raptors cannot be awakened until next round","Only works if the scientist is on the same or an adjacent tile to the baby"]
+    },
+    {
+        name: "Fire (x2)", 
+        actions: ["Place two fire tokens on free spaces on the board"], 
+        notes: ["Can only be placed adjacent to a scientist or another fire token"]
+    },
+    {
+        name: "Reinforcements", 
+        actions: ["Place one or two scientists from the reserve on empty spaces located along the long edges of the board"], notes: ["If you have no scientists left, you're out of reinforcements and do nothing this round!","L-shaped tiles are not permissable landing zones"]
+    },
+    {
+        name: "Fire (x3)", 
+        actions: ["Place three fire tokens on free spaces on the board"], 
+        notes: ["Can only be placed adjacent to a scientist or another fire token"]
+    },
+    {
+        name: "Jeep (x4)", 
+        actions: ["Move up to four scientists with a Jeep."], 
+        notes: ["Move as many spaces as you like in an unobstructed straight line","Moving through fire removes it","The same scientist may move as many times as available"]
+    },
+    {
+        name: "No effect", 
+        actions: [], 
+        notes: []
+    }
+]
 
-export {introContent, howToPlayContent, pickTeamsContent}
+
+
+export {introContent, howToPlayContent, pickTeamsContent, gameCardsContent}
