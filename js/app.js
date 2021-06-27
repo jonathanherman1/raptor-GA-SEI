@@ -8,16 +8,43 @@ import * as Helpers from "./modules/helpers.js";
 
 let gameActive, players, teams, board, cards, rounds;
 
+// touch variables
+let initialX, initialY, currentX, currentY, xEnter, yEnter, active, dragItem;
+let xOffset = 0;
+let yOffset = 0;
+let validDropZoneClasses = ["space"];
+let isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+let isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+
+
 /*--------- Cached HTML References ---------*/
 const mainContent = document.querySelector("#main-content");
 const newGameFormEl = document.querySelector("#new-game-form");
 
 /*--------- Event Listeners ---------*/
+// Game walkthrough
+// Make new game
 mainContent.addEventListener("click", handleNewGame);
+// render how to play
 mainContent.addEventListener("click", handleNext);
+// render teams
 mainContent.addEventListener("click", handleReadytoPlay);
+// pick teams and render choices
 mainContent.addEventListener("click", handlePickTeam);
+// render play button to load board and setup
 mainContent.addEventListener("click", handlePlay);
+
+// Touch Events
+mainContent.addEventListener("touchstart", handleTouchStart);
+mainContent.addEventListener("touchmove", handleTouchMove);
+mainContent.addEventListener("touchend", handleTouchEnd);
+// // Mouse Events
+// mainContent.addEventListener("dragstart", handleDragStart);
+// mainContent.addEventListener("dragenter", handleDragEnter);
+// mainContent.addEventListener("dragleave", handleDragLeave);
+// mainContent.addEventListener("drop", handleDrop);
+// mainContent.addEventListener("dragend", handleDragEnd);
+
 
 /*--------- Functions ---------*/
 
@@ -156,5 +183,133 @@ function handlePlay(e){
         })
     }
 }
+
+// Touch Events
+  function handleTouchStart(e){
+      if(e.targetTouches[0].target.className === "pieces"){
+        console.log("touch start: ", e);
+        dragItem = e.targetTouches[0].target;
+        dragItem.classList.add("selected");
+        if(e.target === dragItem){
+          active = true;
+        }
+        console.log(dragItem);
+        initialX = e.touches[0].clientX // - xOffset;
+        initialY = e.touches[0].clientY // - yOffset;
+        let idVacated;
+        // handle Chrome vs other browsers
+        if(isChrome === true) {
+        idVacated = e.path[1].id;
+        } else if (isChrome === false) {
+        let path = getPath(dragItem);
+        idVacated = path[1].id;
+        }
+        if(idVacated === "pieces-tray"){
+        console.log("moving piece from pieces-tray");
+        } else {
+            // can set state here for space that is now unoccupied
+            console.log(`moving piece from ${idVacated}`);
+        }
+      }
+    //   console.log("dragItem: ", dragItem)
+    //   console.log("active: ", active)
+    //   console.log("initialX: ", initialX)
+    //   console.log("initialY: ", initialY)
+  } 
+  function handleTouchMove(e){
+    // console.log("touch move: ", e);
+    if(active){
+        document.querySelector("body").classList.add("lock-screen");
+        currentX = e.touches[0].clientX - initialX;  
+        currentY = e.touches[0].clientY - initialY;
+        setTranslate(currentX, currentY, dragItem);
+    }
+  } 
+  function handleTouchEnd(e){
+    if(dragItem !== undefined){
+        console.log("touch end: ", e);        
+        
+        document.querySelector("body").classList.remove("lock-screen");
+    
+        // let path = getPath(dragItem);
+        // console.log("path: ", path);
+        let dropZone;
+        let dropzoneX = e.changedTouches[0].clientX;
+        let dropzoneY = e.changedTouches[0].clientY;
+        console.log("dropZoneX: ", dropzoneX, "dropZoneY: ", dropzoneY);
+        let dropZoneList = document.elementsFromPoint(dropzoneX, dropzoneY);
+        for(let el of dropZoneList){
+            // sets the drop zone
+            if(validDropZoneClasses.includes(el.className)) dropZone = el;
+        }
+        console.log('dropZoneList: ', dropZoneList);
+        console.log('dropZone: ', dropZone);
+
+        if(dropZone !== undefined){
+            // add the piece to the space element
+            dropZone.appendChild(dragItem);
+        }
+        
+        // prevent handleMove
+        // active = false;
+
+        // makes the letter appear properly like a normal child of div
+        dragItem.style.removeProperty("transform");
+
+        // remove selected class
+        dragItem.classList.remove("selected");
+
+        // force a reset of selecting the dragItem
+        // dragItem = undefined;
+    }
+  } 
+  
+// helper func for handleTouchMove
+  function setTranslate(xPos, yPos, el){
+    el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)"
+  }
+
+// Mouse Events:
+  function handleDrop(e){
+    e.preventDefault();
+    console.log(e);
+  } 
+  function handleDragStart(e){
+    e.preventDefault();
+    console.log(e);
+  } 
+  function handleDragEnd(e){
+    e.preventDefault();
+    console.log(e);
+
+  }  
+  function handleDragEnter(e){
+    e.preventDefault();
+    console.log(e);
+
+  } 
+  function handleDragLeave(e){
+    e.preventDefault();
+    console.log(e);
+
+  } 
+
+
+
+  // this is for Safari which doesn't support path like Chrome does.
+function getPath(currentElem) {
+    var path = [];
+    while (currentElem) {
+      path.push(currentElem);
+      currentElem = currentElem.parentElement;
+    }
+    if (path.indexOf(window) === -1 && path.indexOf(document) === -1)
+      path.push(document);
+    if (path.indexOf(window) === -1)
+      path.push(window);
+    return path;
+  }
+
+
 
 /*--------- Main ---------*/
