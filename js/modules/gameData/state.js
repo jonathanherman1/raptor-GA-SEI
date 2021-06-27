@@ -11,6 +11,10 @@ function createBoard(){
     let types = ["Mountain", "Normal", "Exit"];
     let environments = ["Jungle", "Desert"];
 
+    // in a 3 x 3 tile.
+    let leftEdge = [1,4,7];
+    let rightEdge = [3,6,9];
+
     // one environment for the selected game (so not inside the loop)
     let randEnvIdx = getRandomIntNotIncl(0, environments.length);
     let environment = environments[randEnvIdx];
@@ -29,6 +33,11 @@ function createBoard(){
                 occupiedBy: null,
                 hasFire: false
             }
+            if(leftEdge.includes(j) || rightEdge.includes(j)){
+                space.edgeForReinforcement = true;
+            } else {
+                space.edgeForReinforcement = false;
+            }
             board.push(space);
         }
     }
@@ -45,9 +54,10 @@ function createBoard(){
             let space = {
                 spaceInTile: j,
                 name: `${i}.${j}`,
-                tile: i,
+                tile: i + numLargeTiles,
                 lShaped: true,
                 environment: environment,
+                edgeForReinforcement: false,
                 occupied: false,
                 occupiedBy: null,
                 hasFire: false
