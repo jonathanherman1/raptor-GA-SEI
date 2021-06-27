@@ -144,6 +144,36 @@ let gameCardsContent = [
     }
 ]
 
+let setupInfoContent = [
+    {
+        team: "raptors",
+        hText: "Turn: Raptors",
+        pText: ["Place your mother raptor and baby raptors."],
+        icons: ["../assets/raptor.png", "../assets/baby-raptor.png"],
+        numBabies: 5,
+        numMother: 1,
+        btnText: "Confirm Placement",
+        btnId: "confirm-raptor-placement-btn",
+        btnType: "warning",
+        btnValue: "Confirm Raptor Placement",
+        addCustomClassBool: false,
+        customBtnClass: null
+    },
+    {
+        team: "scientists",
+        hText: "Turn: Scientists",
+        pText: ["Place your scientists."],
+        icons: ["../assets/scientist.png"],
+        numScientists: 4,
+        btnText: "Confirm Placement",
+        btnId: "confirm-scientist-placement-btn",
+        btnType: "warning",
+        btnValue: "Confirm Scientist Placement",
+        addCustomClassBool: false,
+        customBtnClass: null
+    }
+]
 
 
-export {introContent, howToPlayContent, pickTeamsContent, gameCardsContent}
+
+export {introContent, howToPlayContent, pickTeamsContent, gameCardsContent, setupInfoContent}
