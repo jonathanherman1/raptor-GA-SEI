@@ -137,12 +137,16 @@ function renderPickTeams(target, pickTeamsContent){
 function renderTeamChoices(target, players){
     const player1 = players[0];
     const player2 = players[1];
+    let play = {
+        btnType: "success", btnId: "play-btn", btnText: "Play!", btnValue: "Play!", addCustomClassBool: false, customBtnClass: null
+    }
     let player1ChoiceText = `${player1.name} is the ${player1.team}.`
     let player2ChoiceText = `${player2.name} is the ${player2.team}.`
     target.innerHTML = `
     <section id="team-choices">
         ${renderHeaders(player1ChoiceText, 1)}
         ${renderHeaders(player2ChoiceText, 1)}
+        ${renderBootstrapButton(play)}
     </section>
     `
 }
