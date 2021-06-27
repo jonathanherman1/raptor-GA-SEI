@@ -66,18 +66,17 @@ Future enhancements:
   - [x]    2. Add `handlePickTeam()` function
   - [x]    3. Add event listener with `handlePickTeam` to div
      - [x]    1. Update `players` arr
-     - [ ]    2. Render choices: HTML for two seconds showing two cards displaying selected teams
-     - [ ]    3. Remove HTML showing selected teams
+     - [x]    2. Render choices: HTML showing two cards displaying selected teams
+     - [x]    3. Remove HTML showing selected teams
 - [ ] 6. Raptors place starting pieces.
   - [x]    1. Add `createBoard()` function, and call it in `init()`
-  - [ ]    2. Render game board, turn, instructions, pieces, title
-  - [ ]    3. Render raptor pieces
-  - [ ]    4. Cache body, boardEl, `gameControlDiv`, and raptor pieces
-  - [ ]    5. Add event listeners to `gameControlDiv` and `boardEl` with all necessary event types
-  - [ ]    6. Add mouse and touch event handlers
-  - [ ]    7. Add mouse and touch event listeners with handlers.
-  - [ ]    8. Update `board` and `raptors` team state as raptors are placed
-  - [ ]    9. Add HTML for confirm placement button when all raptors are placed `confirmPlacementBtn`
+  - [x]    2. Render game board, turn, instructions
+  - [x]    3. Render raptor pieces
+  - [x]    4. Cache `gameTray`, `instructions`, `piecesTray`
+  - [ ]    5. Add mouse and touch event handlers
+  - [ ]    6. Add mouse and touch event listeners with handlers.
+  - [ ]    7. Update `board` and `raptors` team state as raptors are placed
+  - [ ]    8. Add HTML for confirm placement button when all raptors are placed `confirmPlacementBtn`
   - [ ]    10. Confirm placement of raptors
   - [ ]    11. Remove confirm placement button
 - [ ] 7. Scientists place starting pieces.
@@ -234,6 +233,7 @@ Event Handlers:
 - handleNext()
 - handleReadyToPlay()
 - handlePickTeam()
+- handlePlay()
 - handlePieceClick()
 - handlePickCard()
 - handleRaptorPiecesPlaced()
