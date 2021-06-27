@@ -283,6 +283,51 @@ function renderBoard(target, boardContent){
 }
 
 
+function renderSetupInfo(content, i){
+    let team = content[i];
+    let teamArr = [];
+    let header = document.createElement("h4");
+    let description = document.createElement("p");
+    if(team.team === "raptors"){
+        header.textContent = team.hText;
+        description.textContent = team.pText;
+        let motherDiv = document.createElement("div");
+        motherDiv.setAttribute("id", "#mother-raptor-1");
+        motherDiv.setAttribute("class", "pieces");
+        let motherImg = document.createElement("img");
+        motherImg.src = team.icons[0];
+        motherImg.setAttribute("class", "pieces");
+        motherDiv.appendChild(motherImg);
+        teamArr.push(motherDiv);
+        for(let i = 1; i <= team.numBabies; i++){
+            let babyDiv = document.createElement("div");
+            babyDiv.setAttribute("id", `#baby-raptor-${i}`);
+            babyDiv.setAttribute("class", "pieces");
+            let babyImg = document.createElement("img");
+            babyImg.src = team.icons[1];
+            babyImg.setAttribute("class", "pieces");
+            babyDiv.appendChild(babyImg);
+            teamArr.push(babyDiv);
+        }
+    } 
+    if (team.team === "scientists"){
+        header.textContent = team.hText;
+        description.textContent = team.pText;
+        for(let i = 1; i <= team.numScientists; i++){
+            let scientistDiv = document.createElement("div");
+            scientistDiv.setAttribute("id", `#scientist-${i}`);
+            scientistDiv.setAttribute("class", "pieces");
+            let scientistImg = document.createElement("img");
+            scientistImg.src = team.icons[0];
+            scientistImg.setAttribute("class", "pieces");
+            scientistDiv.appendChild(scientistImg);
+            teamArr.push(scientistDiv);
+        }
+    }
+
+    return [header, description, teamArr];
+}
+
 function renderButtons(){} // confirm, back, etc.
 function renderCards(){}
 function renderPieces(){}
@@ -293,4 +338,4 @@ function renderJeepMovement(){}
 function renderMotherRaptorDisappears(){}
 function renderMotherRaptorReappears(){}
 
-export {render, renderRemove, renderIntro, renderHowToPlay, renderPickTeams, renderTeamChoices, renderBoard};
+export {render, renderRemove, renderIntro, renderHowToPlay, renderPickTeams, renderTeamChoices, renderBoard, renderSetupInfo};
