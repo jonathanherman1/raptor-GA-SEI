@@ -2,6 +2,7 @@
 import * as State from "./modules/gameData/state.js"
 import * as Renderer from "./modules/render.js";
 import * as GameText from "./modules/gameData/gameText.js";
+import * as Helpers from "./modules/helpers.js";
 
 /*--------- Variables ---------*/
 
@@ -16,12 +17,11 @@ mainContent.addEventListener("click", handleNewGame);
 mainContent.addEventListener("click", handleNext);
 mainContent.addEventListener("click", handleReadytoPlay);
 mainContent.addEventListener("click", handlePickTeam);
+mainContent.addEventListener("click", handlePlay);
 
 /*--------- Functions ---------*/
 
-function init(name1, name2){    
-    // Copy `cards`   to `cards`
-    // Copy `rounds` to `rounds`
+function init(name1, name2){
     gameActive = true;
     players = [
         {name: name1, team: null, teamId: null, activePlayer: null},
@@ -118,7 +118,15 @@ function handlePickTeam(e){
         Renderer.renderRemove(mainContent, pickTeamsEl);
         mainContent.removeEventListener("click", handlePickTeam);
         Renderer.renderTeamChoices(mainContent, players);
-        
+    }
+}
+
+function handlePlay(e){
+    e.preventDefault();
+    if(e.target.id === "play-btn"){
+        const teamChoicesEl = document.querySelector('#team-choices');
+        Renderer.renderRemove(mainContent, teamChoicesEl);
+        Renderer.renderBoard(mainContent, board);
     }
 }
 
