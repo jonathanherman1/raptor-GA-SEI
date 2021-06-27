@@ -32,28 +32,28 @@ function init(name1, name2){
             name: "Raptors",
             id: 0,
             pieces: [
-                {id: 1, health: 5, awake: true, mother: true, location: null},
-                {id: 2, health: 1, awake: true, mother: false, location: null},
-                {id: 3, health: 1, awake: true, mother: false, location: null},
-                {id: 4, health: 1, awake: true, mother: false, location: null},
-                {id: 5, health: 1, awake: true, mother: false, location: null},
-                {id: 6, health: 1, awake: true, mother: false, location: null},
+                {id: "mother-raptor-1", health: 5, awake: true, mother: true, location: null},
+                {id: "baby-raptor-1", health: 1, awake: true, mother: false, location: null},
+                {id: "baby-raptor-2", health: 1, awake: true, mother: false, location: null},
+                {id: "baby-raptor-3", health: 1, awake: true, mother: false, location: null},
+                {id: "baby-raptor-4", health: 1, awake: true, mother: false, location: null},
+                {id: "baby-raptor-5", health: 1, awake: true, mother: false, location: null},
             ]
         },
         {
             name: "Scientists",
             id: 1,
             pieces: [
-                {id: 1, health: 1, awake: true, aggressiveActionTaken: false, location: null},
-                {id: 2, health: 1, awake: true, aggressiveActionTaken: false, location: null},
-                {id: 3, health: 1, awake: true, aggressiveActionTaken: false, location: null},
-                {id: 4, health: 1, awake: true, aggressiveActionTaken: false, location: null},
-                {id: 5, health: 1, awake: true, aggressiveActionTaken: false, location: null},
-                {id: 6, health: 1, awake: true, aggressiveActionTaken: false, location: null},
-                {id: 7, health: 1, awake: true, aggressiveActionTaken: false, location: null},
-                {id: 8, health: 1, awake: true, aggressiveActionTaken: false, location: null},
-                {id: 9, health: 1, awake: true, aggressiveActionTaken: false, location: null},
-                {id: 10, health: 1, awake: true, aggressiveActionTaken: false, location: null}
+                {id: "scientist-1", health: 1, awake: true, aggressiveActionTaken: false, location: null},
+                {id: "scientist-2", health: 1, awake: true, aggressiveActionTaken: false, location: null},
+                {id: "scientist-3", health: 1, awake: true, aggressiveActionTaken: false, location: null},
+                {id: "scientist-4", health: 1, awake: true, aggressiveActionTaken: false, location: null},
+                {id: "scientist-5", health: 1, awake: true, aggressiveActionTaken: false, location: null},
+                {id: "scientist-6", health: 1, awake: true, aggressiveActionTaken: false, location: null},
+                {id: "scientist-7", health: 1, awake: true, aggressiveActionTaken: false, location: null},
+                {id: "scientist-8", health: 1, awake: true, aggressiveActionTaken: false, location: null},
+                {id: "scientist-9", health: 1, awake: true, aggressiveActionTaken: false, location: null},
+                {id: "scientist-10", health: 1, awake: true, aggressiveActionTaken: false, location: null}
             ]
         }
     ]
@@ -124,9 +124,36 @@ function handlePickTeam(e){
 function handlePlay(e){
     e.preventDefault();
     if(e.target.id === "play-btn"){
-        const teamChoicesEl = document.querySelector('#team-choices');
+        const teamChoicesEl = document.querySelector("#team-choices");
         Renderer.renderRemove(mainContent, teamChoicesEl);
         Renderer.renderBoard(mainContent, board);
+        const boardEl = document.querySelector(".board");
+
+        const gameTray = document.createElement("section");
+        gameTray.setAttribute("id", "game-tray");
+        const instructions = document.createElement("div");
+        instructions.setAttribute("id", "instructions");
+        const piecesTray = document.createElement("div");
+        piecesTray.setAttribute("id", "pieces-tray");
+        
+        gameTray.appendChild(instructions);
+        gameTray.appendChild(piecesTray);
+
+        mainContent.insertBefore(gameTray, boardEl);
+        // set up raptors
+        let setup = Renderer.renderSetupInfo(GameText.setupInfoContent, 0);
+        // console.log(setup);
+        setup.forEach(el => {
+            if(el.length === undefined){
+                // console.log(el);
+                instructions.appendChild(el);
+            } else {
+                el.forEach(arrEl => {
+                    console.log(arrEl);
+                    piecesTray.appendChild(arrEl);
+                })
+            }
+        })
     }
 }
 
