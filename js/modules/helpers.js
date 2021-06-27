@@ -10,18 +10,27 @@ function getRandomIntIncl(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
 }
 
-let timeoutId;
-
-function delayFunc(func, delayMs){
-    if(typeof timeoutId === "number"){
-        clearDelay(timeoutId);
+function isOdd(num){
+    if(num % 2 === 0){
+        return false;
+    } else if (num % 2 === 1){
+        return true;
     }
-    timeoutId = window.setTimeout(func, delayMs)
-}
-
-function clearDelay(){
-    window.clearTimeout(timeoutId);
 }
 
 
-export {getRandomIntNotIncl, getRandomIntIncl, timeoutId, delayFunc, clearDelay};
+// let timeoutId;
+
+// function delayFunc(func, delayMs){
+//     if(typeof timeoutId === "number"){
+//         clearDelay(timeoutId);
+//     }
+//     timeoutId = window.setTimeout(func, delayMs)
+// }
+
+// function clearDelay(){
+//     window.clearTimeout(timeoutId);
+// }
+
+
+export {getRandomIntNotIncl, getRandomIntIncl, isOdd};
