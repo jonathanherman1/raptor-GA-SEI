@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html {
     box-sizing: border-box
 }
@@ -182,3 +183,59 @@ form {
 .scientist {
 
 } */
+
+/* cards */
+
+.playingCard {
+    /* box-sizing: border-box; */
+    display: inline-block;
+    margin: 5px 5px 50px 5px;
+    cursor: pointer;
+    /* Set the playingCard's dimensions, and size it relative to
+       it's font size. */
+    font-size: inherit;
+    width: 4.0em;
+    height: 5.5em;
+    /* Add a default background color and border. */
+    background-color: #fff;
+    border-radius: 0.20em;
+    border: 1px solid #c3c3c3;
+    /* Scale and set the background settings. */
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    /* "Hide" any text within the element (use text to be
+       simply compliant with screen readers, etc.). */
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    /* Default sizes for playingCards (size based off the font). */
+    /* Optional styles for playingCards: borderless and drop shadow. */
+    /* Not a playingCard, but a playingCard-shaped outline to represent a
+       droppable place, like an empty pile. */ }
+    .playingCard.small {
+      font-size: 12px; }
+    .playingCard.large {
+      font-size: 26px; }
+    .playingCard.xlarge {
+      font-size: 42px; }
+    .playingCard.no-border {
+      border: 0; }
+    .playingCard.shadow {
+      box-shadow: 2px 2px 3px 0 rgba(41, 41, 41, 0.75); }
+    .playingCard.outline {
+      background-image: none;
+      /* background-color: rgba(195, 195, 195, 0.5); */
+      border: 0.05em dashed #daa520; }
+    .playingCard.back-raptor {
+        background-image: url("https://images.unsplash.com/photo-1606856110002-d0991ce78250?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"); }
+    .playingCard.back-scientist {
+        background-image: url("https://images.unsplash.com/photo-1584696993692-a53190f76609?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3334&q=80");}
+
+
+.playingCard-tray{
+    display: grid;
+    overflow: auto;
+    grid-template-columns: 70% 30%;
+    grid-template-rows: 100%;
+}
