@@ -6,7 +6,7 @@ import * as Helpers from "./modules/helpers.js";
 
 /*--------- Variables ---------*/
 
-let gameActive, players, teams, board, cards, rounds;
+let gameActive, players, teams, pieces, board, cards, rounds;
 
 // touch variables
 let initialX, initialY, currentX, currentY, xEnter, yEnter, active, dragItem;
@@ -55,34 +55,26 @@ function init(name1, name2){
         {name: name2, team: null, teamId: null, activePlayer: null}
     ]
     teams = [
-        {
-            name: "Raptors",
-            id: 0,
-            pieces: [
-                {id: "mother-raptor-1", health: 5, awake: true, mother: true, location: null},
-                {id: "baby-raptor-1", health: 1, awake: true, mother: false, location: null},
-                {id: "baby-raptor-2", health: 1, awake: true, mother: false, location: null},
-                {id: "baby-raptor-3", health: 1, awake: true, mother: false, location: null},
-                {id: "baby-raptor-4", health: 1, awake: true, mother: false, location: null},
-                {id: "baby-raptor-5", health: 1, awake: true, mother: false, location: null},
-            ]
-        },
-        {
-            name: "Scientists",
-            id: 1,
-            pieces: [
-                {id: "scientist-1", health: 1, awake: true, aggressiveActionTaken: false, location: null},
-                {id: "scientist-2", health: 1, awake: true, aggressiveActionTaken: false, location: null},
-                {id: "scientist-3", health: 1, awake: true, aggressiveActionTaken: false, location: null},
-                {id: "scientist-4", health: 1, awake: true, aggressiveActionTaken: false, location: null},
-                {id: "scientist-5", health: 1, awake: true, aggressiveActionTaken: false, location: null},
-                {id: "scientist-6", health: 1, awake: true, aggressiveActionTaken: false, location: null},
-                {id: "scientist-7", health: 1, awake: true, aggressiveActionTaken: false, location: null},
-                {id: "scientist-8", health: 1, awake: true, aggressiveActionTaken: false, location: null},
-                {id: "scientist-9", health: 1, awake: true, aggressiveActionTaken: false, location: null},
-                {id: "scientist-10", health: 1, awake: true, aggressiveActionTaken: false, location: null}
-            ]
-        }
+        {name: "Raptors",id: 0},
+        {name: "Scientists", id: 1}
+    ]
+    pieces = [
+        {id: "mother-raptor-1", health: 5, awake: true, mother: true, location: null, team: "Raptors", teamId: 0},
+        {id: "baby-raptor-1", health: 1, awake: true, mother: false, location: null, team: "Raptors", teamId: 0},
+        {id: "baby-raptor-2", health: 1, awake: true, mother: false, location: null, team: "Raptors", teamId: 0},
+        {id: "baby-raptor-3", health: 1, awake: true, mother: false, location: null, team: "Raptors", teamId: 0},
+        {id: "baby-raptor-4", health: 1, awake: true, mother: false, location: null, team: "Raptors", teamId: 0},
+        {id: "baby-raptor-5", health: 1, awake: true, mother: false, location: null, team: "Raptors", teamId: 0},
+        {id: "scientist-1", health: 1, awake: true, aggressiveActionTaken: false, location: null, team: "Scientists", teamId: 1},
+        {id: "scientist-2", health: 1, awake: true, aggressiveActionTaken: false, location: null, team: "Scientists", teamId: 1},
+        {id: "scientist-3", health: 1, awake: true, aggressiveActionTaken: false, location: null, team: "Scientists", teamId: 1},
+        {id: "scientist-4", health: 1, awake: true, aggressiveActionTaken: false, location: null, team: "Scientists", teamId: 1},
+        {id: "scientist-5", health: 1, awake: true, aggressiveActionTaken: false, location: null, team: "Scientists", teamId: 1},
+        {id: "scientist-6", health: 1, awake: true, aggressiveActionTaken: false, location: null, team: "Scientists", teamId: 1},
+        {id: "scientist-7", health: 1, awake: true, aggressiveActionTaken: false, location: null, team: "Scientists", teamId: 1},
+        {id: "scientist-8", health: 1, awake: true, aggressiveActionTaken: false, location: null, team: "Scientists", teamId: 1},
+        {id: "scientist-9", health: 1, awake: true, aggressiveActionTaken: false, location: null, team: "Scientists", teamId: 1},
+        {id: "scientist-10", health: 1, awake: true, aggressiveActionTaken: false, location: null, team: "Scientists", teamId: 1}
     ]
     board = State.createBoard();
     cards = State.createCards();
