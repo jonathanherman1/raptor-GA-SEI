@@ -88,17 +88,17 @@ Future enhancements:
   - [x]    3. Update `board` and `scientists` team state as scientists are placed
   - [x]    4. Confirm placement of scientists
   - [x]    5. Remove confirm placement button
-- [ ] 8. Raptors pick a card and confirm it.
+- [x] 8. Raptors pick a card and confirm it.
   - [x]    1. Render raptor cards
   - [x]    2. Add `handleRaptorPickCard()` function to event listener
   - [x]    3. Add confirm button to HTML
-  - [ ]    4. Listen to these buttons
-  - [ ]    5. Remove buttons once raptor choice confirmed
-- [ ] 9.  Scientists pick a card and confirm it.
-   - [ ]    1.  Render scientist cards
-   - [ ]    2.  `handlePickCard` records choice in `round`
-   - [ ]    3.  Render confirm and back buttons
-   - [ ]    4.  Handle confirm or back
+  - [x]    4. Listen to these buttons
+  - [x]    5. Remove buttons once raptor choice confirmed
+- [x] 9.  Scientists pick a card and confirm it.
+   - [x]    1.  Render scientist cards
+   - [x]    2.  `handleScientistPickCard` records choice in `round`
+   - [x]    3.  Render confirm and back buttons
+   - [x]    4.  Handle confirm or back
 - [ ] 10. Determine initiative: 
    - [ ]    1.  Add `determineInitiative()` function
    - [ ]    2.  Invoke `determineInitiative` after scientists confirm card choice
@@ -538,8 +538,12 @@ Each regular action costs 1 action point.
   - [ ] No piece can occupy the same space at the same time
   - [ ] Mother cannot go where baby raptor is
   - [ ] Baby raptors cannot share tiles
+  - [ ] Require raptors to place all pieces
 - [ ] Fix scientist validation in beginning setup
   - [ ] Scientists cannot start on the same L-shaped tile
+  - [ ] Require scientists to place all pieces
 - [x] Confirm placement button should switch to scientist button
 - [x] Remove raptor instructions
 - [x] Remove duplicates from card selection
+- [ ] Fix card selection
+  - [ ] Prevent selecting (at least visually) more than one card
