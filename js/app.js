@@ -92,6 +92,7 @@ function init(name1, name2){
     scientistCards = cards.filter(card => card.team === "Scientists");
     raptorDiscardPile = [];
     scientistDiscardPile = [];
+    temporaryCardChoice = null;
     rounds = [];
     let round = State.createRound(1);
     currentRound = 1;
@@ -252,31 +253,54 @@ function handleConfirmScientistPlacement(e){
 
 function handleRaptorPickCard(e){
     e.preventDefault();
+    let t;
     if(contains(e.target.id, "raptor-card")){
-        Renderer.renderCardSelectionOnOff(e.target.id);
+        t = e.target;
+    } else if(contains(e.target.parentElement.id, "raptor-card")){
+        t = e.target.parentElement;
+    } else {
+        t = null;
+    }
+
+    if(t){
+        Renderer.renderCardSelectionOnOff(t.id);
         let raptorHand = rounds[currentRound-1].raptorHand;
-        if(temporaryCardChoice === undefined || temporaryCardChoice == null){
+        if(temporaryCardChoice === null){
             for(let card of raptorHand){
-                if(card.id === e.target.id) temporaryCardChoice = card;
-                break;
+                if(card.id === t.id) {
+                    console.log("card: ", card);
+                    temporaryCardChoice = card;
+                    break;
+                }
             }
         } else {
-            temporaryCardChoice === null;
+            temporaryCardChoice = null;
         }
     }
 }
+
 function handleScientistPickCard(e){
     e.preventDefault();
+    let t;
     if(contains(e.target.id, "scientist-card")){
-        Renderer.renderCardSelectionOnOff(e.target.id);
+        t = e.target;
+    } else if(contains(e.target.parentElement.id, "scientist-card")){
+        t = e.target.parentElement;
+    }
+
+    if(t){
+        Renderer.renderCardSelectionOnOff(t.id);
         let scientistHand = rounds[currentRound-1].scientistHand;
-        if(temporaryCardChoice === undefined || temporaryCardChoice == null){
+        if(temporaryCardChoice === undefined || temporaryCardChoice === null){
             for(let card of scientistHand){
-                if(card.id === e.target.id) temporaryCardChoice = card;
-                break;
+                if(card.id === t.id) {
+                    console.log("card: ", card);
+                    temporaryCardChoice = card;
+                    break;
+                }
             }
         } else {
-            temporaryCardChoice === null;
+            temporaryCardChoice = null;
         }
     }
 }
