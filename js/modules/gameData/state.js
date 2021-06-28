@@ -53,7 +53,7 @@ function createBoard(){
         for(let j = 1; j <= numSpacesOnLShapedTiles; j++){
             let space = {
                 spaceInTile: j,
-                name: `${i}.${j}`,
+                name: `${i + numLargeTiles}.${j}`,
                 tile: i + numLargeTiles,
                 lShaped: true,
                 environment: environment,
