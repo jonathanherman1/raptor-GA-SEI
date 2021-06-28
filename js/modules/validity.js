@@ -216,15 +216,29 @@ function isAllowedToExit(pieces, pieceId){
 }
 
 
-function isAwake(){}
+function isAwake(){
+
+}
+
 function canBeAwakened(){}
 function hasActionPoints(){}
 function hasAggressiveActions(){}
 
-function isNotOccupied(){
-
+function isOccupied(board, id){
+    for(let space of board){
+        if(space.id === id){
+           return space.occupied === true ? true : false;
+        }
+    }
 }
-function isNotObstructed(){}
+
+function hasFire(board, id){
+    for(let space of board){
+        if(space.id === id){
+           return space.hasFire === true ? true : false;
+        }
+    }
+}
 
 
 export {isPassable, isExit,  isLShapedTile, isNormalSpace,  canReinforce, canPlaceMotherSetup, canPlaceBabySetup, isOrthogonal, isAllowedToExit}
