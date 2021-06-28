@@ -257,7 +257,15 @@ function handlePlay(e){
                         alert("That's not a valid space for the mother raptor during setup.");
                     }    
                 } else if(contains(dragItem.id, "baby")){
-                    Valid.canPlaceBabySetup(board, el.id) ? dropZone = el : alert("That's not a valid space for a baby raptor during setup.");
+                    if(Valid.canPlaceBabySetup(board, el.id) === true){
+                        dropZone = el;
+                        State.occupySpace(board, el.id, dragItem.id);
+                    } else {
+                        dragItem.style.removeProperty("transform");
+                        dragItem.classList.remove("selected");
+                        console.log("dropZone: ", dropZone);
+                        alert("That's not a valid space for a baby raptor during setup.");
+                    }
                 }
             }
         }
