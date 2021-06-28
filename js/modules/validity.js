@@ -7,6 +7,8 @@ function isPassable(board, id){
         if(space.id === id){
             if(space.type === "Mountain"){
                 return false;    
+            } else {
+                return true;
             }
         }
     }
@@ -20,6 +22,7 @@ function isExit(board, id){
             }
         }
     }
+    return false;
 }
 
 function isLShapedTile(board, id){
@@ -30,6 +33,7 @@ function isLShapedTile(board, id){
             }
         }
     }
+    return false;
 }
 
 function isNormalSpace(board, id){
@@ -40,6 +44,7 @@ function isNormalSpace(board, id){
             }
         }
     }
+    return false;
 }
 
 function canReinforce(board, id){
@@ -51,9 +56,12 @@ function canReinforce(board, id){
             }
         }
     }
+    return false;
 }
 
 function canPlaceMotherSetup(board, id){
+    let canPassBool = isPassable(board, id);
+    if(canPassBool === false) return false;
     for(let space of board){
         if(space.id === id){
             if(space.lShaped === false && (space.tile === 3 || space.tile === 4)){
@@ -61,9 +69,12 @@ function canPlaceMotherSetup(board, id){
             }
         }
     }
+    return false;
 }
 
 function canPlaceBabySetup(board, id){
+    let canPassBool = isPassable(board, id);
+    if(canPassBool === false) return false;
     let motherOnTile = isMotherOnTile(board, id);
     if(motherOnTile === true) return false;
     for(let space of board){
@@ -196,3 +207,6 @@ function hasAggressiveActions(){}
 
 function isNotOccupied(){}
 function isNotObstructed(){}
+
+
+export {isPassable, isExit,  isLShapedTile, isNormalSpace,  canReinforce, canPlaceMotherSetup, canPlaceBabySetup, isMotherOnTile, isOrthogonal, isAllowedToExit}
