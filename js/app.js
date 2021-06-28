@@ -34,6 +34,8 @@ mainContent.addEventListener("click", handleReadytoPlay);
 mainContent.addEventListener("click", handlePickTeam);
 // render play button to load board and setup
 mainContent.addEventListener("click", handlePlay);
+// load scientist placement
+mainContent.addEventListener("click", handleConfirmRaptorPlacement);
 
 // Touch Events
 mainContent.addEventListener("touchstart", handleTouchStart);
@@ -181,6 +183,37 @@ function handlePlay(e){
     }
 }
 
+function handleConfirmRaptorPlacement(e){
+    e.preventDefault();
+    if(e.target.id === "confirm-raptor-placement-btn"){
+        // remove raptor instructions
+        const gameTray = document.querySelector("#game-tray");
+        const instructions = document.querySelector("#instructions");
+        const raptorHeader = document.querySelector("#h4-raptor-turn");
+        const raptorText = document.querySelector("#p-raptor-text");
+        const raptorButtonDiv = document.querySelector("#button-div");
+        instructions.removeChild(raptorHeader);
+        instructions.removeChild(raptorText);
+        gameTray.removeChild(raptorButtonDiv);
+        const piecesTray = document.querySelector("#pieces-tray");
+        // add scientist setup
+        let setup = Renderer.renderSetupInfo(GameText.setupInfoContent, 1);
+        // console.log(setup);
+        setup.forEach(el => {
+            if(el.length === undefined){
+                // console.log(el);
+                instructions.appendChild(el);
+            } else {
+                el.forEach(arrEl => {
+                    console.log(arrEl);
+                    piecesTray.appendChild(arrEl);
+                })
+            }
+        })
+        Renderer.renderButton(gameTray, GameText.setupInfoContent[1]);
+    }
+}
+
 // Touch Events
   function handleTouchStart(e){
       if(e.targetTouches[0].target.className === "pieces"){
@@ -212,7 +245,7 @@ function handlePlay(e){
             // can set state here for space that is now unoccupied
             console.log(`moving piece from ${idVacated}`);
             console.log(board);
-            State.leaveSpace(board, idVacated);   
+            State.leaveSpace(board, idVacated);
         }
       }    
     //   console.log("dragItem: ", dragItem)
@@ -246,10 +279,12 @@ function handlePlay(e){
             // sets the drop zone
             // if(validDropZoneClasses.includes(el.className)) dropZone = el;
             if(el.classList.contains("space")){
-                if(dragItem.id === "#mother-raptor-1"){   
+                if(dragItem.id === "mother-raptor-1"){   
                     if(Valid.canPlaceMotherSetup(board, el.id) === true){
                         dropZone = el;
                         State.occupySpace(board, el.id, dragItem.id);
+                        State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
+                        console.log("pieces: ", pieces);
                     } else {
                         dragItem.style.removeProperty("transform");
                         dragItem.classList.remove("selected");
@@ -260,6 +295,8 @@ function handlePlay(e){
                     if(Valid.canPlaceBabySetup(board, el.id) === true){
                         dropZone = el;
                         State.occupySpace(board, el.id, dragItem.id);
+                        State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
+                        console.log("pieces: ", pieces);
                     } else {
                         dragItem.style.removeProperty("transform");
                         dragItem.classList.remove("selected");
@@ -271,7 +308,7 @@ function handlePlay(e){
         }
         // console.log('dropZoneList: ', dropZoneList);
         // console.log('dropZone: ', dropZone);
-        if(dropZone !== null){
+        if(dropZone !== undefined){
             // add the piece to the space element in HTML
             dropZone.appendChild(dragItem);
         }
@@ -282,8 +319,8 @@ function handlePlay(e){
         // remove selected class
         dragItem.classList.remove("selected");
         // force a reset of selecting the dragItem
-        dragItem = null;
-        dropZone = null;
+        dragItem = undefined;
+        dropZone = undefined;
     }
   } 
   
