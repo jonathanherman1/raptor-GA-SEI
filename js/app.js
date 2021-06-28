@@ -254,9 +254,9 @@ function handleConfirmScientistPlacement(e){
 function handleRaptorPickCard(e){
     e.preventDefault();
     let t;
-    if(contains(e.target.id, "raptor-card")){
+    if(contains(e.target.id, "raptor-card") && e.target.tagName !== "BUTTON"){
         t = e.target;
-    } else if(contains(e.target.parentElement.id, "raptor-card")){
+    } else if(contains(e.target.parentElement.id, "raptor-card") && e.target.tagName !== "BUTTON"){
         t = e.target.parentElement;
     } else {
         t = null;
@@ -268,8 +268,8 @@ function handleRaptorPickCard(e){
         if(temporaryCardChoice === null){
             for(let card of raptorHand){
                 if(card.id === t.id) {
-                    console.log("card: ", card);
                     temporaryCardChoice = card;
+                    console.log(temporaryCardChoice);
                     break;
                 }
             }
@@ -277,14 +277,42 @@ function handleRaptorPickCard(e){
             temporaryCardChoice = null;
         }
     }
+    // swap raptor info with scientist info once card choice confirmed
+    let raptorHeader = document.querySelector("#h4-raptor-turn");
+    let raptorText = document.querySelector("#p-raptor-text");
+    let buttonDiv = document.querySelector("#button-div");
+    let cardDisplay = document.querySelector("#card-display");
+    let confirmButton = document.querySelector("#confirm-raptor-card-btn");
+    console.log(raptorHeader, raptorText, confirmButton);
+    if(e.target === confirmButton){
+        console.log("temp card choice: ", temporaryCardChoice);
+        // save raptor choice in state
+        rounds[currentRound-1].raptorCardChoice = temporaryCardChoice;
+        console.log("currentRound", currentRound);
+        console.log("temp card choice: ", temporaryCardChoice);
+        temporaryCardChoice = null;
+
+        // clear raptor info
+        
+        let cardDisplayOffcanvas = document.querySelector("#card-display");
+        let cardDisplayInstructions = document.querySelector("#card-display-instructions");
+
+        Renderer.renderRemove(cardDisplayInstructions, buttonDiv);
+        Renderer.renderRemove(cardDisplayInstructions, raptorHeader);
+        Renderer.renderRemove(cardDisplayInstructions, raptorText);
+        cardDisplay.innerHTML = "";
+
+        Renderer.renderCards(cardDisplayOffcanvas, rounds[currentRound-1].scientistHand);
+        Renderer.renderCardChoiceInstructions(cardDisplayInstructions, GameText.cardChoiceContent, 1);
+    }
 }
 
 function handleScientistPickCard(e){
     e.preventDefault();
     let t;
-    if(contains(e.target.id, "scientist-card")){
+    if(contains(e.target.id, "scientist-card") && e.target.tagName !== "BUTTON"){
         t = e.target;
-    } else if(contains(e.target.parentElement.id, "scientist-card")){
+    } else if(contains(e.target.parentElement.id, "scientist-card") && e.target.tagName !== "BUTTON"){
         t = e.target.parentElement;
     }
 
@@ -303,6 +331,25 @@ function handleScientistPickCard(e){
             temporaryCardChoice = null;
         }
     }
+    // get ready to clear scientist info
+    let scientistHeader = document.querySelector("#h4-scientist-turn");
+    let scientistText = document.querySelector("#p-scientist-text");
+    let buttonDiv = document.querySelector("#button-div");
+    let cardDisplay = document.querySelector("#card-display");
+    let confirmButton = document.querySelector("#confirm-scientist-card-btn");
+    if(e.target === confirmButton){
+        // save scientist choice in state
+        rounds[currentRound-1].scientistCardChoice = temporaryCardChoice;
+        temporaryCardChoice = null;
+        // clear scientist info
+        let cardDisplayOffcanvas = document.querySelector("#card-display");
+        let cardDisplayInstructions = document.querySelector("#card-display-instructions");
+        Renderer.renderRemove(cardDisplayInstructions, buttonDiv);
+        Renderer.renderRemove(cardDisplayInstructions, scientistHeader);
+        Renderer.renderRemove(cardDisplayInstructions, scientistText);
+        cardDisplay.innerHTML = "";
+    }
+    console.log(rounds);
 }
 
 
