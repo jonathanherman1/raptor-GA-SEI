@@ -205,7 +205,9 @@ function canBeAwakened(){}
 function hasActionPoints(){}
 function hasAggressiveActions(){}
 
-function isNotOccupied(){}
+function isNotOccupied(){
+    
+}
 function isNotObstructed(){}
 
 
