@@ -108,7 +108,6 @@ function createCards(){
     return cards;
 }
 
-
 function pickCards(cards, numCardsNeeded){
     let hand = [];
     // get unique random indices
@@ -139,6 +138,9 @@ function addCardsToHand(team, cards, numCardsNeeded, rounds, roundNum){
     }
 }
 
+function shuffleDeck(){
+    // empty discard pile back into main pile and shuffle
+}
 
 function createRound(roundNum){
     let round = {
@@ -194,6 +196,61 @@ function updatePiece(pieces, pieceId, prop, val){
         }
     }
 }
+
+function determineInitiative(){
+
+}
+
+// movement is touch-driven and only limited by validation so doesn't need a function here. I do want to add a render function that can make it easier to see the possible actions (such as movement)
+
+
+// Raptor Actions
+
+function putOutFire(){
+    // for mother raptor
+}
+
+function wake(){
+    // can use for scientists and raptors
+}
+
+function heal(){
+    // for mother raptor
+}
+
+function kill(){
+    // for mother raptor
+}
+
+function callBabyRaptors(){
+    // for mother raptor
+}
+
+function disappearAndObserve(){
+    // for mother raptor
+}
+
+function frightenScientist(){
+    // for mother raptor
+}
+
+// Scientist Actions
+
+function shoot(){
+    // for scientists
+}
+
+function driveJeep(){
+    // for scientists
+}
+
+function lightFire(){
+    // for scientists
+}
+
+
+
+
 
 
 export {createBoard, createCards, pickCards, addCardsToHand, createRound, occupySpace, leaveSpace, updatePiece};
