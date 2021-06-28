@@ -25,6 +25,16 @@ body {
     background-color: lightcoral;
 }
 
+.btn {
+    margin: 10px;
+}
+
+.button-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .game {
     min-height: 100vh;
     display: flex;
