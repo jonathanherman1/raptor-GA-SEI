@@ -140,6 +140,10 @@ form {
     width: 40px;
 }
 
+#game-tray{
+    margin-top: 10px;
+}
+
 #pieces-tray{
     display: flex;
     justify-content: center;
