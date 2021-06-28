@@ -18,6 +18,11 @@ function isOdd(num){
     }
 }
 
+function contains(str, pattern){
+    let reg = new RegExp(pattern, "gi");
+    return reg.test(str);
+}
+
 
 // let timeoutId;
 
@@ -33,4 +38,4 @@ function isOdd(num){
 // }
 
 
-export {getRandomIntNotIncl, getRandomIntIncl, isOdd};
+export {getRandomIntNotIncl, getRandomIntIncl, isOdd, contains};
