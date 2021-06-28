@@ -142,6 +142,18 @@ function shuffleDeck(){
     // empty discard pile back into main pile and shuffle
 }
 
+function discardCard(rounds, currentRound, discardPile, team){
+    let card;
+    if(team === "Raptors"){
+        card = rounds[currentRound - 1].raptorCardChoice;
+        rounds[currentRound-1].raptorCardChoice = null;
+    } else {
+        card = rounds[currentRound - 1].scientistCardChoice;
+        rounds[currentRound-1].scientistCardChoice = null;
+    }
+    discardPile.push(card);
+}
+
 function createRound(roundNum){
     let round = {
         id: roundNum,
@@ -197,8 +209,22 @@ function updatePiece(pieces, pieceId, prop, val){
     }
 }
 
-function determineInitiative(){
+function setInitiative(rounds, currentRound, discardPile){
+    let round = rounds[currentRound-1];
+    let raptorCard = round.raptorCardChoice;
+    let scientistCard = round.scientistCardChoice;
 
+    if(raptorCard.value < scientistCard.value){
+        round.activeTeam = "Raptors";
+        round.activeCard = raptorCard;
+    } else if(raptorCard.value > scientistCard.value){
+        round.activeTeam = "Scientists";
+        round.activeCard = scientistCard;
+    } else {
+        discardCard(rounds, currentRound, discardPile, "Raptors");
+        discardCard(rounds, currentRound, discardPile, "Scientists");
+        currentRound++;
+    }
 }
 
 // movement is touch-driven and only limited by validation so doesn't need a function here. I do want to add a render function that can make it easier to see the possible actions (such as movement)
