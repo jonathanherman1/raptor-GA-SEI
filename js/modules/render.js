@@ -291,14 +291,16 @@ function renderSetupInfo(content, i){
     if(team.team === "raptors"){
         header.textContent = team.hText;
         description.textContent = team.pText;
+        header.setAttribute("id", team.hTextId);
+        description.setAttribute("id", team.pTextId);
         let motherImg = document.createElement("img");
-        motherImg.setAttribute("id", "#mother-raptor-1");
+        motherImg.setAttribute("id", "mother-raptor-1");
         motherImg.setAttribute("class", "pieces");
         motherImg.setAttribute("src", team.icons[0]);
         teamArr.push(motherImg);
         for(let i = 1; i <= team.numBabies; i++){
             let babyImg = document.createElement("img");
-            babyImg.setAttribute("id", `#baby-raptor-${i}`);
+            babyImg.setAttribute("id", `baby-raptor-${i}`);
             babyImg.setAttribute("class", "pieces");
             babyImg.setAttribute("src", team.icons[1]);
             teamArr.push(babyImg);
@@ -307,9 +309,11 @@ function renderSetupInfo(content, i){
     if (team.team === "scientists"){
         header.textContent = team.hText;
         description.textContent = team.pText;
+        header.setAttribute("id", team.hTextId);
+        description.setAttribute("id", team.pTextId);
         for(let i = 1; i <= team.numScientists; i++){
             let scientistImg = document.createElement("img");
-            scientistImg.setAttribute("id", `#scientist-${i}`);
+            scientistImg.setAttribute("id", `scientist-${i}`);
             scientistImg.setAttribute("class", "pieces");
             scientistImg.setAttribute("src", team.icons[0]);
             teamArr.push(scientistImg);
