@@ -3,17 +3,17 @@ import * as State from "./modules/gameData/state.js"
 import * as Renderer from "./modules/render.js";
 import * as GameText from "./modules/gameData/gameText.js";
 import * as Valid from "./modules/validity.js";
-import { contains } from "./modules/helpers.js";
+import { contains, getRandomIntNotIncl } from "./modules/helpers.js";
 
 /*--------- Variables ---------*/
 
-let gameActive, setupComplete, players, teams, pieces, board, cards, rounds;
+let gameActive, setupComplete, players, teams, pieces, board, cards, raptorCards, raptorDiscardPile, scientistCards, scientistDiscardPile, rounds;
 
 // touch variables
 let initialX, initialY, currentX, currentY, xEnter, yEnter, active, dragItem, dropZone;
 let xOffset = 0;
 let yOffset = 0;
-let validDropZoneClasses = ["space"];
+// let validDropZoneClasses = ["space"];
 let isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 let isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
 
@@ -38,6 +38,10 @@ mainContent.addEventListener("click", handlePlay);
 mainContent.addEventListener("click", handleConfirmRaptorPlacement);
 // remove scientist instructions and launch first round
 mainContent.addEventListener("click", handleConfirmScientistPlacement);
+// render raptor playing cards and confirm choice
+mainContent.addEventListener("click", handleRaptorPickCard);
+// render scientist playing cards and confirm choice
+mainContent.addEventListener("click", handleScientistPickCard);
 
 // Touch Events
 mainContent.addEventListener("touchstart", handleTouchStart);
@@ -83,9 +87,16 @@ function init(name1, name2){
     ]
     board = State.createBoard();
     cards = State.createCards();
+    console.log(cards);
+    raptorCards = cards.filter(card => card.team === "Raptors");
+    scientistCards = cards.filter(card => card.team === "Scientists");
+    raptorDiscardPile = [];
+    scientistDiscardPile = [];
     rounds = [];
     let round = State.createRound(1);
     rounds.push(round);
+    State.addCardsToHand("raptors", raptorCards, 3, rounds, 1);
+    State.addCardsToHand("scientists", scientistCards, 3, rounds, 1);
     console.log(rounds);
 }
 
@@ -167,14 +178,14 @@ function handlePlay(e){
         mainContent.insertBefore(gameTray, boardEl);
         // set up raptors
         let setup = Renderer.renderSetupInfo(GameText.setupInfoContent, 0);
-        // console.log(setup);
+        // // console.log(setup);
         setup.forEach(el => {
             if(el.length === undefined){
-                // console.log(el);
+                // // console.log(el);
                 instructions.appendChild(el);
             } else {
                 el.forEach(arrEl => {
-                    console.log(arrEl);
+                    // console.log(arrEl);
                     piecesTray.appendChild(arrEl);
                 })
             }
@@ -200,14 +211,14 @@ function handleConfirmRaptorPlacement(e){
         const piecesTray = document.querySelector("#pieces-tray");
         // add scientist setup
         let setup = Renderer.renderSetupInfo(GameText.setupInfoContent, 1);
-        // console.log(setup);
+        // // console.log(setup);
         setup.forEach(el => {
             if(el.length === undefined){
-                // console.log(el);
+                // // console.log(el);
                 instructions.appendChild(el);
             } else {
                 el.forEach(arrEl => {
-                    console.log(arrEl);
+                    // console.log(arrEl);
                     piecesTray.appendChild(arrEl);
                 })
             }
@@ -230,19 +241,37 @@ function handleConfirmScientistPlacement(e){
         gameTray.removeChild(scientistButtonDiv);
 
         setupComplete = true;
+
+        // render cards
+        // open the card display
+        
     }
 }
+
+function handleRaptorPickCard(e){
+    e.preventDefault();
+    if(contains(e.target.id, "raptor-card")){
+        // render card selection on and off
+    }
+}
+function handleScientistPickCard(e){
+    e.preventDefault();
+    if(contains(e.target.id, "scientist-card")){
+
+    }
+}
+
 
 // Touch Events
   function handleTouchStart(e){
       if(e.targetTouches[0].target.className === "pieces"){
-        console.log("touch start: ", e);
+        // console.log("touch start: ", e);
         dragItem = e.targetTouches[0].target;
         dragItem.classList.add("selected");
         if(e.target === dragItem){
           active = true;
         }
-        console.log(dragItem);
+        // console.log(dragItem);
         initialX = e.touches[0].clientX // - xOffset;
         initialY = e.touches[0].clientY // - yOffset;
         let idVacated;
@@ -254,26 +283,26 @@ function handleConfirmScientistPlacement(e){
         idVacated = path[1].id;
         }
         if(idVacated === "pieces-tray"){
-        console.log("moving piece from pieces-tray");
+        // console.log("moving piece from pieces-tray");
         } else if(dropZone === null){
-            console.log("The drop zone was invalid.");
-            console.log("Board from inside handleTouchStart: ", board);
-            console.log(idVacated);
-            console.log(dragItem);
+            // console.log("The drop zone was invalid.");
+            // console.log("Board from inside handleTouchStart: ", board);
+            // console.log(idVacated);
+            // console.log(dragItem);
         } else {
             // can set state here for space that is now unoccupied
-            console.log(`moving piece from ${idVacated}`);
-            console.log(board);
+            // console.log(`moving piece from ${idVacated}`);
+            // console.log(board);
             State.leaveSpace(board, idVacated);
         }
       }    
-    //   console.log("dragItem: ", dragItem)
-    //   console.log("active: ", active)
-    //   console.log("initialX: ", initialX)
-    //   console.log("initialY: ", initialY)
+    //   // console.log("dragItem: ", dragItem)
+    //   // console.log("active: ", active)
+    //   // console.log("initialX: ", initialX)
+    //   // console.log("initialY: ", initialY)
   } 
   function handleTouchMove(e){
-    // console.log("touch move: ", e);
+    // // console.log("touch move: ", e);
     if(active){
         document.querySelector("body").classList.add("lock-screen");
         currentX = e.touches[0].clientX - initialX;  
@@ -282,17 +311,17 @@ function handleConfirmScientistPlacement(e){
     }
   } 
   function handleTouchEnd(e){
-    console.log("handleTouchEnd board: ", board);
+    // console.log("handleTouchEnd board: ", board);
     if(dragItem !== undefined){
-        console.log("touch end: ", e);        
-        console.log(dragItem);
+        // console.log("touch end: ", e);        
+        // console.log(dragItem);
         document.querySelector("body").classList.remove("lock-screen");
     
         // let path = getPath(dragItem);
-        // console.log("path: ", path);
+        // // console.log("path: ", path);
         let dropzoneX = e.changedTouches[0].clientX;
         let dropzoneY = e.changedTouches[0].clientY;
-        // console.log("dropZoneX: ", dropzoneX, "dropZoneY: ", dropzoneY);
+        // // console.log("dropZoneX: ", dropzoneX, "dropZoneY: ", dropzoneY);
         let dropZoneList = document.elementsFromPoint(dropzoneX, dropzoneY);
         for(let el of dropZoneList){
             // sets the drop zone
@@ -304,11 +333,11 @@ function handleConfirmScientistPlacement(e){
                             dropZone = el;
                             State.occupySpace(board, el.id, dragItem.id);
                             State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
-                            console.log("pieces: ", pieces);
+                            // console.log("pieces: ", pieces);
                         } else {
                             dragItem.style.removeProperty("transform");
                             dragItem.classList.remove("selected");
-                            console.log("dropZone: ", dropZone);
+                            // console.log("dropZone: ", dropZone);
                             alert("That's not a valid space for the mother raptor during setup.");
                         }    
                     } else if(contains(dragItem.id, "baby")){
@@ -316,11 +345,11 @@ function handleConfirmScientistPlacement(e){
                             dropZone = el;
                             State.occupySpace(board, el.id, dragItem.id);
                             State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
-                            console.log("pieces: ", pieces);
+                            // console.log("pieces: ", pieces);
                         } else {
                             dragItem.style.removeProperty("transform");
                             dragItem.classList.remove("selected");
-                            console.log("dropZone: ", dropZone);
+                            // console.log("dropZone: ", dropZone);
                             alert("That's not a valid space for a baby raptor during setup.");
                         }
                     } else if(contains(dragItem.id, "scientist")){
@@ -328,19 +357,19 @@ function handleConfirmScientistPlacement(e){
                             dropZone = el;
                             State.occupySpace(board, el.id, dragItem.id);
                             State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
-                            console.log("pieces: ", pieces);
+                            // console.log("pieces: ", pieces);
                         } else {
                             dragItem.style.removeProperty("transform");
                             dragItem.classList.remove("selected");
-                            console.log("dropZone: ", dropZone);
+                            // console.log("dropZone: ", dropZone);
                             alert("That's not a valid space for a scientist during setup.");
                         }
                     }
                 }
             }
         }
-        // console.log('dropZoneList: ', dropZoneList);
-        // console.log('dropZone: ', dropZone);
+        // // console.log('dropZoneList: ', dropZoneList);
+        // // console.log('dropZone: ', dropZone);
         if(dropZone !== undefined){
             // add the piece to the space element in HTML
             dropZone.appendChild(dragItem);
@@ -365,25 +394,25 @@ function handleConfirmScientistPlacement(e){
 // Mouse Events:
   function handleDrop(e){
     e.preventDefault();
-    console.log(e);
+    // console.log(e);
   } 
   function handleDragStart(e){
     e.preventDefault();
-    console.log(e);
+    // console.log(e);
   } 
   function handleDragEnd(e){
     e.preventDefault();
-    console.log(e);
+    // console.log(e);
 
   }  
   function handleDragEnter(e){
     e.preventDefault();
-    console.log(e);
+    // console.log(e);
 
   } 
   function handleDragLeave(e){
     e.preventDefault();
-    console.log(e);
+    // console.log(e);
 
   } 
 
