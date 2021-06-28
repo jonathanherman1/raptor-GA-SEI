@@ -89,9 +89,9 @@ Future enhancements:
   - [x]    4. Confirm placement of scientists
   - [x]    5. Remove confirm placement button
 - [ ] 8. Raptors pick a card and confirm it.
-  - [ ]    1. Render raptor cards
-  - [ ]    2. Add `handlePickCard()` function to event listener attached to `gameControlsDiv`
-  - [ ]    3. Add confirm and back buttons to HTML
+  - [x]    1. Render raptor cards
+  - [x]    2. Add `handleRaptorPickCard()` function to event listener
+  - [x]    3. Add confirm button to HTML
   - [ ]    4. Listen to these buttons
   - [ ]    5. Remove buttons once raptor choice confirmed
 - [ ] 9.  Scientists pick a card and confirm it.
@@ -538,6 +538,8 @@ Each regular action costs 1 action point.
   - [ ] No piece can occupy the same space at the same time
   - [ ] Mother cannot go where baby raptor is
   - [ ] Baby raptors cannot share tiles
+- [ ] Fix scientist validation in beginning setup
+  - [ ] Scientists cannot start on the same L-shaped tile
 - [x] Confirm placement button should switch to scientist button
 - [x] Remove raptor instructions
 - [x] Remove duplicates from card selection
