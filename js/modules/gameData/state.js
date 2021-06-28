@@ -87,7 +87,6 @@ function createCards(){
     let scientistVal = 0;
     for(let i = 0; i < gameCardsContent.length; i++){
         let card = {
-            id: i,
             name: gameCardsContent[i].name,
             actions: gameCardsContent[i].actions,
             notes: gameCardsContent[i].notes,
@@ -97,21 +96,57 @@ function createCards(){
         if(i < 9){
             card.value = i+1;
             card.team = "Raptors";
+            card.id = `raptor-card-${i}`;
         } else {
             scientistVal++;
             card.value = scientistVal;
             card.team = "Scientists";
+            card.id = `scientist-card-${i}`;
         }
         cards.push(card);
     }
     return cards;
 }
 
+
+function pickCards(cards, numCardsNeeded){
+    let hand = [];
+    // get unique random indices
+    let randIdxArr = [];
+    while(randIdxArr.length < numCardsNeeded) {
+        let randIdx = getRandomIntNotIncl(0, cards.length);
+        if(randIdxArr.indexOf(randIdx) === -1) randIdxArr.push(randIdx);
+    }
+    for(let idx of randIdxArr){
+        let randCard = cards[idx];
+        hand.push(randCard);
+    }    
+    return hand;
+}
+
+function addCardsToHand(team, cards, numCardsNeeded, rounds, roundNum){
+    let hand;
+    let roundIdx = roundNum - 1;
+    switch(team){
+        case "raptors":
+            hand = pickCards(cards, numCardsNeeded);
+            rounds[roundIdx].raptorHand = hand;
+            break;
+        case "scientists":
+            hand = pickCards(cards, numCardsNeeded);
+            rounds[roundIdx].scientistHand = hand;
+            break;
+    }
+}
+
+
 function createRound(roundNum){
     let round = {
         id: roundNum,
         name: `Round ${roundNum}`,
+        raptorHand: null,
         raptorCardChoice: null,
+        scientistHand: null,
         scientistCardChoice: null,
         activePlayer: null,
         activeTeam: null,
@@ -129,7 +164,7 @@ function createRound(roundNum){
 }
 
 function updateRound(){
-
+  
 }
 
 function occupySpace(board, spaceId, pieceId){
@@ -161,4 +196,4 @@ function updatePiece(pieces, pieceId, prop, val){
 }
 
 
-export {createBoard, createCards, createRound, occupySpace, leaveSpace, updatePiece};
+export {createBoard, createCards, pickCards, addCardsToHand, createRound, occupySpace, leaveSpace, updatePiece};
