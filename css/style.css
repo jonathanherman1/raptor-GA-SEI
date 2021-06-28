@@ -226,7 +226,7 @@ form {
     .playingCard.outline {
       background-image: none;
       /* background-color: rgba(195, 195, 195, 0.5); */
-      border: 0.05em dashed #daa520; }
+      border: 0.4em dashed #daa520; }
     .playingCard.back-raptor {
         background-image: url("https://images.unsplash.com/photo-1606856110002-d0991ce78250?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"); }
     .playingCard.back-scientist {
