@@ -23,6 +23,7 @@
 
 Future enhancements:
 
+- AAU, I want to play on the computer (add mouse events, handlers, and validation)
 - AAU, I want a tutorial that can show me how to play OR easy to access rules on gameplay while playing.
 - AAU, I want to see more in-app feedback as I do things so I'm reassured of my choices.
 - AAU, I want a user profile that can save features and customize my experience.
@@ -73,22 +74,20 @@ Future enhancements:
   - [x]    2. Render game board, turn, instructions
   - [x]    3. Render raptor pieces
   - [x]    4. Cache `gameTray`, `instructions`, `piecesTray`
-  - [ ]    5. Add mouse and touch event handlers
+  - [x]    5. Add touch event handlers
     - [x]    1. Add touch event handlers
-    - [ ]    2. Add placement validation for touch events
-    - [ ]    3. Add mouse event handlers
-    - [ ]    4. Add placement validation for mouse events
+    - [x]    2. Add placement validation for touch events
   - [x]    6. Add mouse and touch event listeners with handlers.
   - [x]    7. Update `board` and `raptors` team state as raptors are placed
   - [x]    8. Add HTML for confirm placement button when all raptors are placed `confirmPlacementBtn`
   - [x]    10. Confirm placement of raptors
   - [x]    11. Remove confirm placement button
-- [ ] 7. Scientists place starting pieces.
+- [x] 7. Scientists place starting pieces.
   - [x]    1. Render scientist pieces
   - [x]    2. Cache scientist pieces
-  - [ ]    3. Update `board` and `scientists` team state as scientists are placed
-  - [ ]    4. Confirm placement of scientists
-  - [ ]    5. Remove confirm placement button
+  - [x]    3. Update `board` and `scientists` team state as scientists are placed
+  - [x]    4. Confirm placement of scientists
+  - [x]    5. Remove confirm placement button
 - [ ] 8. Raptors pick a card and confirm it.
   - [ ]    1. Render raptor cards
   - [ ]    2. Add `handlePickCard()` function to event listener attached to `gameControlsDiv`
@@ -541,3 +540,4 @@ Each regular action costs 1 action point.
   - [ ] Baby raptors cannot share tiles
 - [x] Confirm placement button should switch to scientist button
 - [x] Remove raptor instructions
+- [x] Remove duplicates from card selection
