@@ -207,6 +207,132 @@ let cardChoiceContent = [
     }
 ]
 
+let raptorActionButtons = [
+    {
+        btnText: "Kill",
+        btnId: "raptor-kill-btn",
+        btnType: "warning",
+        btnValue: "raptor kill action",
+        addCustomClassBool: false,
+        customBtnClass: null
+    },
+    {
+        btnText: "Put Out Fire",
+        btnId: "raptor-put-out-fire-btn",
+        btnType: "warning",
+        btnValue: "raptor put out fire action",
+        addCustomClassBool: false,
+        customBtnClass: null
+    },
+    {
+        btnText: "Wake Baby",
+        btnId: "raptor-wake-baby-btn",
+        btnType: "warning",
+        btnValue: "raptor wake baby action",
+        addCustomClassBool: false,
+        customBtnClass: null
+    },
+    {
+        btnText: "Call Babies",
+        btnId: "raptor-call-babies-btn",
+        btnType: "warning",
+        btnValue: "raptor call babies action",
+        addCustomClassBool: false,
+        customBtnClass: null
+    },
+    {
+        btnText: "Shuffle Deck",
+        btnId: "raptor-shuffle-deck-btn",
+        btnType: "warning",
+        btnValue: "raptor shuffle deck action",
+        addCustomClassBool: false,
+        customBtnClass: null
+    },
+    {
+        btnText: "Disappear",
+        btnId: "raptor-disappear-btn",
+        btnType: "warning",
+        btnValue: "raptor disappear action",
+        addCustomClassBool: false,
+        customBtnClass: null
+    },
+    {
+        btnText: "Observe",
+        btnId: "raptor-observe-btn",
+        btnType: "warning",
+        btnValue: "raptor observe action",
+        addCustomClassBool: false,
+        customBtnClass: null
+    },
+    {
+        btnText: "Frighten Scientist",
+        btnId: "raptor-frighten-scientist-btn",
+        btnType: "warning",
+        btnValue: "raptor frighten scientist action",
+        addCustomClassBool: false,
+        customBtnClass: null
+    },
+    {
+        btnText: "Heal",
+        btnId: "raptor-heal-btn",
+        btnType: "warning",
+        btnValue: "raptor heal action",
+        addCustomClassBool: false,
+        customBtnClass: null
+    }
+    
+]
+
+let scientistActionButtons = [
+    {
+        btnText: "Shoot",
+        btnId: "scientist-shoot-btn",
+        btnType: "warning",
+        btnValue: "scientist shoot action",
+        addCustomClassBool: false,
+        customBtnClass: null
+    },
+    {
+        btnText: "Light Fire",
+        btnId: "scientist-light-fire-btn",
+        btnType: "warning",
+        btnValue: "scientist light fire action",
+        addCustomClassBool: false,
+        customBtnClass: null
+    },
+    {
+        btnText: "Put Baby to Sleep",
+        btnId: "scientist-baby-sleep-btn",
+        btnType: "warning",
+        btnValue: "scientist baby sleep action",
+        addCustomClassBool: false,
+        customBtnClass: null
+    },
+    {
+        btnText: "Drive Jeep",
+        btnId: "scientist-drive-jeep-btn",
+        btnType: "warning",
+        btnValue: "scientist drive jeep action",
+        addCustomClassBool: false,
+        customBtnClass: null
+    },
+    {
+        btnText: "Shuffle Deck",
+        btnId: "scientist-shuffle-deck-btn",
+        btnType: "warning",
+        btnValue: "scientist shuffle deck action",
+        addCustomClassBool: false,
+        customBtnClass: null
+    },
+    {
+        btnText: "Reinforce",
+        btnId: "scientist-reinforce-btn",
+        btnType: "warning",
+        btnValue: "scientist reinforce action",
+        addCustomClassBool: false,
+        customBtnClass: null
+    }
+]
 
 
-export {introContent, howToPlayContent, pickTeamsContent, gameCardsContent, setupInfoContent, cardChoiceContent}
+export {introContent, howToPlayContent, pickTeamsContent, gameCardsContent, setupInfoContent, cardChoiceContent, raptorActionButtons, scientistActionButtons}
