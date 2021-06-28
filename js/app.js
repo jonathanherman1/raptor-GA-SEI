@@ -7,7 +7,7 @@ import { contains, getRandomIntNotIncl} from "./modules/helpers.js";
 
 /*--------- Variables ---------*/
 
-let gameActive, setupComplete, players, teams, pieces, board, cards, raptorCards, raptorDiscardPile, scientistCards, scientistDiscardPile, rounds, currentRound, temporaryCardChoice;
+let gameActive, setupComplete, players, teams, pieces, board, cards, raptorCards, raptorDiscardPile, scientistCards, scientistDiscardPile, rounds, currentRound, temporaryCardChoice, victoryStatus;
 
 // touch variables
 let initialX, initialY, currentX, currentY, xEnter, yEnter, active, dragItem, dropZone;
@@ -100,6 +100,22 @@ function init(name1, name2){
     State.addCardsToHand("raptors", raptorCards, 3, rounds, 1);
     State.addCardsToHand("scientists", scientistCards, 3, rounds, 1);
     console.log(rounds);
+    victoryStatus = [
+        {
+            team: "Raptors",
+            victory: false,
+            numRaptorsEscaped: 0,
+            numScientistsOnBoard: 4
+        },
+        {
+            team: "Scientists",
+            victory: false,
+            numRaptorsCaptured: 0,
+            numHitsOnMother: 0,
+            motherPutToSleep: false
+        }
+    ];
+    
 }
 
 function handleNewGame(e){
