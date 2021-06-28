@@ -132,5 +132,25 @@ function updateRound(){
 
 }
 
+function occupySpace(board, spaceId, pieceId){
+    for(let space of board){
+        if(space.id === spaceId){
+            space.occupied = true;
+            space.occupiedBy = pieceId;
+            console.log(space);
+        }
+    }
+}
 
-export {createBoard, createCards, createRound};
+function leaveSpace(board, spaceId){
+    for(let space of board){
+        if(space.id === spaceId){
+            space.occupied = false;
+            space.occupiedBy = null;
+            console.log(space);
+        }
+    }
+}
+
+
+export {createBoard, createCards, createRound, occupySpace, leaveSpace};
