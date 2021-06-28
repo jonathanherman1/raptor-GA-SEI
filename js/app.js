@@ -3,11 +3,11 @@ import * as State from "./modules/gameData/state.js"
 import * as Renderer from "./modules/render.js";
 import * as GameText from "./modules/gameData/gameText.js";
 import * as Valid from "./modules/validity.js";
-import { contains, getRandomIntNotIncl } from "./modules/helpers.js";
+import { contains, getRandomIntNotIncl} from "./modules/helpers.js";
 
 /*--------- Variables ---------*/
 
-let gameActive, setupComplete, players, teams, pieces, board, cards, raptorCards, raptorDiscardPile, scientistCards, scientistDiscardPile, rounds;
+let gameActive, setupComplete, players, teams, pieces, board, cards, raptorCards, raptorDiscardPile, scientistCards, scientistDiscardPile, rounds, currentRound, temporaryCardChoice;
 
 // touch variables
 let initialX, initialY, currentX, currentY, xEnter, yEnter, active, dragItem, dropZone;
@@ -94,6 +94,7 @@ function init(name1, name2){
     scientistDiscardPile = [];
     rounds = [];
     let round = State.createRound(1);
+    currentRound = 1;
     rounds.push(round);
     State.addCardsToHand("raptors", raptorCards, 3, rounds, 1);
     State.addCardsToHand("scientists", scientistCards, 3, rounds, 1);
@@ -241,23 +242,42 @@ function handleConfirmScientistPlacement(e){
         gameTray.removeChild(scientistButtonDiv);
 
         setupComplete = true;
-
-        // render cards
-        // open the card display
-        
+        Renderer.renderOffcanvasEl(mainContent);
+        let cardDisplayOffcanvas = document.querySelector("#card-display");
+        let cardDisplayInstructions = document.querySelector("#card-display-instructions");
+        Renderer.renderCards(cardDisplayOffcanvas, rounds[currentRound-1].raptorHand);
+        Renderer.renderCardChoiceInstructions(cardDisplayInstructions, GameText.cardChoiceContent, 0);
     }
 }
 
 function handleRaptorPickCard(e){
     e.preventDefault();
     if(contains(e.target.id, "raptor-card")){
-        // render card selection on and off
+        Renderer.renderCardSelectionOnOff(e.target.id);
+        let raptorHand = rounds[currentRound-1].raptorHand;
+        if(temporaryCardChoice === undefined || temporaryCardChoice == null){
+            for(let card of raptorHand){
+                if(card.id === e.target.id) temporaryCardChoice = card;
+                break;
+            }
+        } else {
+            temporaryCardChoice === null;
+        }
     }
 }
 function handleScientistPickCard(e){
     e.preventDefault();
     if(contains(e.target.id, "scientist-card")){
-
+        Renderer.renderCardSelectionOnOff(e.target.id);
+        let scientistHand = rounds[currentRound-1].scientistHand;
+        if(temporaryCardChoice === undefined || temporaryCardChoice == null){
+            for(let card of scientistHand){
+                if(card.id === e.target.id) temporaryCardChoice = card;
+                break;
+            }
+        } else {
+            temporaryCardChoice === null;
+        }
     }
 }
 
