@@ -88,6 +88,16 @@ function renderParagraphs(contentArr){
     return paraContentStr;
 }
 
+function renderParagraphEls(contentArr){
+    let paragraphs = [];
+    contentArr.forEach(el => {
+        let p = document.createElement("p");
+        p.textContent = el;
+        paragraphs.push(p);
+    });
+    return paragraphs;
+}
+
 function renderBootstrapImage(content){
     const {imgURL, altText, imgId} = content
     return `<img src="${imgURL}" class="img-fluid" alt="${altText}">`
@@ -336,7 +346,51 @@ function renderButton(parent, content){
     parent.appendChild(buttonDiv);
 } // confirm, back, etc.
 
-function renderCards(){}
+function renderCards(parent, hand){
+    // hand should be an array
+    hand.forEach(card => {
+        let div = document.createElement("div");
+        div.setAttribute("id", card.id);
+        div.setAttribute("class", "playingCard xLarge");
+        let cardContents = [card.name, card.actions, card.notes];
+        let paragraphEls = renderParagraphEls(cardContents);
+        paragraphEls.forEach(p => div.appendChild(p));
+        parent.appendChild(div);
+    })
+}
+
+function renderCardSelectionOnOff(cardId){
+    let card = document.querySelector(`#${cardId}`);
+    card.classList.toggle("outline");
+}
+
+function renderCardChoiceInstructions(parent, content, i){
+    let team = content[i];
+    let header = document.createElement("h4");
+    let description = document.createElement("p");
+    if(team.team === "raptors"){
+        header.textContent = team.hText;
+        description.textContent = team.pText;
+        header.setAttribute("id", team.hTextId);
+        description.setAttribute("id", team.pTextId);
+    } 
+    if (team.team === "scientists"){
+        header.textContent = team.hText;
+        description.textContent = team.pText;
+        header.setAttribute("id", team.hTextId);
+        description.setAttribute("id", team.pTextId);
+    }
+    parent.appendChild(header);
+    parent.appendChild(description);
+    renderButton(parent, content);
+    
+}
+
+function renderShowHideOffcanvas(){
+    const offcanvasEl = document.querySelector("#offcanvasWithBackdrop-1");
+    offcanvasEl.classList.toggle("show");
+}
+
 function renderPieces(){}
 
 function renderReinforcements(){} // may incorporate this into renderPieces
@@ -345,4 +399,4 @@ function renderJeepMovement(){}
 function renderMotherRaptorDisappears(){}
 function renderMotherRaptorReappears(){}
 
-export {render, renderRemove, renderIntro, renderHowToPlay, renderPickTeams, renderTeamChoices, renderBoard, renderSetupInfo, renderButton};
+export {render, renderRemove, renderIntro, renderHowToPlay, renderPickTeams, renderTeamChoices, renderBoard, renderSetupInfo, renderButton, renderCards, renderCardSelectionOnOff, renderCardChoiceInstructions, renderShowHideOffcanvas};
