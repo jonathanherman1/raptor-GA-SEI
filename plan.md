@@ -68,20 +68,24 @@ Future enhancements:
      - [x]    1. Update `players` arr
      - [x]    2. Render choices: HTML showing two cards displaying selected teams
      - [x]    3. Remove HTML showing selected teams
-- [ ] 6. Raptors place starting pieces.
+- [x] 6. Raptors place starting pieces.
   - [x]    1. Add `createBoard()` function, and call it in `init()`
   - [x]    2. Render game board, turn, instructions
   - [x]    3. Render raptor pieces
   - [x]    4. Cache `gameTray`, `instructions`, `piecesTray`
   - [ ]    5. Add mouse and touch event handlers
-  - [ ]    6. Add mouse and touch event listeners with handlers.
-  - [ ]    7. Update `board` and `raptors` team state as raptors are placed
-  - [ ]    8. Add HTML for confirm placement button when all raptors are placed `confirmPlacementBtn`
-  - [ ]    10. Confirm placement of raptors
-  - [ ]    11. Remove confirm placement button
+    - [x]    1. Add touch event handlers
+    - [ ]    2. Add placement validation for touch events
+    - [ ]    3. Add mouse event handlers
+    - [ ]    4. Add placement validation for mouse events
+  - [x]    6. Add mouse and touch event listeners with handlers.
+  - [x]    7. Update `board` and `raptors` team state as raptors are placed
+  - [x]    8. Add HTML for confirm placement button when all raptors are placed `confirmPlacementBtn`
+  - [x]    10. Confirm placement of raptors
+  - [x]    11. Remove confirm placement button
 - [ ] 7. Scientists place starting pieces.
-  - [ ]    1. Render scientist pieces
-  - [ ]    2. Cache scientist pieces
+  - [x]    1. Render scientist pieces
+  - [x]    2. Cache scientist pieces
   - [ ]    3. Update `board` and `scientists` team state as scientists are placed
   - [ ]    4. Confirm placement of scientists
   - [ ]    5. Remove confirm placement button
@@ -530,3 +534,10 @@ Each regular action costs 1 action point.
       - Moving through fire removes it
 - Card 9: No effect
 
+## Bugs
+- [ ] Fix raptor validation in beginning setup
+  - [ ] No piece can occupy the same space at the same time
+  - [ ] Mother cannot go where baby raptor is
+  - [ ] Baby raptors cannot share tiles
+- [x] Confirm placement button should switch to scientist button
+- [x] Remove raptor instructions
