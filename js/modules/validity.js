@@ -1,3 +1,5 @@
+import {contains} from "./helpers.js";
+
 function isPassable(board, id){
     // board is the board in state
     // id is a space a player attempts to drop a piece on
@@ -62,6 +64,8 @@ function canReinforce(board, id){
 function canPlaceMotherSetup(board, id){
     let canPassBool = isPassable(board, id);
     if(canPassBool === false) return false;
+    let babyOnTile = isPieceOnTile(board, id, null, "#baby", false);
+    if(babyOnTile === true) return false;
     for(let space of board){
         if(space.id === id){
             if(space.lShaped === false && (space.tile === 3 || space.tile === 4)){
@@ -75,8 +79,9 @@ function canPlaceMotherSetup(board, id){
 function canPlaceBabySetup(board, id){
     let canPassBool = isPassable(board, id);
     if(canPassBool === false) return false;
-    let motherOnTile = isMotherOnTile(board, id);
-    if(motherOnTile === true) return false;
+    let motherOnTile = isPieceOnTile(board, id, "#mother-raptor-1", null, true);
+    let babyOnTile = isPieceOnTile(board, id, null, "baby", false);
+    if(motherOnTile === true || babyOnTile === true) return false;
     for(let space of board){
         if(space.id === id){
             if(space.lShaped === false){
@@ -88,26 +93,37 @@ function canPlaceBabySetup(board, id){
     }
 }
 
-function isMotherOnTile(board, id){
+function isPieceOnTile(board, id, pieceId, pieceIdPartial, strictBool){
     let tileOfOccupant;
     // set tile of intended new occupant
     for(let space of board){
         if(space.id === id){
             tileOfOccupant = space.tile;
+            console.log("tileOfOccupant: ", tileOfOccupant);
+            console.log("space.tile: ", space.tile);
             break;
         }
     }
-    // check the tile for the mother
+    // check the tile for a piece
     for(let space of board){
-        if(space.tile === tileOfOccupant){
-            if(space.occupiedBy === "mother-raptor-1"){
-                return true;
-            } else {
-                continue;
+        if(strictBool === true){
+            if(space.occupiedBy === pieceId){
+                if(space.tile === tileOfOccupant){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        } else {
+            if(contains(space.occupiedBy, pieceIdPartial)){
+                if(space.tile === tileOfOccupant){
+                    return true;
+                } else {
+                    return false;
+                }
             }
         }
-    }
-    return false;
+    } 
 }
 
 
@@ -206,9 +222,9 @@ function hasActionPoints(){}
 function hasAggressiveActions(){}
 
 function isNotOccupied(){
-    
+
 }
 function isNotObstructed(){}
 
 
-export {isPassable, isExit,  isLShapedTile, isNormalSpace,  canReinforce, canPlaceMotherSetup, canPlaceBabySetup, isMotherOnTile, isOrthogonal, isAllowedToExit}
+export {isPassable, isExit,  isLShapedTile, isNormalSpace,  canReinforce, canPlaceMotherSetup, canPlaceBabySetup, isOrthogonal, isAllowedToExit}
