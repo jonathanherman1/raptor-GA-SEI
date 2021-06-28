@@ -248,7 +248,42 @@ function lightFire(){
     // for scientists
 }
 
+function victoryCheck(victoryStatus){
+    let escaped = victoryStatus[0].numRaptorsEscaped;
+    let numScientists = victoryStatus[0].numScientistsOnBoard;
+    let captured = victoryStatus[1].numRaptorsCaptured;
+    let hits = victoryStatus[1].numHitsOnMother;
+    let motherPutToSleep = victoryStatus[1].motherPutToSleep;
+    let raptorVictory = victoryStatus[0].victory;
+    let scientistVictory = victoryStatus[1].victory;
 
+    if(escaped === 3 || numScientists === 0){
+        raptorVictory = true;
+    } else if (captured === 3 || motherPutToSleep === true){
+        scientistVictory = true;
+    } else {
+        console.log("The game goes on. Victory conditions not met.");
+    }
+    
+    if(raptorVictory === true){
+        return {winner: "Raptors", loser: "Scientists"};
+    } else if (scientistVictory === true){
+        return {winner: "Scientists", loser: "Raptors"};
+    } else {
+        return victoryStatus;
+    }
+}
+
+function updateVictoryStatus(){
+    // if raptor escapes increment value
+    // if scientist dies decrement value
+    // if scientist reinforcements arrive increment value
+    // if raptor is captured increment value
+    // if mother hit increment value
+    // if mother put to sleep, switch value
+    // if raptors win, switch value
+    // if scientists win, switch value
+}
 
 
 
