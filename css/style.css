@@ -194,8 +194,8 @@ form {
     /* Set the playingCard's dimensions, and size it relative to
        it's font size. */
     font-size: inherit;
-    width: 4.0em;
-    height: 5.5em;
+    width: 150px;
+    height: 200px;
     /* Add a default background color and border. */
     background-color: #fff;
     border-radius: 0.20em;
@@ -206,8 +206,8 @@ form {
     background-size: contain;
     /* "Hide" any text within the element (use text to be
        simply compliant with screen readers, etc.). */
-    text-indent: 100%;
-    white-space: nowrap;
+    /* text-indent: 100%; */
+    white-space: wrap;
     overflow: hidden;
     /* Default sizes for playingCards (size based off the font). */
     /* Optional styles for playingCards: borderless and drop shadow. */
@@ -238,4 +238,5 @@ form {
     overflow: auto;
     grid-template-columns: 70% 30%;
     grid-template-rows: 100%;
+    color: black;
 }
