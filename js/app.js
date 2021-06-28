@@ -2,14 +2,15 @@
 import * as State from "./modules/gameData/state.js"
 import * as Renderer from "./modules/render.js";
 import * as GameText from "./modules/gameData/gameText.js";
-import * as Helpers from "./modules/helpers.js";
+import * as Valid from "./modules/validity.js";
+import { contains } from "./modules/helpers.js";
 
 /*--------- Variables ---------*/
 
 let gameActive, players, teams, pieces, board, cards, rounds;
 
 // touch variables
-let initialX, initialY, currentX, currentY, xEnter, yEnter, active, dragItem;
+let initialX, initialY, currentX, currentY, xEnter, yEnter, active, dragItem, dropZone;
 let xOffset = 0;
 let yOffset = 0;
 let validDropZoneClasses = ["space"];
@@ -81,6 +82,7 @@ function init(name1, name2){
     rounds = [];
     let round = State.createRound(1);
     rounds.push(round);
+    console.log(rounds);
 }
 
 function handleNewGame(e){
@@ -173,6 +175,9 @@ function handlePlay(e){
                 })
             }
         })
+        
+        Renderer.renderButton(gameTray, GameText.setupInfoContent[0]);
+        
     }
 }
 
@@ -198,11 +203,18 @@ function handlePlay(e){
         }
         if(idVacated === "pieces-tray"){
         console.log("moving piece from pieces-tray");
+        } else if(dropZone === null){
+            console.log("The drop zone was invalid.");
+            console.log("Board from inside handleTouchStart: ", board);
+            console.log(idVacated);
+            console.log(dragItem);
         } else {
             // can set state here for space that is now unoccupied
             console.log(`moving piece from ${idVacated}`);
+            console.log(board);
+            State.leaveSpace(board, idVacated);   
         }
-      }
+      }    
     //   console.log("dragItem: ", dragItem)
     //   console.log("active: ", active)
     //   console.log("initialX: ", initialX)
@@ -218,41 +230,52 @@ function handlePlay(e){
     }
   } 
   function handleTouchEnd(e){
+    console.log("handleTouchEnd board: ", board);
     if(dragItem !== undefined){
         console.log("touch end: ", e);        
-        
+        console.log(dragItem);
         document.querySelector("body").classList.remove("lock-screen");
     
         // let path = getPath(dragItem);
         // console.log("path: ", path);
-        let dropZone;
         let dropzoneX = e.changedTouches[0].clientX;
         let dropzoneY = e.changedTouches[0].clientY;
-        console.log("dropZoneX: ", dropzoneX, "dropZoneY: ", dropzoneY);
+        // console.log("dropZoneX: ", dropzoneX, "dropZoneY: ", dropzoneY);
         let dropZoneList = document.elementsFromPoint(dropzoneX, dropzoneY);
         for(let el of dropZoneList){
             // sets the drop zone
-            if(validDropZoneClasses.includes(el.className)) dropZone = el;
+            // if(validDropZoneClasses.includes(el.className)) dropZone = el;
+            if(el.classList.contains("space")){
+                if(dragItem.id === "#mother-raptor-1"){   
+                    if(Valid.canPlaceMotherSetup(board, el.id) === true){
+                        dropZone = el;
+                        State.occupySpace(board, el.id, dragItem.id);
+                    } else {
+                        dragItem.style.removeProperty("transform");
+                        dragItem.classList.remove("selected");
+                        console.log("dropZone: ", dropZone);
+                        alert("That's not a valid space for the mother raptor during setup.");
+                    }    
+                } else if(contains(dragItem.id, "baby")){
+                    Valid.canPlaceBabySetup(board, el.id) ? dropZone = el : alert("That's not a valid space for a baby raptor during setup.");
+                }
+            }
         }
-        console.log('dropZoneList: ', dropZoneList);
-        console.log('dropZone: ', dropZone);
-
-        if(dropZone !== undefined){
-            // add the piece to the space element
+        // console.log('dropZoneList: ', dropZoneList);
+        // console.log('dropZone: ', dropZone);
+        if(dropZone !== null){
+            // add the piece to the space element in HTML
             dropZone.appendChild(dragItem);
         }
-        
         // prevent handleMove
-        // active = false;
-
-        // makes the letter appear properly like a normal child of div
+        active = false;
+        // makes the piece appear properly like a normal child of div
         dragItem.style.removeProperty("transform");
-
         // remove selected class
         dragItem.classList.remove("selected");
-
         // force a reset of selecting the dragItem
-        // dragItem = undefined;
+        dragItem = null;
+        dropZone = null;
     }
   } 
   
@@ -300,7 +323,7 @@ function getPath(currentElem) {
     if (path.indexOf(window) === -1)
       path.push(window);
     return path;
-  }
+}
 
 
 
