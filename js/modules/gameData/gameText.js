@@ -148,7 +148,9 @@ let setupInfoContent = [
     {
         team: "raptors",
         hText: "Turn: Raptors",
+        hTextId: "h4-raptor-turn",
         pText: ["Place your mother raptor and baby raptors."],
+        pTextId: "p-raptor-text",
         icons: ["../assets/raptor.png", "../assets/baby-raptor.png"],
         numBabies: 5,
         numMother: 1,
@@ -162,7 +164,9 @@ let setupInfoContent = [
     {
         team: "scientists",
         hText: "Turn: Scientists",
+        hTextId: "h4-scientist-turn",
         pText: ["Place your scientists."],
+        pTextId: "p-scientist-text",
         icons: ["../assets/scientist.png"],
         numScientists: 4,
         btnText: "Confirm Placement",
