@@ -386,12 +386,6 @@ function renderOffcanvasEl(parent){
     parent.appendChild(button);
 }
 
-function enableOffcanvas(){
-    var offcanvasElementList = [].slice.call(document.querySelectorAll('.offcanvas'))
-    var offcanvasList = offcanvasElementList.map(function (offcanvasEl) {
-        return new bootstrap.Offcanvas(offcanvasEl)
-    })
-}
 
 function renderCards(parent, hand){
     // hand should be an array
