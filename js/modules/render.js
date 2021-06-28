@@ -1,7 +1,3 @@
-function render(){
-
-}
-
 function renderRemove(parent, child){
     parent.removeChild(child);
 } // for removing elements
@@ -346,13 +342,64 @@ function renderButton(parent, content){
     parent.appendChild(buttonDiv);
 } // confirm, back, etc.
 
+
+
+function renderOffcanvasEl(parent){
+    let div1 = document.createElement("div");
+    div1.setAttribute("class", "offcanvas offcanvas-start");
+    div1.setAttribute("tabindex", "-1");
+    div1.setAttribute("id","offcanvasWithBackdrop-1");
+    div1.setAttribute("aria-labelledby", "offcanvasWithBackdropLabel");
+    let div2 = document.createElement("div");
+    div2.setAttribute("class", "offcanvas-header");
+    let h5 = document.createElement("h5");
+    h5.setAttribute("class", "offcanvas-title");
+    h5.setAttribute("id", "offcanvasWithBackdropLabel");
+    h5.textContent = "Select Cards";
+    let btn = document.createElement("button");
+    btn.setAttribute("type", "button");
+    btn.setAttribute("class", "btn-close text-reset");
+    btn.setAttribute("data-bs-dismiss", "offcanvas");
+    btn.setAttribute("aria-label", "Close");
+    div2.appendChild(h5);
+    div2.appendChild(btn);
+    let div3 = document.createElement("div");
+    div3.setAttribute("class", "playingCard-tray");
+    let div4 = document.createElement("div");
+    div4.setAttribute("class", "offcanvas-body");
+    div4.setAttribute("id", "card-display");
+    let div5 = document.createElement("div");
+    div5.setAttribute("id", "card-display-instructions");
+    div3.appendChild(div4);
+    div3.appendChild(div5);
+    div1.appendChild(div2);
+    div1.appendChild(div3);
+    parent.appendChild(div1);
+
+    let button = document.createElement("button");
+    button.setAttribute("class", "btn btn-primary");
+    button.setAttribute("type", "button");
+    button.setAttribute("data-bs-toggle", "offcanvas");
+    button.setAttribute("data-bs-target", "#offcanvasWithBackdrop-1");
+    button.setAttribute("aria-controls", "offcanvasWithBackdrop-1");
+    button.textContent = "Show Cards";
+    parent.appendChild(button);
+}
+
+function enableOffcanvas(){
+    var offcanvasElementList = [].slice.call(document.querySelectorAll('.offcanvas'))
+    var offcanvasList = offcanvasElementList.map(function (offcanvasEl) {
+        return new bootstrap.Offcanvas(offcanvasEl)
+    })
+}
+
 function renderCards(parent, hand){
     // hand should be an array
     hand.forEach(card => {
         let div = document.createElement("div");
         div.setAttribute("id", card.id);
-        div.setAttribute("class", "playingCard xLarge");
-        let cardContents = [card.name, card.actions, card.notes];
+        div.setAttribute("class", "playingCard");
+        let cardContents = [card.name, card.value, card.actions, card.notes];
         let paragraphEls = renderParagraphEls(cardContents);
         paragraphEls.forEach(p => div.appendChild(p));
         parent.appendChild(div);
@@ -382,7 +429,7 @@ function renderCardChoiceInstructions(parent, content, i){
     }
     parent.appendChild(header);
     parent.appendChild(description);
-    renderButton(parent, content);
+    renderButton(parent, team);
     
 }
 
@@ -399,4 +446,4 @@ function renderJeepMovement(){}
 function renderMotherRaptorDisappears(){}
 function renderMotherRaptorReappears(){}
 
-export {render, renderRemove, renderIntro, renderHowToPlay, renderPickTeams, renderTeamChoices, renderBoard, renderSetupInfo, renderButton, renderCards, renderCardSelectionOnOff, renderCardChoiceInstructions, renderShowHideOffcanvas};
+export {renderRemove, renderIntro, renderHowToPlay, renderPickTeams, renderTeamChoices, renderBoard, renderSetupInfo, renderButton, renderOffcanvasEl, renderCards, renderCardSelectionOnOff, renderCardChoiceInstructions, renderShowHideOffcanvas};
