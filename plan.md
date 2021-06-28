@@ -547,3 +547,10 @@ Each regular action costs 1 action point.
 - [x] Remove duplicates from card selection
 - [ ] Fix card selection
   - [ ] Prevent selecting (at least visually) more than one card
+- [ ] Prevent opposite teams from moving each other's pieces
+- [ ] Prevent placing a piece surrounded entirely by mountains?
+
+## Refactor Roadmap
+- [ ] Validity functions
+- [ ] State functions
+- [ ] Render functions
