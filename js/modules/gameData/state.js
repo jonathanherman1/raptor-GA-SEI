@@ -152,5 +152,13 @@ function leaveSpace(board, spaceId){
     }
 }
 
+function updatePiece(pieces, pieceId, prop, val){
+    for(let p of pieces){
+        if(p.id === pieceId){
+            p[prop] = val;
+        }
+    }
+}
 
-export {createBoard, createCards, createRound, occupySpace, leaveSpace};
+
+export {createBoard, createCards, createRound, occupySpace, leaveSpace, updatePiece};
