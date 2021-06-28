@@ -69,7 +69,7 @@ function createBoard(){
     }
 
     // give each space a global id
-    board.forEach((space, idx) => space.id = idx + 1);
+    board.forEach((space, idx) => space.id = `sp${idx + 1}`);
 
     return board;
 }
