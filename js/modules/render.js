@@ -319,7 +319,19 @@ function renderSetupInfo(content, i){
     return [header, description, teamArr];
 }
 
-function renderButtons(){} // confirm, back, etc.
+function renderButton(parent, content){
+    let buttonDiv = document.createElement("div");
+    buttonDiv.setAttribute("id", "button-div");
+    buttonDiv.setAttribute("class", "button-box");
+    let button = document.createElement("button");
+    button.setAttribute("id", content.btnId);
+    button.setAttribute("value", content.btnValue);
+    button.setAttribute("class", `btn btn-${content.btnType}`);
+    button.textContent = content.btnText;
+    buttonDiv.appendChild(button)
+    parent.appendChild(buttonDiv);
+} // confirm, back, etc.
+
 function renderCards(){}
 function renderPieces(){}
 
@@ -329,4 +341,4 @@ function renderJeepMovement(){}
 function renderMotherRaptorDisappears(){}
 function renderMotherRaptorReappears(){}
 
-export {render, renderRemove, renderIntro, renderHowToPlay, renderPickTeams, renderTeamChoices, renderBoard, renderSetupInfo};
+export {render, renderRemove, renderIntro, renderHowToPlay, renderPickTeams, renderTeamChoices, renderBoard, renderSetupInfo, renderButton};
