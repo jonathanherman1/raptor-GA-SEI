@@ -207,7 +207,7 @@ let cardChoiceContent = [
     }
 ]
 
-let raptorActionButtons = [
+let raptorActionButtonsContent = [
     {
         btnText: "Kill",
         btnId: "raptor-kill-btn",
@@ -283,7 +283,7 @@ let raptorActionButtons = [
     
 ]
 
-let scientistActionButtons = [
+let scientistActionButtonsContent = [
     {
         btnText: "Shoot",
         btnId: "scientist-shoot-btn",
@@ -335,4 +335,4 @@ let scientistActionButtons = [
 ]
 
 
-export {introContent, howToPlayContent, pickTeamsContent, gameCardsContent, setupInfoContent, cardChoiceContent, raptorActionButtons, scientistActionButtons}
+export {introContent, howToPlayContent, pickTeamsContent, gameCardsContent, setupInfoContent, cardChoiceContent, raptorActionButtonsContent, scientistActionButtonsContent}
