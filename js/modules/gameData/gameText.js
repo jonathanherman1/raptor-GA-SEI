@@ -178,6 +178,35 @@ let setupInfoContent = [
     }
 ]
 
+let cardChoiceContent = [
+    {
+        team: "raptors",
+        hText: "Turn: Raptors",
+        hTextId: "h4-raptor-turn",
+        pText: ["Pick a card."],
+        pTextId: "p-raptor-text",
+        btnText: "Confirm Card",
+        btnId: "confirm-raptor-card-btn",
+        btnType: "warning",
+        btnValue: "Confirm Raptor Card",
+        addCustomClassBool: false,
+        customBtnClass: null
+    },
+    {
+        team: "scientists",
+        hText: "Turn: Scientists",
+        hTextId: "h4-scientist-turn",
+        pTextId: "p-scientist-text",
+        pText: ["Pick a card."],
+        btnText: "Confirm Card",
+        btnId: "confirm-scientist-card-btn",
+        btnType: "warning",
+        btnValue: "Confirm Scientist Card",
+        addCustomClassBool: false,
+        customBtnClass: null
+    }
+]
 
 
-export {introContent, howToPlayContent, pickTeamsContent, gameCardsContent, setupInfoContent}
+
+export {introContent, howToPlayContent, pickTeamsContent, gameCardsContent, setupInfoContent, cardChoiceContent}
