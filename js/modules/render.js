@@ -393,9 +393,15 @@ function renderCards(parent, hand){
         let div = document.createElement("div");
         div.setAttribute("id", card.id);
         div.setAttribute("class", "playingCard");
-        let cardContents = [card.name, card.value, card.actions, card.notes];
-        let paragraphEls = renderParagraphEls(cardContents);
+        let h2 = document.createElement("h2");
+        h2.textContent = card.value;
+        let h3 = document.createElement("h3");
+        h3.textContent = card.name; 
+        let cardNotes = [card.actions, card.notes];
+        let paragraphEls = renderParagraphEls(cardNotes);
         paragraphEls.forEach(p => div.appendChild(p));
+        parent.appendChild(h2);
+        parent.appendChild(h3);
         parent.appendChild(div);
     })
 }
