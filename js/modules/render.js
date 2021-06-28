@@ -183,59 +183,59 @@ function renderBoard(target, boardContent){
     // type: Exit or Normal (or Mountain in some tiles)
     
     boardContent.forEach(space => {
-        if(space.lShaped === true && space.tile === 1 && space.type === "Exit"){
-            lTile1ExitContent += `<div class="space exit1" id="sp${space.id}"></div>`
+        if(space.lShaped === true && space.tile === 9 && space.type === "Exit"){
+            lTile1ExitContent += `<div class="space exit1" id="${space.id}"></div>`
         } 
-        else if (space.lShaped === true && space.tile === 2 && space.type === "Exit"){
-            lTile2ExitContent += `<div class="space exit2" id="sp${space.id}"></div>`
-        } else if(space.lShaped === true && space.tile === 1 && space.type === "Normal"){
-            lTile1NormalContent += `<div class="space top-left" id="sp${space.id}"></div>`
-        } else if(space.lShaped === true && space.tile === 2 && space.type === "Normal"){
-            lTile2NormalContent += `<div class="space top-right" id="sp${space.id}"></div>`
+        else if (space.lShaped === true && space.tile === 10 && space.type === "Exit"){
+            lTile2ExitContent += `<div class="space exit2" id="${space.id}"></div>`
+        } else if(space.lShaped === true && space.tile === 9 && space.type === "Normal"){
+            lTile1NormalContent += `<div class="space top-left" id="${space.id}"></div>`
+        } else if(space.lShaped === true && space.tile === 10 && space.type === "Normal"){
+            lTile2NormalContent += `<div class="space top-right" id="${space.id}"></div>`
         } else if(space.lShaped === false && space.tile === 1){
             if(space.type === "Mountain"){
-                normalSpacesContent1 += `<div class="space mountain" id="sp${space.id}"></div>`
+                normalSpacesContent1 += `<div class="space mountain" id="${space.id}"></div>`
             } else {
-                normalSpacesContent1 += `<div class="space" id="sp${space.id}"></div>`
+                normalSpacesContent1 += `<div class="space" id="${space.id}"></div>`
             }
         } else if(space.lShaped === false && space.tile === 2){
             if(space.type === "Mountain"){
-                normalSpacesContent2 += `<div class="space mountain" id="sp${space.id}"></div>`
+                normalSpacesContent2 += `<div class="space mountain" id="${space.id}"></div>`
             } else {
-                normalSpacesContent2 += `<div class="space" id="sp${space.id}"></div>`
+                normalSpacesContent2 += `<div class="space" id="${space.id}"></div>`
             }
         } else if(space.lShaped === false && space.tile === 3){
             if(space.type === "Mountain"){
-                normalSpacesContent3 += `<div class="space mountain" id="sp${space.id}"></div>`
+                normalSpacesContent3 += `<div class="space mountain" id="${space.id}"></div>`
             } else {
-                normalSpacesContent3 += `<div class="space" id="sp${space.id}"></div>`
+                normalSpacesContent3 += `<div class="space" id="${space.id}"></div>`
             }
         } else if(space.lShaped === false && space.tile === 4){
             if(space.type === "Mountain"){
-                normalSpacesContent4 += `<div class="space mountain" id="sp${space.id}"></div>`
+                normalSpacesContent4 += `<div class="space mountain" id="${space.id}"></div>`
             } else {
-                normalSpacesContent4 += `<div class="space" id="sp${space.id}"></div>`
+                normalSpacesContent4 += `<div class="space" id="${space.id}"></div>`
             }
         } else if(space.lShaped === false && space.tile === 5){
             if(space.type === "Mountain"){
-                normalSpacesContent5 += `<div class="space mountain" id="sp${space.id}"></div>`
+                normalSpacesContent5 += `<div class="space mountain" id="${space.id}"></div>`
             } else {
-                normalSpacesContent5 += `<div class="space" id="sp${space.id}"></div>`
+                normalSpacesContent5 += `<div class="space" id="${space.id}"></div>`
             }
         } else if(space.lShaped === false && space.tile === 6){
             if(space.type === "Mountain"){
-                normalSpacesContent6 += `<div class="space mountain" id="sp${space.id}"></div>`
+                normalSpacesContent6 += `<div class="space mountain" id="${space.id}"></div>`
             } else {
-                normalSpacesContent6 += `<div class="space" id="sp${space.id}"></div>`
+                normalSpacesContent6 += `<div class="space" id="${space.id}"></div>`
             }
-        } else if(space.lShaped === true && space.tile === 3 && space.type === "Normal"){
-            lTile3NormalContent += `<div class="space bottom-left" id="sp${space.id}"></div>`
-        } else if(space.lShaped === true && space.tile === 4 && space.type === "Normal"){
-            lTile4NormalContent += `<div class="space bottom-right" id="sp${space.id}"></div>`
-        } else if(space.lShaped === true && space.tile === 3 && space.type === "Exit"){
-            lTile3ExitContent += `<div class="space exit3" id="sp${space.id}"></div>`
-        } else if (space.lShaped === true && space.tile === 4 && space.type === "Exit"){
-            lTile4ExitContent += `<div class="space exit4" id="sp${space.id}"></div>`
+        } else if(space.lShaped === true && space.tile === 7 && space.type === "Normal"){
+            lTile3NormalContent += `<div class="space bottom-left" id="${space.id}"></div>`
+        } else if(space.lShaped === true && space.tile === 8 && space.type === "Normal"){
+            lTile4NormalContent += `<div class="space bottom-right" id="${space.id}"></div>`
+        } else if(space.lShaped === true && space.tile === 7 && space.type === "Exit"){
+            lTile3ExitContent += `<div class="space exit3" id="${space.id}"></div>`
+        } else if (space.lShaped === true && space.tile === 8 && space.type === "Exit"){
+            lTile4ExitContent += `<div class="space exit4" id="${space.id}"></div>`
         }
     })
 
