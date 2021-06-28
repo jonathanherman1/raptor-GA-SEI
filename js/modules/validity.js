@@ -64,7 +64,7 @@ function canReinforce(board, id){
 function canPlaceMotherSetup(board, id){
     let canPassBool = isPassable(board, id);
     if(canPassBool === false) return false;
-    let babyOnTile = isPieceOnTile(board, id, null, "#baby", false);
+    let babyOnTile = isPieceOnTile(board, id, null, "baby", false);
     if(babyOnTile === true) return false;
     for(let space of board){
         if(space.id === id){
@@ -79,7 +79,7 @@ function canPlaceMotherSetup(board, id){
 function canPlaceBabySetup(board, id){
     let canPassBool = isPassable(board, id);
     if(canPassBool === false) return false;
-    let motherOnTile = isPieceOnTile(board, id, "#mother-raptor-1", null, true);
+    let motherOnTile = isPieceOnTile(board, id, "mother-raptor-1", null, true);
     let babyOnTile = isPieceOnTile(board, id, null, "baby", false);
     if(motherOnTile === true || babyOnTile === true) return false;
     for(let space of board){
