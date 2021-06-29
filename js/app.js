@@ -426,37 +426,40 @@ function handleScientistPickCard(e){
             // sets the drop zone
             if(el.classList.contains("space")){
                 if(setupComplete === undefined){
-                    if(dragItem.id === "mother-raptor-1"){   
-                        if(Valid.canPlaceMotherSetup(board, el.id) === true){
-                            dropZone = el;
-                            State.occupySpace(board, el.id, dragItem.id);
-                            State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
-                        } else {
-                            dragItem.style.removeProperty("transform");
-                            dragItem.classList.remove("selected");
-                            alert("That's not a valid space for the mother raptor during setup.");
-                        }    
-                    } else if(contains(dragItem.id, "baby")){
-                        if(Valid.canPlaceBabySetup(board, el.id) === true){
-                            dropZone = el;
-                            State.occupySpace(board, el.id, dragItem.id);
-                            State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
-                        } else {
-                            dragItem.style.removeProperty("transform");
-                            dragItem.classList.remove("selected");
-                            alert("That's not a valid space for a baby raptor during setup.");
-                        }
-                    } else if(contains(dragItem.id, "scientist")){
-                        if(Valid.isExit(board, el.id) === false && Valid.isLShapedTile(board, el.id) === true){
-                            dropZone = el;
-                            State.occupySpace(board, el.id, dragItem.id);
-                            State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
-                        } else {
-                            dragItem.style.removeProperty("transform");
-                            dragItem.classList.remove("selected");
-                            alert("That's not a valid space for a scientist during setup.");
-                        }
-                    }
+                    dropZone = el;
+                    State.occupySpace(board, el.id, dragItem.id);
+                    State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
+                    // if(dragItem.id === "mother-raptor-1"){   
+                    //     if(Valid.canPlaceMotherSetup(board, el.id) === true){
+                    //         dropZone = el;
+                    //         State.occupySpace(board, el.id, dragItem.id);
+                    //         State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
+                    //     } else {
+                    //         dragItem.style.removeProperty("transform");
+                    //         dragItem.classList.remove("selected");
+                    //         alert("That's not a valid space for the mother raptor during setup.");
+                    //     }    
+                    // } else if(contains(dragItem.id, "baby")){
+                    //     if(Valid.canPlaceBabySetup(board, el.id) === true){
+                    //         dropZone = el;
+                    //         State.occupySpace(board, el.id, dragItem.id);
+                    //         State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
+                    //     } else {
+                    //         dragItem.style.removeProperty("transform");
+                    //         dragItem.classList.remove("selected");
+                    //         alert("That's not a valid space for a baby raptor during setup.");
+                    //     }
+                    // } else if(contains(dragItem.id, "scientist")){
+                    //     if(Valid.isExit(board, el.id) === false && Valid.isLShapedTile(board, el.id) === true){
+                    //         dropZone = el;
+                    //         State.occupySpace(board, el.id, dragItem.id);
+                    //         State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
+                    //     } else {
+                    //         dragItem.style.removeProperty("transform");
+                    //         dragItem.classList.remove("selected");
+                    //         alert("That's not a valid space for a scientist during setup.");
+                    //     }
+                    // }
                 } else if(setupComplete === true && gameActive === true){
                     dropZone = el;
                     State.occupySpace(board, el.id, dragItem.id);
