@@ -240,5 +240,12 @@ function hasFire(board, id){
     }
 }
 
+function inShootingRange(){
+
+}
+
+function inJeepRange(){
+    
+}
 
 export {isPassable, isExit,  isLShapedTile, isNormalSpace,  canReinforce, canPlaceMotherSetup, canPlaceBabySetup, isOrthogonal, isAllowedToExit}
