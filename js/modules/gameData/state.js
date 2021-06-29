@@ -232,14 +232,19 @@ function setInitiative(players, rounds, currentRound, raptorDiscardPile, scienti
         round.activeTeam = "Raptors";
         round.activeCard = raptorCard;
         round.activePlayer = setActivePlayerStatus(players, "Raptors");
+        return "raptors";
     } else if(raptorCard.value > scientistCard.value){
         round.activeTeam = "Scientists";
         round.activeCard = scientistCard;
         round.activePlayer = setActivePlayerStatus(players, "Scientists");
+        return "scientists";
     } else {
         discardCard(rounds, currentRound, raptorDiscardPile, "Raptors", raptorCards);
         discardCard(rounds, currentRound, scientistDiscardPile, "Scientists", scientistCards);
+        State.addCardsToHand("raptors", raptorCards, 1, rounds, 1);
+        State.addCardsToHand("scientists", scientistCards, 1, rounds, 1);
         currentRound++;
+        return "tie";
     }
 }
 
@@ -297,7 +302,7 @@ function lightFire(){
     // for scientists
 }
 
-function victoryCheck(victoryStatus){
+function victoryCheck(victoryStatus, abbreviatedBool){
     let escaped = victoryStatus[0].numRaptorsEscaped;
     let numScientists = victoryStatus[0].numScientistsOnBoard;
     let captured = victoryStatus[1].numRaptorsCaptured;
@@ -306,20 +311,38 @@ function victoryCheck(victoryStatus){
     let raptorVictory = victoryStatus[0].victory;
     let scientistVictory = victoryStatus[1].victory;
 
-    if(escaped === 3 || numScientists === 0){
-        raptorVictory = true;
-    } else if (captured === 3 || motherPutToSleep === true){
-        scientistVictory = true;
+    if(abbreviatedBool === true){
+        if(escaped === 1){
+            raptorVictory = true;
+        } else if (captured === 1){
+            scientistVictory = true;
+        } else {
+            console.log("The game goes on. Victory conditions not met.");
+        }
+        
+        if(raptorVictory === true){
+            return {winner: "Raptors", loser: "Scientists"};
+        } else if (scientistVictory === true){
+            return {winner: "Scientists", loser: "Raptors"};
+        } else {
+            return victoryStatus;
+        }
     } else {
-        console.log("The game goes on. Victory conditions not met.");
-    }
-    
-    if(raptorVictory === true){
-        return {winner: "Raptors", loser: "Scientists"};
-    } else if (scientistVictory === true){
-        return {winner: "Scientists", loser: "Raptors"};
-    } else {
-        return victoryStatus;
+        if(escaped === 3 || numScientists === 0){
+            raptorVictory = true;
+        } else if (captured === 3 || motherPutToSleep === true){
+            scientistVictory = true;
+        } else {
+            console.log("The game goes on. Victory conditions not met.");
+        }
+        
+        if(raptorVictory === true){
+            return {winner: "Raptors", loser: "Scientists"};
+        } else if (scientistVictory === true){
+            return {winner: "Scientists", loser: "Raptors"};
+        } else {
+            return victoryStatus;
+        }
     }
 }
 
