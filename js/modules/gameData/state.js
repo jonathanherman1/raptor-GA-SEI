@@ -142,16 +142,30 @@ function shuffleDeck(){
     // empty discard pile back into main pile and shuffle
 }
 
-function discardCard(rounds, currentRound, discardPile, team){
+function discardCard(rounds, currentRound, discardPile, team, cards){
     let card;
+    let hand;
     if(team === "Raptors"){
+        hand = rounds[currentRound-1].raptorHand;
         card = rounds[currentRound - 1].raptorCardChoice;
+        removeCardFromArray(cards, hand, card);
         rounds[currentRound-1].raptorCardChoice = null;
     } else {
+        hand = rounds[currentRound-1].scientistHand;
         card = rounds[currentRound - 1].scientistCardChoice;
+        removeCardFromArray(cards, hand, card);
         rounds[currentRound-1].scientistCardChoice = null;
     }
     discardPile.push(card);
+}
+
+function removeCardFromArray(teamCards, teamHand, card){
+    // find the index of the current card in the raptorCards array or scientistCards array.
+    let idx = teamCards.findIndex(el => el.id === card.id);
+    let idxH = teamHand.findIndex(el => el.id === card.id);
+    // splice the card at that index
+    teamCards.splice(idx, 1);
+    teamHand.splice(idxH, 1);
 }
 
 function createRound(roundNum){
@@ -209,7 +223,7 @@ function updatePiece(pieces, pieceId, prop, val){
     }
 }
 
-function setInitiative(rounds, currentRound, discardPile){
+function setInitiative(players, rounds, currentRound, raptorDiscardPile, scientistDiscardPile, raptorCards, scientistCards){
     let round = rounds[currentRound-1];
     let raptorCard = round.raptorCardChoice;
     let scientistCard = round.scientistCardChoice;
@@ -217,15 +231,24 @@ function setInitiative(rounds, currentRound, discardPile){
     if(raptorCard.value < scientistCard.value){
         round.activeTeam = "Raptors";
         round.activeCard = raptorCard;
+        round.activePlayer = setActivePlayerStatus(players, "Raptors");
     } else if(raptorCard.value > scientistCard.value){
         round.activeTeam = "Scientists";
         round.activeCard = scientistCard;
+        round.activePlayer = setActivePlayerStatus(players, "Scientists");
     } else {
-        discardCard(rounds, currentRound, discardPile, "Raptors");
-        discardCard(rounds, currentRound, discardPile, "Scientists");
+        discardCard(rounds, currentRound, raptorDiscardPile, "Raptors", raptorCards);
+        discardCard(rounds, currentRound, scientistDiscardPile, "Scientists", scientistCards);
         currentRound++;
     }
 }
+
+
+
+function setActivePlayerStatus(players, team){
+    return players.filter(player => player.team === team.team);
+}
+
 
 // movement is touch-driven and only limited by validation so doesn't need a function here. I do want to add a render function that can make it easier to see the possible actions (such as movement)
 
@@ -314,4 +337,4 @@ function updateVictoryStatus(){
 
 
 
-export {createBoard, createCards, pickCards, addCardsToHand, createRound, occupySpace, leaveSpace, updatePiece};
+export {createBoard, createCards, pickCards, addCardsToHand, createRound, occupySpace, leaveSpace, updatePiece, setInitiative, victoryCheck, discardCard, removeCardFromArray};
