@@ -397,6 +397,7 @@ function renderOffcanvasEl(parent){
     let button = document.createElement("button");
     button.setAttribute("class", "btn btn-primary");
     button.setAttribute("type", "button");
+    button.setAttribute("id", "show-cards-btn");
     button.setAttribute("data-bs-toggle", "offcanvas");
     button.setAttribute("data-bs-target", "#offcanvasWithBackdrop-1");
     button.setAttribute("aria-controls", "offcanvasWithBackdrop-1");

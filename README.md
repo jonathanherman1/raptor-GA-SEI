@@ -8,7 +8,7 @@ By **Jun 25**, by 1hr before end of class:
 - [x] Pseudocode gameplay
 
 By **Jun 25**, by end of class:
-- [ ] Share GitHub repo
+- [x] Share GitHub repo
 
 By **Jun 29**, end of class:
 - [ ] Deploy game
@@ -41,15 +41,15 @@ By **Jun 29**, end of class:
 - Bootstrap
 
 ## Technical Requirements:
-- [ ] Renders a working game in browser
-- [ ] Win/loss logic and renders win/loss messages in HTML
-- [ ] Properly indented HTML, CSS, and JS with consistent vertical white space
+- [x] Renders a working game in browser
+- [x] Win/loss logic and renders win/loss messages in HTML
+- [x] Properly indented HTML, CSS, and JS with consistent vertical white space
 - [ ] Light/Dark mode
-- [ ] Uses CSS Flexbox/Grid
+- [x] Uses CSS Flexbox/Grid
 - [ ] Consistent and polished UI
-- [ ] No remaining dead or commented out code
-- [ ] Sensibly named functions and variables
-- [ ] Consistent code choices
+- [x] No remaining dead or commented out code
+- [x] Sensibly named functions and variables
+- [x] Consistent code choices
 - [ ] Deployed online
 
 ## Features

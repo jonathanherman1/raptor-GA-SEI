@@ -19,6 +19,7 @@ let isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navig
 /*--------- Cached HTML References ---------*/
 const mainContent = document.querySelector("#main-content");
 const newGameFormEl = document.querySelector("#new-game-form");
+const darkModeToggle = document.querySelector("#toggle-dark-mode");
 
 /*--------- Event Listeners ---------*/
 // Game walkthrough
@@ -51,6 +52,9 @@ mainContent.addEventListener("touchend", handleTouchEnd);
 // mainContent.addEventListener("dragleave", handleDragLeave);
 // mainContent.addEventListener("drop", handleDrop);
 // mainContent.addEventListener("dragend", handleDragEnd);
+
+// Dark Mode
+darkModeToggle.addEventListener("click", handleDarkModeToggle);
 
 
 /*--------- Functions ---------*/
@@ -116,9 +120,10 @@ function init(name1, name2){
 
 function handleNewGame(e){
     e.preventDefault();
+    console.log(e);
     if(e.target.id === "new-game-btn"){
-        let name1 = e.target.parentNode[0].value;
-        let name2 = e.target.parentNode[1].value;
+        let name1 = e.target.parentNode.parentNode[0].value;
+        let name2 = e.target.parentNode.parentNode[1].value;
         init(name1, name2);
         Renderer.renderRemove(mainContent, newGameFormEl);
         Renderer.renderIntro(mainContent, GameText.introContent);
@@ -458,6 +463,7 @@ function handleScientistPickCard(e){
                     State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
                     let escape = Valid.isExit(board, dropZone.id);
                     if(escape === true) alert("A baby raptor has escaped and won the game!");
+                    if(dropZone.id === "sp1" || dropZone.id === "sp10") alert("A baby raptor has been captured! The scientists win the game!");
                     console.log(board);
                 }
             }
@@ -514,4 +520,33 @@ function getPath(currentElem) {
     if (path.indexOf(window) === -1)
       path.push(window);
     return path;
+}
+
+// Handle Dark Mode
+function handleDarkModeToggle(e){
+    e.preventDefault();
+    console.log(e);
+    let body = document.querySelector("body");
+    body.classList.toggle("dark-background");
+    body.classList.toggle("light-text");
+
+    let form = document.querySelector("form");
+    if(form.classList !== null) form.classList.toggle("dark-background-2");
+
+    
+
+    let sections = document.querySelectorAll("section");
+    sections.forEach(section => section.classList.toggle("dark-background-2"));
+    
+    let h1s = document.querySelectorAll("h1");
+    h1s.forEach(el => el.classList.toggle("light-text"));
+    let h2s = document.querySelectorAll("h2");
+    h2s.forEach(el => el.classList.toggle("light-text"));
+
+    let buttons = document.querySelectorAll("button");
+    buttons.forEach(button => button.classList.toggle("medium-buttons"));
+
+    let intro = document.querySelector("#intro-card");
+    if(intro.classList !== null) intro.classList.toggle("dark-background-2");
+
 }

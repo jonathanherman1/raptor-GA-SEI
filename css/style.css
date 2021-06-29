@@ -23,11 +23,31 @@ body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
       Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     margin: 0;
-    background-color: lightcoral;
+    background-color: #b8e8dd;
+}
+
+h1 {
+    color: #3d1985;
+}
+
+h2 {
+    margin-top: 10px;
+}
+
+#play-btn {
+    width: 75%;
+}
+
+#show-cards-btn{
+    width: 93%;
 }
 
 .btn {
     margin: 10px;
+}
+
+.btn-primary {
+    background-color: #0080C2;
 }
 
 .button-box {
@@ -129,6 +149,7 @@ form {
     background-color: white;
     padding: 20px;
     height: 30vh;
+    border-radius: 10%;
 }
 
 .card-img-top {
@@ -139,6 +160,21 @@ form {
 .pieces {
     height: 40px;
     width: 40px;
+}
+
+img {
+    border-radius: 75%;
+}
+
+.card {
+    border-radius: 5%;
+}
+
+#how-to-play {
+    background-color: white;
+    border-radius: 10%;
+    padding: 20px;
+    margin: 30px;
 }
 
 #game-tray{
@@ -232,12 +268,19 @@ form {
     flex-wrap: wrap;
 }
 
-.light {
-    background: lightcoral;
-    color: rgb(14, 14, 14)
+.dark-background {
+    background-color: #161d1b;
 }
 
-.dark {
-    background: rgb(14, 14, 14);
-    color: gray;
+.dark-background-2 {
+    background-color: #3b5b52;
+}
+
+.light-text {
+    color: rgb(215, 209, 209)
+}
+
+.medium-buttons{
+    background-color: #6f4DA1;
+    border: 0px;
 }
