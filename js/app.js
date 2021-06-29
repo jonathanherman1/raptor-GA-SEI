@@ -365,12 +365,20 @@ function handleScientistPickCard(e){
         Renderer.renderRemove(cardDisplayInstructions, scientistHeader);
         Renderer.renderRemove(cardDisplayInstructions, scientistText);
         cardDisplay.innerHTML = "";
-        State.setInitiative(players, rounds, currentRound, raptorDiscardPile, scientistDiscardPile, raptorCards, scientistCards);
-        console.log("raptor cards: ", raptorCards)
-        console.log("scientist cards: ", scientistCards)
-        console.log("raptor discard pile: ", raptorDiscardPile)
-        console.log("scientist discard pile: ", scientistDiscardPile)
+        let initiative = State.setInitiative(players, rounds, currentRound, raptorDiscardPile, scientistDiscardPile, raptorCards, scientistCards);
+        if(initiative === "tie"){
+
+            // repeat card drawing
+
+        }
+        console.log("initiative: ", initiative);
+        console.log("raptor cards: ", raptorCards);
+        console.log("scientist cards: ", scientistCards);
+        console.log("raptor discard pile: ", raptorDiscardPile);
+        console.log("scientist discard pile: ", scientistDiscardPile);
         console.log("rounds: ", rounds);
+        Renderer.renderBulkButtons(mainContent, GameText.raptorActionButtonsContent, "raptor-action-panel");
+        Renderer.renderBulkButtons(mainContent, GameText.scientistActionButtonsContent, "scientist-action-panel");
     }
 }
 
@@ -478,6 +486,13 @@ function handleScientistPickCard(e){
                             alert("That's not a valid space for a scientist during setup.");
                         }
                     }
+                } else if(setupComplete === true && gameActive === true){
+                    dropZone = el;
+                    State.occupySpace(board, el.id, dragItem.id);
+                    State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
+                    let escape = Valid.isExit(board, dropZone.id);
+                    if(escape === true) alert("A baby raptor has escaped and won the game!");
+                    console.log(board);
                 }
             }
         }
