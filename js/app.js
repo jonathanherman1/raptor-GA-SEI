@@ -13,10 +13,8 @@ let gameActive, setupComplete, players, teams, pieces, board, cards, raptorCards
 let initialX, initialY, currentX, currentY, xEnter, yEnter, active, dragItem, dropZone;
 let xOffset = 0;
 let yOffset = 0;
-// let validDropZoneClasses = ["space"];
 let isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 let isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
-
 
 /*--------- Cached HTML References ---------*/
 const mainContent = document.querySelector("#main-content");
@@ -47,7 +45,7 @@ mainContent.addEventListener("click", handleScientistPickCard);
 mainContent.addEventListener("touchstart", handleTouchStart);
 mainContent.addEventListener("touchmove", handleTouchMove);
 mainContent.addEventListener("touchend", handleTouchEnd);
-// // Mouse Events
+// Mouse Events
 // mainContent.addEventListener("dragstart", handleDragStart);
 // mainContent.addEventListener("dragenter", handleDragEnter);
 // mainContent.addEventListener("dragleave", handleDragLeave);
@@ -194,14 +192,11 @@ function handlePlay(e){
         mainContent.insertBefore(gameTray, boardEl);
         // set up raptors
         let setup = Renderer.renderSetupInfo(GameText.setupInfoContent, 0);
-        // // console.log(setup);
         setup.forEach(el => {
             if(el.length === undefined){
-                // // console.log(el);
                 instructions.appendChild(el);
             } else {
                 el.forEach(arrEl => {
-                    // console.log(arrEl);
                     piecesTray.appendChild(arrEl);
                 })
             }
@@ -227,10 +222,8 @@ function handleConfirmRaptorPlacement(e){
         const piecesTray = document.querySelector("#pieces-tray");
         // add scientist setup
         let setup = Renderer.renderSetupInfo(GameText.setupInfoContent, 1);
-        // // console.log(setup);
         setup.forEach(el => {
             if(el.length === undefined){
-                // // console.log(el);
                 instructions.appendChild(el);
             } else {
                 el.forEach(arrEl => {
@@ -386,13 +379,11 @@ function handleScientistPickCard(e){
 // Touch Events
   function handleTouchStart(e){
       if(e.targetTouches[0].target.className === "pieces"){
-        // console.log("touch start: ", e);
         dragItem = e.targetTouches[0].target;
         dragItem.classList.add("selected");
         if(e.target === dragItem){
           active = true;
         }
-        // console.log(dragItem);
         initialX = e.touches[0].clientX // - xOffset;
         initialY = e.touches[0].clientY // - yOffset;
         let idVacated;
@@ -404,26 +395,14 @@ function handleScientistPickCard(e){
         idVacated = path[1].id;
         }
         if(idVacated === "pieces-tray"){
-        // console.log("moving piece from pieces-tray");
         } else if(dropZone === null){
-            // console.log("The drop zone was invalid.");
-            // console.log("Board from inside handleTouchStart: ", board);
-            // console.log(idVacated);
-            // console.log(dragItem);
         } else {
             // can set state here for space that is now unoccupied
-            // console.log(`moving piece from ${idVacated}`);
-            // console.log(board);
             State.leaveSpace(board, idVacated);
         }
       }    
-    //   // console.log("dragItem: ", dragItem)
-    //   // console.log("active: ", active)
-    //   // console.log("initialX: ", initialX)
-    //   // console.log("initialY: ", initialY)
   } 
   function handleTouchMove(e){
-    // // console.log("touch move: ", e);
     if(active){
         document.querySelector("body").classList.add("lock-screen");
         currentX = e.touches[0].clientX - initialX;  
@@ -432,21 +411,14 @@ function handleScientistPickCard(e){
     }
   } 
   function handleTouchEnd(e){
-    // console.log("handleTouchEnd board: ", board);
     if(dragItem !== undefined){
-        // console.log("touch end: ", e);        
-        // console.log(dragItem);
         document.querySelector("body").classList.remove("lock-screen");
-    
         // let path = getPath(dragItem);
-        // // console.log("path: ", path);
         let dropzoneX = e.changedTouches[0].clientX;
         let dropzoneY = e.changedTouches[0].clientY;
-        // // console.log("dropZoneX: ", dropzoneX, "dropZoneY: ", dropzoneY);
         let dropZoneList = document.elementsFromPoint(dropzoneX, dropzoneY);
         for(let el of dropZoneList){
             // sets the drop zone
-            // if(validDropZoneClasses.includes(el.className)) dropZone = el;
             if(el.classList.contains("space")){
                 if(setupComplete === undefined){
                     if(dragItem.id === "mother-raptor-1"){   
@@ -454,11 +426,9 @@ function handleScientistPickCard(e){
                             dropZone = el;
                             State.occupySpace(board, el.id, dragItem.id);
                             State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
-                            // console.log("pieces: ", pieces);
                         } else {
                             dragItem.style.removeProperty("transform");
                             dragItem.classList.remove("selected");
-                            // console.log("dropZone: ", dropZone);
                             alert("That's not a valid space for the mother raptor during setup.");
                         }    
                     } else if(contains(dragItem.id, "baby")){
@@ -466,11 +436,9 @@ function handleScientistPickCard(e){
                             dropZone = el;
                             State.occupySpace(board, el.id, dragItem.id);
                             State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
-                            // console.log("pieces: ", pieces);
                         } else {
                             dragItem.style.removeProperty("transform");
                             dragItem.classList.remove("selected");
-                            // console.log("dropZone: ", dropZone);
                             alert("That's not a valid space for a baby raptor during setup.");
                         }
                     } else if(contains(dragItem.id, "scientist")){
@@ -478,11 +446,9 @@ function handleScientistPickCard(e){
                             dropZone = el;
                             State.occupySpace(board, el.id, dragItem.id);
                             State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
-                            // console.log("pieces: ", pieces);
                         } else {
                             dragItem.style.removeProperty("transform");
                             dragItem.classList.remove("selected");
-                            // console.log("dropZone: ", dropZone);
                             alert("That's not a valid space for a scientist during setup.");
                         }
                     }
@@ -496,8 +462,6 @@ function handleScientistPickCard(e){
                 }
             }
         }
-        // // console.log('dropZoneList: ', dropZoneList);
-        // // console.log('dropZone: ', dropZone);
         if(dropZone !== undefined){
             // add the piece to the space element in HTML
             dropZone.appendChild(dragItem);
@@ -522,29 +486,21 @@ function handleScientistPickCard(e){
 // Mouse Events:
   function handleDrop(e){
     e.preventDefault();
-    // console.log(e);
   } 
   function handleDragStart(e){
     e.preventDefault();
-    // console.log(e);
   } 
   function handleDragEnd(e){
     e.preventDefault();
-    // console.log(e);
 
   }  
   function handleDragEnter(e){
     e.preventDefault();
-    // console.log(e);
 
   } 
   function handleDragLeave(e){
     e.preventDefault();
-    // console.log(e);
-
   } 
-
-
 
   // this is for Safari which doesn't support path like Chrome does.
 function getPath(currentElem) {
@@ -559,7 +515,3 @@ function getPath(currentElem) {
       path.push(window);
     return path;
 }
-
-
-
-/*--------- Main ---------*/

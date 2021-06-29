@@ -248,15 +248,11 @@ function setInitiative(players, rounds, currentRound, raptorDiscardPile, scienti
     }
 }
 
-
-
 function setActivePlayerStatus(players, team){
     return players.filter(player => player.team === team.team);
 }
 
-
 // movement is touch-driven and only limited by validation so doesn't need a function here. I do want to add a render function that can make it easier to see the possible actions (such as movement)
-
 
 // Raptor Actions
 
@@ -356,8 +352,6 @@ function updateVictoryStatus(){
     // if raptors win, switch value
     // if scientists win, switch value
 }
-
-
 
 
 export {createBoard, createCards, pickCards, addCardsToHand, createRound, occupySpace, leaveSpace, updatePiece, setInitiative, victoryCheck, discardCard, removeCardFromArray};

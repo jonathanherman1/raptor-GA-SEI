@@ -99,10 +99,10 @@ Future enhancements:
    - [x]    2.  `handleScientistPickCard` records choice in `round`
    - [x]    3.  Render confirm and back buttons
    - [x]    4.  Handle confirm or back
-- [ ] 10. Determine initiative: 
-   - [ ]    1.  Add `determineInitiative()` function
-   - [ ]    2.  Invoke `determineInitiative` after scientists confirm card choice
-       - [ ]    1.  If tie, draw a new card to return to a hand of three cards with `dealCard()` function
+- [x] 10. Determine initiative: 
+   - [x]    1.  Add `setInitiative()` function
+   - [x]    2.  Invoke `setInitiative` after scientists confirm card choice
+       - [x]    1.  If tie, draw a new card to return to a hand of three cards with `addCardsToHand()` function
        - [ ]    2.  Repeat steps for picking cards
 - [ ] 11. (Temporary) player 1 is the player who picked the lower card. Player 1 plays their special action, if possible.
    - [ ]    1.  Add validity check functions
@@ -553,4 +553,6 @@ Each regular action costs 1 action point.
 ## Refactor Roadmap
 - [ ] Validity functions
 - [ ] State functions
+  - [ ] Add functions as methods of cards
 - [ ] Render functions
+  - [ ] Consolidate rendering to free up event handlers

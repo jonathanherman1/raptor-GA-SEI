@@ -23,19 +23,4 @@ function contains(str, pattern){
     return reg.test(str);
 }
 
-
-// let timeoutId;
-
-// function delayFunc(func, delayMs){
-//     if(typeof timeoutId === "number"){
-//         clearDelay(timeoutId);
-//     }
-//     timeoutId = window.setTimeout(func, delayMs)
-// }
-
-// function clearDelay(){
-//     window.clearTimeout(timeoutId);
-// }
-
-
 export {getRandomIntNotIncl, getRandomIntIncl, isOdd, contains};
