@@ -343,6 +343,24 @@ function renderButton(parent, content){
 } // confirm, back, etc.
 
 
+function renderBulkButtons(parent, content, actionPanelId){
+    let actionPanel = document.createElement("section");
+    actionPanel.setAttribute("id", actionPanelId);
+    content.forEach((obj, i) => {
+        let buttonDiv = document.createElement("div");
+        buttonDiv.setAttribute("id", `button-div${i}`);
+        buttonDiv.setAttribute("class", "button-box");
+        let button = document.createElement("button");
+        button.setAttribute("id", obj.btnId);
+        button.setAttribute("value", obj.btnValue);
+        button.setAttribute("class", `btn btn-${obj.btnType}`);
+        button.textContent = obj.btnText;
+        buttonDiv.appendChild(button)
+        actionPanel.appendChild(buttonDiv);
+    })
+    parent.appendChild(actionPanel);
+} // confirm, back, etc.
+
 
 function renderOffcanvasEl(parent){
     let div1 = document.createElement("div");
