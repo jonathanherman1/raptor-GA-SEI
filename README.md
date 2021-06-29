@@ -26,13 +26,23 @@ By **Jun 29**, end of class:
 
 ## Getting Started:
 
-1. [Future game link](https://www.google.com)
-2. Do this
-3. Then that
+1. Go to the game: [MVP Game Link](https://raptorgame.netlify.app/).
+2. Enter your name and the name of someone to play hotseat with.
+3. Click "Next" on the background.
+4. Confirm you're "Ready" when you have reviewed the How to Play.
+5. If you're player 1, pick a team (the other player will be assigned one).
+6. Click "Play!" on the next screen (confirming your choice).
+7. Drag and drop the raptor pieces onto the board according to the rules, and click "Confirm Placement".
+8. Drag and drop the scientist pieces onto the board according to the rules, and click "Confirm Placement".
+9. Click "Show Cards" to reveal your card choices.
+10. Click a card then click "Confirm Card"
+11. Game development is still in progress so this is a preview with many improvements to come!
 
 ## Screenshots:
 
-![fire image from Unsplash](https://images.unsplash.com/photo-1624382754104-233bdd437158?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80)
+![Home](assets/screenshots/home.png)
+![Pick Teams](assets/screenshots/pick-teams.png)
+![Game Board](assets/screenshots/game-board.png)
 
 ## Technologies Used:
 - HTML
@@ -44,19 +54,21 @@ By **Jun 29**, end of class:
 - [x] Renders a working game in browser
 - [x] Win/loss logic and renders win/loss messages in HTML
 - [x] Properly indented HTML, CSS, and JS with consistent vertical white space
-- [ ] Light/Dark mode
+- [x] Light/Dark mode
 - [x] Uses CSS Flexbox/Grid
 - [ ] Consistent and polished UI
 - [x] No remaining dead or commented out code
 - [x] Sensibly named functions and variables
 - [x] Consistent code choices
-- [ ] Deployed online
+- [x] Deployed online
 
 ## Features
 - [x] MVC design
 - [x] Has theme
 
 ## Next Steps / Future Enhancements:
+- [ ] Finish the game logic
+- [ ] Refine the UX
 - [ ] Play against the computer
 - [ ] Provide tooltips
 - [ ] Provide playthrough tutorial
