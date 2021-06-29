@@ -64,7 +64,7 @@ function init(name1, name2){
         {name: name2, team: null, teamId: null, activePlayer: null}
     ]
     teams = [
-        {name: "Raptors",id: 0},
+        {name: "Raptors", id: 0},
         {name: "Scientists", id: 1}
     ]
     pieces = [
@@ -87,7 +87,6 @@ function init(name1, name2){
     ]
     board = State.createBoard();
     cards = State.createCards();
-    console.log(cards);
     raptorCards = cards.filter(card => card.team === "Raptors");
     scientistCards = cards.filter(card => card.team === "Scientists");
     raptorDiscardPile = [];
@@ -99,7 +98,6 @@ function init(name1, name2){
     rounds.push(round);
     State.addCardsToHand("raptors", raptorCards, 3, rounds, 1);
     State.addCardsToHand("scientists", scientistCards, 3, rounds, 1);
-    console.log(rounds);
     victoryStatus = [
         {
             team: "Raptors",
@@ -299,11 +297,12 @@ function handleRaptorPickCard(e){
     let buttonDiv = document.querySelector("#button-div");
     let cardDisplay = document.querySelector("#card-display");
     let confirmButton = document.querySelector("#confirm-raptor-card-btn");
-    console.log(raptorHeader, raptorText, confirmButton);
     if(e.target === confirmButton){
         console.log("temp card choice: ", temporaryCardChoice);
         // save raptor choice in state
         rounds[currentRound-1].raptorCardChoice = temporaryCardChoice;
+        let hand = rounds[currentRound-1].raptorHand;
+        State.removeCardFromArray(raptorCards, hand, temporaryCardChoice);
         console.log("currentRound", currentRound);
         console.log("temp card choice: ", temporaryCardChoice);
         temporaryCardChoice = null;
@@ -356,6 +355,8 @@ function handleScientistPickCard(e){
     if(e.target === confirmButton){
         // save scientist choice in state
         rounds[currentRound-1].scientistCardChoice = temporaryCardChoice;
+        let hand = rounds[currentRound-1].scientistHand;
+        State.removeCardFromArray(scientistCards, hand, temporaryCardChoice);
         temporaryCardChoice = null;
         // clear scientist info
         let cardDisplayOffcanvas = document.querySelector("#card-display");
@@ -364,8 +365,13 @@ function handleScientistPickCard(e){
         Renderer.renderRemove(cardDisplayInstructions, scientistHeader);
         Renderer.renderRemove(cardDisplayInstructions, scientistText);
         cardDisplay.innerHTML = "";
+        State.setInitiative(players, rounds, currentRound, raptorDiscardPile, scientistDiscardPile, raptorCards, scientistCards);
+        console.log("raptor cards: ", raptorCards)
+        console.log("scientist cards: ", scientistCards)
+        console.log("raptor discard pile: ", raptorDiscardPile)
+        console.log("scientist discard pile: ", scientistDiscardPile)
+        console.log("rounds: ", rounds);
     }
-    console.log(rounds);
 }
 
 
