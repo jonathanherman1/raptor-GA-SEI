@@ -9,6 +9,8 @@ import { contains, getRandomIntNotIncl} from "./modules/helpers.js";
 
 let gameActive, setupComplete, players, teams, pieces, board, cards, raptorCards, raptorDiscardPile, scientistCards, scientistDiscardPile, rounds, currentRound, temporaryCardChoice, victoryStatus;
 
+let darkMode = false;
+
 // touch variables
 let initialX, initialY, currentX, currentY, xEnter, yEnter, active, dragItem, dropZone;
 let xOffset = 0;
@@ -120,12 +122,12 @@ function init(name1, name2){
 
 function handleNewGame(e){
     e.preventDefault();
-    console.log(e);
     if(e.target.id === "new-game-btn"){
         let name1 = e.target.parentNode.parentNode[0].value;
         let name2 = e.target.parentNode.parentNode[1].value;
         init(name1, name2);
         Renderer.renderRemove(mainContent, newGameFormEl);
+        Renderer.renderAddClass("body", "bg-img-intro");
         Renderer.renderIntro(mainContent, GameText.introContent);
         mainContent.removeEventListener("click", handleNewGame);
     }
@@ -136,6 +138,8 @@ function handleNext(e){
     if(e.target.id === "next-btn"){
         const introEl = document.querySelector('#intro');
         Renderer.renderRemove(mainContent, introEl);
+        Renderer.renderRemoveClass("body", "bg-img-intro");
+        Renderer.renderAddClass("body", "bg-img-how-to-play");
         Renderer.renderHowToPlay(mainContent, GameText.howToPlayContent);
         mainContent.removeEventListener("click", handleNext);
     }
@@ -146,6 +150,8 @@ function handleReadytoPlay(e){
     if(e.target.id === "ready-btn"){
         const howToPlayEl = document.querySelector('#how-to-play');
         Renderer.renderRemove(mainContent, howToPlayEl);
+        Renderer.renderRemoveClass("body", "bg-img-how-to-play");
+        Renderer.renderAddClass("body", "bg-img-pick-teams");
         Renderer.renderPickTeams(mainContent, GameText.pickTeamsContent);
         mainContent.removeEventListener("click", handleReadytoPlay);
     }
@@ -181,6 +187,11 @@ function handlePlay(e){
     if(e.target.id === "play-btn"){
         const teamChoicesEl = document.querySelector("#team-choices");
         Renderer.renderRemove(mainContent, teamChoicesEl);
+
+
+        Renderer.renderRemoveClass("body", "bg-img-pick-teams");
+        Renderer.renderAddClass("body", "bg-img-play");
+
         Renderer.renderBoard(mainContent, board);
         const boardEl = document.querySelector(".board");
 
@@ -529,27 +540,46 @@ function getPath(currentElem) {
 function handleDarkModeToggle(e){
     e.preventDefault();
     console.log(e);
-    let body = document.querySelector("body");
-    body.classList.toggle("dark-background");
-    body.classList.toggle("light-text");
+    if(darkMode === false){
+        darkMode = true;
 
-    let form = document.querySelector("form");
-    if(form.classList !== null) form.classList.toggle("dark-background-2");
+        let body = document.querySelector("body");
+        body.classList.add("dark-home");
 
+        newGameFormEl.classList.remove("animate__slideInLeft");
+        newGameFormEl.classList.add("animate__fadeIn");
+        // Renderer.renderAddClass("body", ".dark-home");
+    } else {
+        darkMode = false;
+        let body = document.querySelector("body");
+        body.classList.remove("dark-home");
+        newGameFormEl.classList.remove("animate__fadeIn");
+        newGameFormEl.classList.add("animate__slideInLeft");
+    }
+
+    // body.classList.toggle("dark-background");
+    // body.classList.toggle("light-text");
+
+    // let form = document.querySelector("form");
+    // if(form.classList !== null) form.classList.toggle("dark-background-2");
+
+    // let sections = document.querySelectorAll("section");
+    // sections.forEach(section => section.classList.toggle("dark-background-2"));
     
+    // let h1s = document.querySelectorAll("h1");
+    // h1s.forEach(el => el.classList.toggle("light-text"));
+    // let h2s = document.querySelectorAll("h2");
+    // h2s.forEach(el => el.classList.toggle("light-text"));
 
-    let sections = document.querySelectorAll("section");
-    sections.forEach(section => section.classList.toggle("dark-background-2"));
-    
-    let h1s = document.querySelectorAll("h1");
-    h1s.forEach(el => el.classList.toggle("light-text"));
-    let h2s = document.querySelectorAll("h2");
-    h2s.forEach(el => el.classList.toggle("light-text"));
+    // let buttons = document.querySelectorAll("button");
+    // buttons.forEach(button => button.classList.toggle("medium-buttons"));
 
-    let buttons = document.querySelectorAll("button");
-    buttons.forEach(button => button.classList.toggle("medium-buttons"));
-
-    let intro = document.querySelector("#intro-card");
-    if(intro.classList !== null) intro.classList.toggle("dark-background-2");
+    // let intro = document.querySelector("#intro-card");
+    // if(intro.classList !== null) intro.classList.toggle("dark-background-2");
 
 }
+
+/* ----- MAIN ----- */
+
+newGameFormEl.classList.add("animate__animated");
+newGameFormEl.classList.add("animate__slideInLeft");
