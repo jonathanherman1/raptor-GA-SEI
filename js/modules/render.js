@@ -490,6 +490,12 @@ function renderKill(piece){
     piece.classList.add("animate__hinge");
 }
 
+function renderCapture(piece){
+    piece.classList.add("captured");
+    piece.classList.add("animate__animated");
+    piece.classList.add("animate__swing");
+}
+
 function renderRemoveAfterAnimation(selected, animationEvent){
     selected.addEventListener(animationEvent, () => {
         selected.parentElement.removeChild(selected);
@@ -499,4 +505,4 @@ function renderRemoveAfterAnimation(selected, animationEvent){
     });
 }
 
-export {renderRemove, renderIntro, renderHowToPlay, renderPickTeams, renderTeamChoices, renderBoard, renderSetupInfo, renderButton, renderOffcanvasEl, renderCards, renderCardSelectionOnOff, renderCardChoiceInstructions, renderShowHideOffcanvas, renderBulkButtons, renderAddClass, renderRemoveClass, renderKill, renderRemoveAfterAnimation};
+export {renderRemove, renderIntro, renderHowToPlay, renderPickTeams, renderTeamChoices, renderBoard, renderSetupInfo, renderButton, renderOffcanvasEl, renderCards, renderCardSelectionOnOff, renderCardChoiceInstructions, renderShowHideOffcanvas, renderBulkButtons, renderAddClass, renderRemoveClass, renderKill, renderCapture, renderRemoveAfterAnimation};
