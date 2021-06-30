@@ -1,17 +1,37 @@
+function renderAddClass(target,className){
+    document.querySelector(target).classList.add(className);
+}
+
+function renderRemoveClass(target,className){
+    document.querySelector(target).classList.remove(className);
+}
+
 function renderRemove(parent, child){
     parent.removeChild(child);
 } // for removing elements
 
 
-function renderBootstrapCard(cardId, content){
-    return `
-    <div id="#${cardId}" class="card" style="width: 18rem;">
-        <img src="${content.imgURL}" class="card-img-top" alt="${content.altText}">
-        <div class="card-body">
-            <p class="card-text">${content.pText}</p>
-        </div>
-        ${renderBootstrapButton(content)}
-    </div>`;
+function renderBootstrapCard(cardId, content, imgBool){
+    // <img src="${content.imgURL}" class="card-img-top" alt="${content.altText}">
+    // ${renderHeaders(introContent.h1Text, 1)}
+    if(imgBool === true){
+        return `
+            <div id="#${cardId}" class="card" style="width: 18rem;">
+                <img src="${content.imgURL}" class="card-img-top" alt="${content.altText}">
+                <div class="card-body">
+                    <p class="card-text">${content.pText}</p>
+                </div>
+                ${renderBootstrapButton(content)}
+            </div>`;
+    } else {
+        return `
+            <div id="#${cardId}" class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <p class="card-text">${content.pText}</p>
+                </div>
+                ${renderBootstrapButton(content)}
+            </div>`;
+    }
 }
 
 function renderBootstrapButton(content){
@@ -107,7 +127,6 @@ function renderIntro(target, introContent){
     target.innerHTML = 
     `
     <section id="intro">
-       ${renderHeaders(introContent.h1Text, 1)}
        ${renderBootstrapCard("intro-card", introContent)}
     </section>
     `
@@ -126,16 +145,16 @@ function renderHowToPlay(target, howToPlayContent){
 }
 
 function renderPickTeams(target, pickTeamsContent){
+    // ${renderHeaders(raptors.h2Text, 2)}
+    // ${renderHeaders(scientists.h2Text, 2)}
     let raptors = pickTeamsContent.raptors;
     let scientists = pickTeamsContent.scientists;
     target.innerHTML = 
     `
     <section id="pick-teams">
         ${renderHeaders(pickTeamsContent.h1Text, 1)}
-        ${renderHeaders(raptors.h2Text, 2)}
-        ${renderBootstrapCard("pick-raptors-card", raptors)}
-        ${renderHeaders(scientists.h2Text, 2)}
-        ${renderBootstrapCard("pick-scientists-card", scientists)}
+        ${renderBootstrapCard("pick-raptors-card", raptors, true)}
+        ${renderBootstrapCard("pick-scientists-card", scientists, true)}
     </section>
     `
 }
@@ -465,4 +484,4 @@ function renderJeepMovement(){}
 function renderMotherRaptorDisappears(){}
 function renderMotherRaptorReappears(){}
 
-export {renderRemove, renderIntro, renderHowToPlay, renderPickTeams, renderTeamChoices, renderBoard, renderSetupInfo, renderButton, renderOffcanvasEl, renderCards, renderCardSelectionOnOff, renderCardChoiceInstructions, renderShowHideOffcanvas, renderBulkButtons};
+export {renderRemove, renderIntro, renderHowToPlay, renderPickTeams, renderTeamChoices, renderBoard, renderSetupInfo, renderButton, renderOffcanvasEl, renderCards, renderCardSelectionOnOff, renderCardChoiceInstructions, renderShowHideOffcanvas, renderBulkButtons, renderAddClass, renderRemoveClass};
