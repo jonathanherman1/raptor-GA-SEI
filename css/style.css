@@ -388,3 +388,7 @@ img {
 .killed {
     border: 8px solid red;
 }
+
+.captured {
+    border: 8px solid rgb(255, 153, 0);
+}
