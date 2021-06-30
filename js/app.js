@@ -396,12 +396,10 @@ function handleScientistPickCard(e){
         killBtn = document.querySelector("#raptor-kill-btn");
         captureBtn = document.querySelector("#scientist-capture-baby-btn");
         shootBtn = document.querySelector("#scientist-shoot-btn");
-        healBtn = document.querySelector("#raptor-heal-btn");
-
+        
         killBtn.addEventListener("click", handleKill);
         captureBtn.addEventListener("click", handleCapture);
         shootBtn.addEventListener("click", handleShoot);
-        healBtn.addEventListener("click", handleHeal);
     }
 }
 
@@ -422,18 +420,27 @@ function handleKill(){
     let kill = State.kill(pieces, selectedId);
     Renderer.renderKill(selected);
     Renderer.renderRemoveAfterAnimation(selected, "animationend");
-    
+    State.updateRound(rounds, currentRound, kill, "Raptors");
+    State.updateVictoryStatus(victoryStatus, kill.action.name);
+    State.victoryCheck(victoryStatus, true);
+    console.log(rounds);
+    console.log(victoryStatus);
+    console.log(pieces);
 }
 
-function handleCapture(e){
-
+function handleCapture(){
+    let capture = State.capture(pieces, selectedId);
+    Renderer.renderCapture(selected);
+    Renderer.renderRemoveAfterAnimation(selected, "animationend");
+    State.updateRound(rounds, currentRound, capture, "Scientists");
+    State.updateVictoryStatus(victoryStatus, capture.action.name);
+    State.victoryCheck(victoryStatus, true);
+    console.log(rounds);
+    console.log(victoryStatus);
+    console.log(pieces);
 }
 
-function handleShoot(e){
-
-}
-
-function handleHeal(e){
+function handleShoot(){
 
 }
 
@@ -541,6 +548,7 @@ function handleHeal(e){
                             State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
                             let escape = Valid.isExit(board, dropZone.id);
                             if(escape === true) alert("A baby raptor has escaped and won the game!");
+                            gameActive = false;
                             console.log(board);
                         }
                     } else {
