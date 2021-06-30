@@ -182,11 +182,11 @@ function createRound(roundNum){
         numActionPointsRaptors: null,
         numActionPointsScientists: null,
         actionsTaken: [
-            {
-                action: {},
-                team: null,
-                type: null
-            }
+            // {
+            //     action: {},
+            //     team: null,
+            //     type: null
+            // }
         ]
     }
     return round;
@@ -199,11 +199,11 @@ function updateRound(rounds, currentRound, event, team){
    switch(team){
        case "Raptors":
            round.numActionPointsRaptors--;
-           if(numActionPointsRaptors === 0) switchActiveTeam(rounds, currentRound, "Raptors");
+           if(round.numActionPointsRaptors === 0) switchActiveTeam(rounds, currentRound, "Raptors");
            break;
        case "Scientists":
            round.numActionPointsScientists--;
-           if(numActionPointsScientists === 0) switchActiveTeam(rounds, currentRound, "Scientists");
+           if(round.numActionPointsScientists === 0) switchActiveTeam(rounds, currentRound, "Scientists");
            break;
    }
    console.log("round updated");
@@ -211,13 +211,14 @@ function updateRound(rounds, currentRound, event, team){
 
 function switchActiveTeam(rounds, currentRound, currentActiveTeam){
     let i = currentRound - 1;
-    let activeTeam = rounds[i].activeTeam;
     switch(currentActiveTeam){
         case "Raptors":
-            activeTeam = "Scientists";
+            rounds[i].activeTeam = "Scientists";
+            alert("Scientists, it's your turn.");
             break;
         case "Scientists":
-            activeTeam = "Raptors";
+            rounds[i].activeTeam = "Raptors";
+            alert("Raptors, it's your turn.");
             break;
     }
 }
@@ -272,8 +273,8 @@ function setInitiative(players, rounds, currentRound, raptorDiscardPile, scienti
     } else {
         discardCard(rounds, currentRound, raptorDiscardPile, "Raptors", raptorCards);
         discardCard(rounds, currentRound, scientistDiscardPile, "Scientists", scientistCards);
-        State.addCardsToHand("raptors", raptorCards, 1, rounds, 1);
-        State.addCardsToHand("scientists", scientistCards, 1, rounds, 1);
+        addCardsToHand("raptors", raptorCards, 1, rounds, 1);
+        addCardsToHand("scientists", scientistCards, 1, rounds, 1);
         currentRound++;
         return "tie";
     }
@@ -309,13 +310,32 @@ function kill(pieces, pieceId){
     piece[0].awake = false;
     let killResult = {
         action: {
-            name: "Kill scientist",
+            name: "Kill Scientist",
             piece: piece
         },
         team: "Raptors",
         type: "Regular"
     }
     return killResult;
+}
+
+function capture(pieces, pieceId){
+    // for mother raptor
+    // identify piece
+    console.log("pieceId ", pieceId);
+    let piece = pieces.filter(piece => piece.id === pieceId);
+    console.log("piece ", piece);
+    piece[0].health = 0;
+    piece[0].awake = false;
+    let captureResult = {
+        action: {
+            name: "Capture Baby Raptor",
+            piece: piece
+        },
+        team: "Scientists",
+        type: "Regular"
+    }
+    return captureResult;
 }
 
 function callBabyRaptors(){
@@ -344,7 +364,7 @@ function lightFire(){
     // for scientists
 }
 
-function victoryCheck(victoryStatus, abbreviatedBool){
+function victoryCheck(victoryStatus, abbreviatedBool, gameActive){
     let escaped = victoryStatus[0].numRaptorsEscaped;
     let numScientists = victoryStatus[0].numScientistsOnBoard;
     let captured = victoryStatus[1].numRaptorsCaptured;
@@ -356,8 +376,16 @@ function victoryCheck(victoryStatus, abbreviatedBool){
     if(abbreviatedBool === true){
         if(escaped === 1){
             raptorVictory = true;
+            alert("One baby raptor escaped! Raptors win!");
+            gameActive = false;
         } else if (captured === 1){
             scientistVictory = true;
+            gameActive = false;
+            alert("Scientists captured one baby raptor! Scientists win!");
+        } else if(numScientists === 0){
+            raptorVictory = true;
+            gameActive = false;
+            alert("Mother raptor has defended her young and eliminated all scientists. Raptors win!");
         } else {
             console.log("The game goes on. Victory conditions not met.");
         }
@@ -390,14 +418,17 @@ function victoryCheck(victoryStatus, abbreviatedBool){
 
 function updateVictoryStatus(victoryStatus, event){
     switch(event){
-        case "Kill scientist": 
+        case "Kill Scientist": 
             // if scientist dies decrement value
             victoryStatus[0].numScientistsOnBoard--;            
             break;
+        case "Capture Baby Raptor":
+            // if raptor is captured increment value
+            victoryStatus[1].numRaptorsCaptured++;
     }
     // if raptor escapes increment value
     // if scientist reinforcements arrive increment value
-    // if raptor is captured increment value
+    
     // if mother hit increment value
     // if mother put to sleep, switch value
     // if raptors win, switch value
@@ -405,4 +436,4 @@ function updateVictoryStatus(victoryStatus, event){
 }
 
 
-export {createBoard, createCards, pickCards, addCardsToHand, createRound, occupySpace, leaveSpace, updatePiece, setInitiative, kill, victoryCheck, discardCard, removeCardFromArray, updateVictoryStatus, updateRound};
+export {createBoard, createCards, pickCards, addCardsToHand, createRound, occupySpace, leaveSpace, updatePiece, setInitiative, kill, capture, victoryCheck, discardCard, removeCardFromArray, updateVictoryStatus, updateRound, switchActiveTeam};
