@@ -200,7 +200,7 @@ img {
     align-items: center;
     flex-direction: column;
     background-color: white;
-    width: 50%;
+    width: 75%;
     border-radius: 10%;
     padding: 20px;
     margin: 30px;
@@ -376,4 +376,12 @@ img {
     overflow: hidden;
     /* width: 100%; */
     /* position: fixed; */
+}
+
+.dark-home {
+    background-image: url("../assets/vecteezy_road-to-jungle-neon-signs-style-text-vector_2268148/3_generated.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-x: -200px;
+    background-position-y: -10px;
 }
