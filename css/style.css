@@ -23,8 +23,19 @@ body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
       Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     margin: 0;
-    background-color: #b8e8dd;
+    background-image: url(../assets/vecteezy_background-daun-fresh-green-leaf-background-great-for-wallpaper-and-background_139833/fresh-green-leaf-background-vector.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* background-color: #b8e8dd; */
 }
+
+#main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 
 h1 {
     color: #3d1985;
@@ -112,7 +123,10 @@ h2 {
 }
 
 .mountain {
-    background-color: rgb(172, 149, 149);
+    background-image: url(../assets/vecteezy_landscape-mountainous-in-circular-frame-vector-illustration-design_1310561/463_REpWIE1BUiAwODQtMTc.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* background-color: rgb(172, 149, 149); */
 }
 
 .bottom-left, .bottom-right, .top-left, .top-right {
@@ -152,10 +166,10 @@ form {
     border-radius: 10%;
 }
 
-.card-img-top {
+/* .card-img-top {
     height: 50%;
     width: 100%;
-}
+} */
 
 .pieces {
     height: 40px;
@@ -166,18 +180,29 @@ img {
     border-radius: 75%;
 }
 
-.card {
-    border-radius: 5%;
-}
-
 #how-to-play {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     background-color: white;
+    width: 50%;
     border-radius: 10%;
     padding: 20px;
     margin: 30px;
 }
 
 #game-tray{
+    margin-top: 10px;
+    width: 100%;
+}
+
+#instructions {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     margin-top: 10px;
 }
 
@@ -283,4 +308,40 @@ img {
 .medium-buttons{
     background-color: #6f4DA1;
     border: 0px;
+}
+
+.bg-img-home {
+    background-image: url("../assets/vecteezy_vector-seamless-tropical-pattern-summer-exotic-plants-ornament-jungle-hand-drawn-texture-nature-illustration-botanical-background_677181/patt4.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.bg-img-intro {
+    background-image: url("../assets/vecteezy_set-of-jungle-explorers-vector-illustration-best-vector-for-any-kind-of-projects-and-use-enjoy_251665/4_Jungle Explorer.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.bg-img-how-to-play {
+    background-image: url("../assets/vecteezy_jungle-explorer-spies-something-through-his-binoculars-perfect-set-for-any-other-kind-of-design-layered-fully-editable-contains-of-ai10-eps10-and-svg-graphic-files_242225/Jungle Explorers1_RF_RMPL-01.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.bg-img-pick-teams {
+    background-image: url("../assets/vecteezy_a-green-jungle-landscape-illustration_296089/hztl_zs2i_180829.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#pick-teams h1 {
+    color: white;
+}
+
+#team-choices h1 {
+    color: white;
+}
+
+.bg-img-play {
+
 }
