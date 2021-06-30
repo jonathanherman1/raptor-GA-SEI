@@ -272,14 +272,14 @@ let raptorActionButtonsContent = [
     //     addCustomClassBool: false,
     //     customBtnClass: null
     // },
-    {
-        btnText: "Heal",
-        btnId: "raptor-heal-btn",
-        btnType: "warning",
-        btnValue: "raptor heal action",
-        addCustomClassBool: false,
-        customBtnClass: null
-    }
+    // {
+    //     btnText: "Heal",
+    //     btnId: "raptor-heal-btn",
+    //     btnType: "warning",
+    //     btnValue: "raptor heal action",
+    //     addCustomClassBool: false,
+    //     customBtnClass: null
+    // }
     
 ]
 
