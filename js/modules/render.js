@@ -484,4 +484,19 @@ function renderJeepMovement(){}
 function renderMotherRaptorDisappears(){}
 function renderMotherRaptorReappears(){}
 
-export {renderRemove, renderIntro, renderHowToPlay, renderPickTeams, renderTeamChoices, renderBoard, renderSetupInfo, renderButton, renderOffcanvasEl, renderCards, renderCardSelectionOnOff, renderCardChoiceInstructions, renderShowHideOffcanvas, renderBulkButtons, renderAddClass, renderRemoveClass};
+function renderKill(piece){
+    piece.classList.add("killed");
+    piece.classList.add("animate__animated");
+    piece.classList.add("animate__hinge");
+}
+
+function renderRemoveAfterAnimation(selected, animationEvent){
+    selected.addEventListener(animationEvent, () => {
+        selected.parentElement.removeChild(selected);
+    });
+    selected.removeEventListener(animationEvent,() => {
+        selected.parentElement.removeChild(selected);
+    });
+}
+
+export {renderRemove, renderIntro, renderHowToPlay, renderPickTeams, renderTeamChoices, renderBoard, renderSetupInfo, renderButton, renderOffcanvasEl, renderCards, renderCardSelectionOnOff, renderCardChoiceInstructions, renderShowHideOffcanvas, renderBulkButtons, renderAddClass, renderRemoveClass, renderKill, renderRemoveAfterAnimation};
