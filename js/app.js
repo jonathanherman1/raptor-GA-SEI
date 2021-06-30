@@ -7,7 +7,10 @@ import { contains, getRandomIntNotIncl} from "./modules/helpers.js";
 
 /*--------- Variables ---------*/
 
-let gameActive, setupComplete, players, teams, pieces, board, cards, raptorCards, raptorDiscardPile, scientistCards, scientistDiscardPile, rounds, currentRound, temporaryCardChoice, victoryStatus;
+let gameActive, setupComplete, players, teams, pieces, board, cards, raptorCards, raptorDiscardPile, scientistCards, scientistDiscardPile, rounds, currentRound, temporaryCardChoice, victoryStatus, killBtn, captureBtn, healBtn, shootBtn, boardEl;
+
+let selected = null;
+let selectedId = null;
 
 let darkMode = false;
 
@@ -43,7 +46,6 @@ mainContent.addEventListener("click", handleConfirmScientistPlacement);
 mainContent.addEventListener("click", handleRaptorPickCard);
 // render scientist playing cards and confirm choice
 mainContent.addEventListener("click", handleScientistPickCard);
-
 // Touch Events
 mainContent.addEventListener("touchstart", handleTouchStart);
 mainContent.addEventListener("touchmove", handleTouchMove);
@@ -193,7 +195,9 @@ function handlePlay(e){
         Renderer.renderAddClass("body", "bg-img-play");
 
         Renderer.renderBoard(mainContent, board);
-        const boardEl = document.querySelector(".board");
+
+        boardEl = document.querySelector(".board");
+        boardEl.addEventListener("click", handleBoardSelections);
 
         const gameTray = document.createElement("section");
         gameTray.setAttribute("id", "game-tray");
@@ -388,9 +392,50 @@ function handleScientistPickCard(e){
         console.log("rounds: ", rounds);
         Renderer.renderBulkButtons(mainContent, GameText.raptorActionButtonsContent, "raptor-action-panel");
         Renderer.renderBulkButtons(mainContent, GameText.scientistActionButtonsContent, "scientist-action-panel");
+
+        killBtn = document.querySelector("#raptor-kill-btn");
+        captureBtn = document.querySelector("#scientist-capture-baby-btn");
+        shootBtn = document.querySelector("#scientist-shoot-btn");
+        healBtn = document.querySelector("#raptor-heal-btn");
+
+        killBtn.addEventListener("click", handleKill);
+        captureBtn.addEventListener("click", handleCapture);
+        shootBtn.addEventListener("click", handleShoot);
+        healBtn.addEventListener("click", handleHeal);
     }
 }
 
+
+function handleBoardSelections(e){
+    selected = e.target;
+    if(selectedId === null){
+        selectedId = e.target.id;
+        selected.classList.add("selected");
+    } else {
+        selected.classList.remove("selected");
+        selectedId = null;
+    }
+    
+}
+
+function handleKill(){
+    let kill = State.kill(pieces, selectedId);
+    Renderer.renderKill(selected);
+    Renderer.renderRemoveAfterAnimation(selected, "animationend");
+    
+}
+
+function handleCapture(e){
+
+}
+
+function handleShoot(e){
+
+}
+
+function handleHeal(e){
+
+}
 
 // Touch Events
   function handleTouchStart(e){
@@ -437,48 +482,70 @@ function handleScientistPickCard(e){
             // sets the drop zone
             if(el.classList.contains("space")){
                 if(setupComplete === undefined){
-                    dropZone = el;
-                    State.occupySpace(board, el.id, dragItem.id);
-                    State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
-                    // if(dragItem.id === "mother-raptor-1"){   
-                    //     if(Valid.canPlaceMotherSetup(board, el.id) === true){
-                    //         dropZone = el;
-                    //         State.occupySpace(board, el.id, dragItem.id);
-                    //         State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
-                    //     } else {
-                    //         dragItem.style.removeProperty("transform");
-                    //         dragItem.classList.remove("selected");
-                    //         alert("That's not a valid space for the mother raptor during setup.");
-                    //     }    
-                    // } else if(contains(dragItem.id, "baby")){
-                    //     if(Valid.canPlaceBabySetup(board, el.id) === true){
-                    //         dropZone = el;
-                    //         State.occupySpace(board, el.id, dragItem.id);
-                    //         State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
-                    //     } else {
-                    //         dragItem.style.removeProperty("transform");
-                    //         dragItem.classList.remove("selected");
-                    //         alert("That's not a valid space for a baby raptor during setup.");
-                    //     }
-                    // } else if(contains(dragItem.id, "scientist")){
-                    //     if(Valid.isExit(board, el.id) === false && Valid.isLShapedTile(board, el.id) === true){
-                    //         dropZone = el;
-                    //         State.occupySpace(board, el.id, dragItem.id);
-                    //         State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
-                    //     } else {
-                    //         dragItem.style.removeProperty("transform");
-                    //         dragItem.classList.remove("selected");
-                    //         alert("That's not a valid space for a scientist during setup.");
-                    //     }
-                    // }
+                    if(dragItem.id === "mother-raptor-1"){   
+                        if(Valid.canPlaceMotherSetup(board, el.id) === true){
+                            dropZone = el;
+                            State.occupySpace(board, el.id, dragItem.id);
+                            State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
+                        } else {
+                            dragItem.style.removeProperty("transform");
+                            dragItem.classList.remove("selected");
+                            alert("That's not a valid space for the mother raptor during setup.");
+                        }    
+                    } else if(contains(dragItem.id, "baby")){
+                        if(Valid.canPlaceBabySetup(board, el.id) === true){
+                            dropZone = el;
+                            State.occupySpace(board, el.id, dragItem.id);
+                            State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
+                        } else {
+                            dragItem.style.removeProperty("transform");
+                            dragItem.classList.remove("selected");
+                            alert("That's not a valid space for a baby raptor during setup.");
+                        }
+                    } else if(contains(dragItem.id, "scientist")){
+                        if(Valid.isExit(board, el.id) === false && Valid.isLShapedTile(board, el.id) === true){
+                            dropZone = el;
+                            State.occupySpace(board, el.id, dragItem.id);
+                            State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
+                        } else {
+                            dragItem.style.removeProperty("transform");
+                            dragItem.classList.remove("selected");
+                            alert("That's not a valid space for a scientist during setup.");
+                        }
+                    }
                 } else if(setupComplete === true && gameActive === true){
-                    dropZone = el;
-                    State.occupySpace(board, el.id, dragItem.id);
-                    State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
-                    let escape = Valid.isExit(board, dropZone.id);
-                    if(escape === true) alert("A baby raptor has escaped and won the game!");
-                    if(dropZone.id === "sp1" || dropZone.id === "sp10") alert("A baby raptor has been captured! The scientists win the game!");
-                    console.log(board);
+                    if(Valid.isPassable(board, el.id)){
+                        if(contains(dragItem.id, "scientist")){
+                            if(Valid.isExit(board, el.id) === false){
+                                dropZone = el;
+                                State.occupySpace(board, el.id, dragItem.id);
+                                State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
+                            } else {
+                                dragItem.style.removeProperty("transform");
+                                dragItem.classList.remove("selected");
+                                alert("Scientists cannot move into exits.");
+                            }
+                        } else if(contains(dragItem.id, "mother")){
+                            if(Valid.isExit(board, el.id) === false){
+                                dropZone = el;
+                                State.occupySpace(board, el.id, dragItem.id);
+                                State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
+                            } else {
+                                dragItem.style.removeProperty("transform");
+                                dragItem.classList.remove("selected");
+                                alert("The mother raptor cannot move into exits.");
+                            }
+                        } else {
+                            dropZone = el;
+                            State.occupySpace(board, el.id, dragItem.id);
+                            State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
+                            let escape = Valid.isExit(board, dropZone.id);
+                            if(escape === true) alert("A baby raptor has escaped and won the game!");
+                            console.log(board);
+                        }
+                    } else {
+                        alert("No piece can move onto a mountain!");
+                    }
                 }
             }
         }
