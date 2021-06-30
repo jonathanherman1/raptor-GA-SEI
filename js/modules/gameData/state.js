@@ -179,7 +179,8 @@ function createRound(roundNum){
         activePlayer: null,
         activeTeam: null,
         activeCard: null,
-        numActionPoints: null,
+        numActionPointsRaptors: null,
+        numActionPointsScientists: null,
         actionsTaken: [
             {
                 action: {},
@@ -191,8 +192,34 @@ function createRound(roundNum){
     return round;
 }
 
-function updateRound(){
-  
+function updateRound(rounds, currentRound, event, team){
+   let i = currentRound - 1;
+   let round = rounds[i];
+   round.actionsTaken.push(event);
+   switch(team){
+       case "Raptors":
+           round.numActionPointsRaptors--;
+           if(numActionPointsRaptors === 0) switchActiveTeam(rounds, currentRound, "Raptors");
+           break;
+       case "Scientists":
+           round.numActionPointsScientists--;
+           if(numActionPointsScientists === 0) switchActiveTeam(rounds, currentRound, "Scientists");
+           break;
+   }
+   console.log("round updated");
+}
+
+function switchActiveTeam(rounds, currentRound, currentActiveTeam){
+    let i = currentRound - 1;
+    let activeTeam = rounds[i].activeTeam;
+    switch(currentActiveTeam){
+        case "Raptors":
+            activeTeam = "Scientists";
+            break;
+        case "Scientists":
+            activeTeam = "Raptors";
+            break;
+    }
 }
 
 function occupySpace(board, spaceId, pieceId){
@@ -200,7 +227,7 @@ function occupySpace(board, spaceId, pieceId){
         if(space.id === spaceId){
             space.occupied = true;
             space.occupiedBy = pieceId;
-            console.log(space);
+            // console.log(space);
         }
     }
 }
@@ -210,7 +237,7 @@ function leaveSpace(board, spaceId){
         if(space.id === spaceId){
             space.occupied = false;
             space.occupiedBy = null;
-            console.log(space);
+            // console.log(space);
         }
     }
 }
@@ -227,6 +254,10 @@ function setInitiative(players, rounds, currentRound, raptorDiscardPile, scienti
     let round = rounds[currentRound-1];
     let raptorCard = round.raptorCardChoice;
     let scientistCard = round.scientistCardChoice;
+    let numActionPoints = Math.abs(raptorCard.value - scientistCard.value);
+    // temporarily using action points for both teams during MVP
+    round.numActionPointsRaptors = numActionPoints;
+    round.numActionPointsScientists = numActionPoints;
 
     if(raptorCard.value < scientistCard.value){
         round.activeTeam = "Raptors";
@@ -268,8 +299,23 @@ function heal(){
     // for mother raptor
 }
 
-function kill(){
+function kill(pieces, pieceId){
     // for mother raptor
+    // identify piece
+    console.log("pieceId ", pieceId);
+    let piece = pieces.filter(piece => piece.id === pieceId);
+    console.log("piece ", piece);
+    piece[0].health = 0;
+    piece[0].awake = false;
+    let killResult = {
+        action: {
+            name: "Kill scientist",
+            piece: piece
+        },
+        team: "Raptors",
+        type: "Regular"
+    }
+    return killResult;
 }
 
 function callBabyRaptors(){
@@ -342,9 +388,14 @@ function victoryCheck(victoryStatus, abbreviatedBool){
     }
 }
 
-function updateVictoryStatus(){
+function updateVictoryStatus(victoryStatus, event){
+    switch(event){
+        case "Kill scientist": 
+            // if scientist dies decrement value
+            victoryStatus[0].numScientistsOnBoard--;            
+            break;
+    }
     // if raptor escapes increment value
-    // if scientist dies decrement value
     // if scientist reinforcements arrive increment value
     // if raptor is captured increment value
     // if mother hit increment value
@@ -354,4 +405,4 @@ function updateVictoryStatus(){
 }
 
 
-export {createBoard, createCards, pickCards, addCardsToHand, createRound, occupySpace, leaveSpace, updatePiece, setInitiative, victoryCheck, discardCard, removeCardFromArray};
+export {createBoard, createCards, pickCards, addCardsToHand, createRound, occupySpace, leaveSpace, updatePiece, setInitiative, kill, victoryCheck, discardCard, removeCardFromArray, updateVictoryStatus, updateRound};
