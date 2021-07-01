@@ -12,7 +12,7 @@ A group of scientists are on the hunt to capture three, live, baby raptors to st
 
 ---
 
-#### [Rules](rules.md)
+#### [Rules](markdown/rules.md)
 
 Don't be daunted by the number of rules. Gameplay is pretty easy after a playthrough. The rules cover a bunch of different situations, but this is a summary of how you play:
 
@@ -22,7 +22,7 @@ Don't be daunted by the number of rules. Gameplay is pretty easy after a playthr
 4. Take your actions based on who goes first.
    1. Player 1: Do a special action on the card.
    2. Player 2: Use action points to take regular actions.
-5. Game ends when [victory conditions](rules.md#end-of-the-game) are met.
+5. Game ends when [victory conditions](markdown/rules.md#end-of-the-game) are met.
 
 #### Using the early access game
 
@@ -69,7 +69,7 @@ Don't be daunted by the number of rules. Gameplay is pretty easy after a playthr
 
 ## Pseudocode + Wireframes
 
-- [Pseudocode in plan.md](plan.md)
+- [Pseudocode in plan.md](markdown/plan.md)
 - [Wireframes on Whimsical](https://whimsical.com/unit-1-project-game-raptor-UbVWrjmUwfCWsbGL3T4fVK)
 
 
@@ -101,4 +101,4 @@ Raptor was designed by Bruno Cathala and Bruno Faidutti, and is copyright of [Ma
 
 - <a href="https://www.vecteezy.com/free-vector/nature">Nature Vectors by Vecteezy</a>
 
-- [URLs to Specific Vecteezy Assets](vecteezy-asset-list.md)
+- [URLs to Specific Vecteezy Assets](markdown/vecteezy-asset-list.md)
