@@ -15,7 +15,7 @@ let howToPlayContent = {
     h1Text: "How to play:",
     imgURL: null,
     altText: null,
-    instructions: ["Pick a team.", "Place your pieces in their starting positions.", "Pick a card.", "Take your actionss based on who goes first."],
+    instructions: ["Pick a team.", "Place your pieces in their starting positions.", "Pick a card.", "Take your actions based on who goes first."],
     victoryConditions: ["Raptors win by helping three baby raptors escape or killing all scientists on the board.", "Scientists win by capturing three baby raptors or neutralizing the mother raptor."],
     btnText: "Ready?",
     btnId: "ready-btn",
