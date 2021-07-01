@@ -10,6 +10,8 @@ A group of scientists are on the hunt to capture three, live, baby raptors to st
 
 ### [Play the Raptor Early Access Release!](https://raptorgame.netlify.app/)
 
+Gameplay only supports drag and drop on mobile at the moment.
+
 ---
 
 #### [Rules](markdown/rules.md)
