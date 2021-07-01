@@ -83,7 +83,7 @@ Don't be daunted by the number of rules. Gameplay is pretty easy after a playthr
 ## Credits
 
 ##### Game Copyright
-Raptor was designed by Bruno Cathala and Bruno Faidutti, and is copyright of [Matagot](www.matagot.com).
+Raptor was designed by Bruno Cathala and Bruno Faidutti, and is copyright of [Matagot](https://www.matagot.com/).
 
 [Buy the physical board game](https://www.matagot.com/shop/en/for-all/19-raptor-3760146641136.html?search_query=raptor&results=2) from Matagot (also distributed by Asmodee).
 
