@@ -129,7 +129,12 @@ function handleNewGame(e){
         let name2 = e.target.parentNode.parentNode[1].value;
         init(name1, name2);
         Renderer.renderRemove(mainContent, newGameFormEl);
-        Renderer.renderAddClass("body", "bg-img-intro");
+        if(darkMode === true){
+            Renderer.renderAddClass("body", "dark-intro");
+        } else {
+            Renderer.renderAddClass("body", "bg-img-intro");
+        }
+        
         Renderer.renderIntro(mainContent, GameText.introContent);
         mainContent.removeEventListener("click", handleNewGame);
     }
@@ -140,8 +145,14 @@ function handleNext(e){
     if(e.target.id === "next-btn"){
         const introEl = document.querySelector('#intro');
         Renderer.renderRemove(mainContent, introEl);
-        Renderer.renderRemoveClass("body", "bg-img-intro");
-        Renderer.renderAddClass("body", "bg-img-how-to-play");
+        if(darkMode === true){
+            Renderer.renderRemoveClass("body", "dark-intro");
+            Renderer.renderAddClass("body", "dark-how-to-play");
+        } else {
+            Renderer.renderRemoveClass("body", "bg-img-intro");
+            Renderer.renderAddClass("body", "bg-img-how-to-play");
+        }
+        
         Renderer.renderHowToPlay(mainContent, GameText.howToPlayContent);
         mainContent.removeEventListener("click", handleNext);
     }
@@ -152,8 +163,13 @@ function handleReadytoPlay(e){
     if(e.target.id === "ready-btn"){
         const howToPlayEl = document.querySelector('#how-to-play');
         Renderer.renderRemove(mainContent, howToPlayEl);
-        Renderer.renderRemoveClass("body", "bg-img-how-to-play");
-        Renderer.renderAddClass("body", "bg-img-pick-teams");
+        if(darkMode === true){
+            Renderer.renderRemoveClass("body", "dark-how-to-play");
+            Renderer.renderAddClass("body", "dark-pick-teams");
+        } else {
+            Renderer.renderRemoveClass("body", "bg-img-how-to-play");
+            Renderer.renderAddClass("body", "bg-img-pick-teams");
+        }
         Renderer.renderPickTeams(mainContent, GameText.pickTeamsContent);
         mainContent.removeEventListener("click", handleReadytoPlay);
     }
@@ -198,6 +214,15 @@ function handlePlay(e){
 
         boardEl = document.querySelector(".board");
         boardEl.addEventListener("click", handleBoardSelections);
+
+        if(darkMode === true){
+            boardEl.children[1].classList.remove("middle");
+            boardEl.children[1].classList.add("dark-middle");
+        } else {
+            boardEl.children[1].classList.remove("dark-middle");
+            boardEl.children[1].classList.add("middle");
+        }
+    
 
         const gameTray = document.createElement("section");
         gameTray.setAttribute("id", "game-tray");
@@ -624,12 +649,27 @@ function handleDarkModeToggle(e){
         newGameFormEl.classList.remove("animate__slideInLeft");
         newGameFormEl.classList.add("animate__fadeIn");
         // Renderer.renderAddClass("body", ".dark-home");
+
+        if(document.querySelector(".board") !== null){
+            let board = document.querySelector(".board");
+            let middle = board.children[1];
+            middle.classList.remove(".middle");
+            middle.classList.add("dark-middle");
+        }
+
     } else {
         darkMode = false;
         let body = document.querySelector("body");
         body.classList.remove("dark-home");
         newGameFormEl.classList.remove("animate__fadeIn");
         newGameFormEl.classList.add("animate__slideInLeft");
+
+        if(document.querySelector(".board") !== null){
+            let board = document.querySelector(".board");
+            let middle = board.children[1];
+            middle.classList.add(".middle");
+            middle.classList.remove("dark-middle");
+        }
     }
 
     // body.classList.toggle("dark-background");
