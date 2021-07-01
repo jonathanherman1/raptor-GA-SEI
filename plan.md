@@ -552,6 +552,7 @@ Each regular action costs 1 action point.
 - [ ] Fix hands not replenishing to 3 after a tie is played
 - [ ] Prevent users from not entering their names
 - [ ] Fix bugs with dark mode
+  - [ ] Automatic preference switching for navbar doesn't work on mobile
 
 ## Refactor Roadmap
 - [ ] Validity functions
