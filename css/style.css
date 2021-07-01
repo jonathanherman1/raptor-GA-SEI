@@ -174,6 +174,10 @@ h2 {
 }
 
 form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: white;
     padding: 20px;
     height: 30vh;
@@ -384,6 +388,98 @@ img {
     background-position-x: -200px;
     background-position-y: -10px;
 }
+
+.dark-intro {
+    background-image: url("../assets/vecteezy_forest-landscape-background-vector-design-illustration_2099767/FOREST_BACKGROUND8_generated.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.dark-how-to-play {
+    background-image: url("../assets/vecteezy_abstract-forest-landscape-scenes-illustration-vector_181746/abstract-forest-landscape-vector.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.dark-pick-teams {
+    background-image: url("../assets/vecteezy_mountain-landscape-on-purple-sky-night-with-stardust-vector-illustration_166068/vector-mountain-landscape-with-stardust-background-illustration.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.dark-team-choices {
+    background-image: url("../assets/vecteezy_mountain-landscape-on-purple-sky-night-with-stardust-vector-illustration_166068/vector-mountain-landscape-with-stardust-background-illustration.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.dark-gameplay {
+    background-image: url("../assets/vecteezy_road-to-jungle-neon-signs-style-text-vector_2268148/3_generated.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.dark-mountain {
+    background-image: url(../assets/vecteezy_mountain-landscape-on-purple-sky-night-with-stardust-vector-illustration_166068/vector-mountain-landscape-with-stardust-background-illustration.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* background-color: rgb(172, 149, 149); */
+}
+
+.dark-bottom-left, .dark-bottom-right, .dark-top-left, .dark-top-right {
+    background-color: lightgray;   
+    background-image: url(../assets/vecteezy_africa-safari-map-vector-design-illustration-isolated-on-white-background_1843901/afrtica_safari_map1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.dark-exit1 {
+    background-color: darkgreen;
+    color: white;
+    grid-column: 3;
+    justify-self: end;
+    background-image: url(../assets/vecteezy_illustration-of-chameleon-with-forest-background-in-flat-style-fit-for-desktop-background-or-playground-wallpaper_172917/vector-chameleon-with-forest-background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.dark-exit2 {
+    background-color: darkgreen;
+    color: white;
+    grid-column: 1;
+    background-image: url(../assets/vecteezy_illustration-of-anaconda-on-forest-background-fit-for-playground-wallpaper-or-zoo-infographic_173013/anaconda-on-forest-background-vector.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.dark-exit3 {
+    background-color: darkgreen;
+    color: white;
+    grid-column: 1;
+    background-image: url(../assets/vecteezy_flat-green-jungle-background_2773373/vecteezybackground-green-backgroundfr0521_generated.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;    
+}
+
+.dark-exit4 {
+    background-color: darkgreen;
+    color: white;
+    grid-column: 3;
+    justify-self: end;
+    background-image: url(../assets/vecteezy_background-daun-fresh-green-leaf-background-great-for-wallpaper-and-background_139833/fresh-green-leaf-background-vector.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;   
+}
+
+.dark-middle {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    background-image: url(../assets/vecteezy_vector-seamless-tropical-pattern-summer-exotic-plants-ornament-jungle-hand-drawn-texture-nature-illustration-botanical-background_677176/patt2.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;    
+}
+
 
 .killed {
     border: 8px solid red;
