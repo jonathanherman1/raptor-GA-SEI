@@ -11,7 +11,7 @@ By **Jun 25**, by end of class:
 - [x] Share GitHub repo
 
 By **Jun 29**, end of class:
-- [ ] Deploy game
+- [x] Deploy game
 - [ ] Present project
 - Intro project (paraphrase README)
 - Demonstrate project
@@ -40,9 +40,11 @@ By **Jun 29**, end of class:
 
 ## Screenshots:
 
-![Home](assets/screenshots/home.png)
-![Pick Teams](assets/screenshots/pick-teams.png)
-![Game Board](assets/screenshots/game-board.png)
+![Home](assets/screenshots/V2/Home.PNG)
+![Intro](assets/screenshots/V2/Intro.PNG)
+![How to Play](assets/screenshots/V2/How-to-Play.PNG)
+![Gameplay](assets/screenshots/V2/Gameplay.PNG)
+![Dark Mode](assets/screenshots/V2/Dark-Mode.PNG)
 
 ## Technologies Used:
 - HTML
@@ -56,7 +58,7 @@ By **Jun 29**, end of class:
 - [x] Properly indented HTML, CSS, and JS with consistent vertical white space
 - [x] Light/Dark mode
 - [x] Uses CSS Flexbox/Grid
-- [ ] Consistent and polished UI
+- [x] Consistent and polished UI
 - [x] No remaining dead or commented out code
 - [x] Sensibly named functions and variables
 - [x] Consistent code choices
@@ -278,8 +280,71 @@ Images used:
 - [Raptor](https://unsplash.com/photos/-15ZMeUKtJM) by Mehmet Turgut Kirkgoz ([img](https://images.unsplash.com/photo-1606856110002-d0991ce78250?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80))
 - [Scientist](https://unsplash.com/photos/vGzmLshPjbc) by Peter Larsen ([img](https://images.unsplash.com/photo-1584696993692-a53190f76609?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3334&q=80))
 
-
 Icons used:
 - raptor by parkjisun from the Noun Project [link](https://thenounproject.com/search/?q=raptor&i=411120)
 - dinosaurs by Sumana Chamrunworakiat from the Noun Project [link](https://thenounproject.com/search/?q=raptor&i=1439055)
 - folk by Gan Khoon Lay from the Noun Project [link](https://thenounproject.com/search/?q=man+in+safari+hat&i=1244253)
+
+Vecteezy Assets:
+
+<a href="https://www.vecteezy.com/free-vector/jungle">Jungle Vectors by Vecteezy</a>
+
+<a href="https://www.vecteezy.com/free-vector/raptor">Raptor Vectors by Vecteezy</a>
+
+<a href="https://www.vecteezy.com/free-vector/safari">Safari Vectors by Vecteezy</a>
+
+<a href="https://www.vecteezy.com/free-vector/nature">Nature Vectors by Vecteezy</a>
+
+URLs to Specific Assets:
+
+https://www.vecteezy.com/vector-art/173013-anaconda-on-forest-background
+
+https://www.vecteezy.com/vector-art/172917-chameleon-with-forest-background
+
+https://www.vecteezy.com/vector-art/2773373-flat-green-jungle-background
+
+https://www.vecteezy.com/vector-art/677170-seamless-tropical-pattern-summer-exotic-plants-ornament
+
+https://www.vecteezy.com/vector-art/677181-seamless-tropical-pattern-summer-exotic-plants-ornament
+
+https://www.vecteezy.com/vector-art/677176-seamless-tropical-pattern-summer-exotic-plants-ornament
+
+https://www.vecteezy.com/vector-art/677158-seamless-tropical-pattern-summer-exotic-plants-ornament
+
+https://www.vecteezy.com/vector-art/1907083-jungle-flat-color-vector-illustration
+
+https://www.vecteezy.com/vector-art/474915-a-green-jungle-scene
+
+https://www.vecteezy.com/vector-art/139833-fresh-green-leaf-background
+
+https://www.vecteezy.com/vector-art/2099788-desert-landscape-background-vector-design-illustration
+
+https://www.vecteezy.com/vector-art/1843901-africa-safari-map-vector-design-illustration-isolated-on-white-background
+
+https://www.vecteezy.com/vector-art/1843956-africa-safari-map-vector-design-illustration-isolated-on-white-background
+
+https://www.vecteezy.com/vector-art/1843884-africa-safari-map-vector-design-illustration-isolated-on-white-background
+
+https://www.vecteezy.com/vector-art/1844072-africa-safari-map-vector-design-illustration-isolated-on-white-background
+
+https://www.vecteezy.com/vector-art/1177078-africa-safari-isolated-on-white-background
+
+https://www.vecteezy.com/vector-art/1217450-safari-equipment-set
+
+https://www.vecteezy.com/vector-art/242225-jungle-explorer-spies-something-through-his-binoculars
+
+https://www.vecteezy.com/vector-art/256689-woman-walking-in-the-jungle-holding-knife-and-binoculars
+
+https://www.vecteezy.com/vector-art/2043063-deer-silhouette-sunset-vector-illustration
+
+https://www.vecteezy.com/vector-art/2099767-forest-landscape-background-vector-design-illustration
+
+https://www.vecteezy.com/vector-art/166068-mountain-landscape-with-stardust-background-illustration
+
+https://www.vecteezy.com/vector-art/203089-flat-nature-landscape
+
+https://www.vecteezy.com/vector-art/229998-hand-painted-mountain-landscape
+
+https://www.vecteezy.com/vector-art/1310561-landscape-mountainous-in-circular-frame
+
+https://www.vecteezy.com/vector-art/181746-abstract-forest-landscape
