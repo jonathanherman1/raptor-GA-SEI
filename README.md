@@ -29,6 +29,7 @@ A group of scientists are on the hunt to capture three, live, baby raptors to st
 ![Gameplay](assets/screenshots/V2/Gameplay.PNG)
 ![Dark Mode](assets/screenshots/V2/Dark-Mode.PNG)
 ![Dark Mode iPad and Automatic Switching Based on System Preferences](assets/screenshots/V2/Raptor-Dark-Mode.png)
+![Orthogonality Check](assets/screenshots/V2/Validations-Orthogonality.png)
 
 ## Technologies Used:
 - HTML
