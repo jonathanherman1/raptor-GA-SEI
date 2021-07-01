@@ -12,6 +12,8 @@ By **Jun 25**, by end of class:
 
 By **Jun 29**, end of class:
 - [x] Deploy game
+
+On **Jul 2**:
 - [ ] Present project
 - Intro project (paraphrase README)
 - Demonstrate project
@@ -22,7 +24,7 @@ By **Jun 29**, end of class:
   - Show the JS + fav function
 - Share experience
   - What was the biggest challenge?
-  - What are the key takeaways/learnings?
+  - What are the key takeaways/learnings? 
 
 ## Getting Started:
 
@@ -53,6 +55,7 @@ By **Jun 29**, end of class:
 - CSS
 - JavaScript
 - Bootstrap
+- Animate.css
 
 ## Technical Requirements:
 - [x] Renders a working game in browser
@@ -71,7 +74,10 @@ By **Jun 29**, end of class:
 - [x] Has theme
 
 ## Next Steps / Future Enhancements:
+- [ ] Set up project in Jira or other task tracker for better organization for development
 - [ ] Finish the game logic
+- [ ] Refactor current code where difficult to read or not built to scale across the application
+- [ ] Squash bugs
 - [ ] Refine the UX
 - [ ] Play against the computer
 - [ ] Provide tooltips
