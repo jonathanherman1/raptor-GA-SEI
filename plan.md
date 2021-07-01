@@ -549,6 +549,9 @@ Each regular action costs 1 action point.
   - [ ] Prevent selecting (at least visually) more than one card
 - [ ] Prevent opposite teams from moving each other's pieces
 - [ ] Prevent placing a piece surrounded entirely by mountains?
+- [ ] Fix hands not replenishing to 3 after a tie is played
+- [ ] Prevent users from not entering their names
+- [ ] Fix bugs with dark mode
 
 ## Refactor Roadmap
 - [ ] Validity functions
