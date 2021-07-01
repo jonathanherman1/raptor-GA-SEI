@@ -81,6 +81,7 @@ function canPlaceBabySetup(board, id){
     if(canPassBool === false) return false;
     let motherOnTile = isPieceOnTile(board, id, "mother-raptor-1", null, true);
     let babyOnTile = isPieceOnTile(board, id, null, "baby", false);
+    console.log("baby on tile: ? ", babyOnTile);
     if(motherOnTile === true || babyOnTile === true) return false;
     for(let space of board){
         if(space.id === id){
@@ -116,6 +117,9 @@ function isPieceOnTile(board, id, pieceId, pieceIdPartial, strictBool){
             }
         } else {
             if(contains(space.occupiedBy, pieceIdPartial)){
+                console.log("contains check: ",contains(space.occupiedBy, pieceIdPartial));
+                console.log("space.tile: ", space.tile);
+                console.log("tile of occupant: ", tileOfOccupant);
                 if(space.tile === tileOfOccupant){
                     return true;
                 } else {
@@ -128,6 +132,7 @@ function isPieceOnTile(board, id, pieceId, pieceIdPartial, strictBool){
 
 
 function isOrthogonal(board, startId, endId){
+    
     let tileRows = [
         [1,2],
         [3,4],
@@ -156,24 +161,52 @@ function isOrthogonal(board, startId, endId){
     let endTile = getTile(board, endId);
     let endSpaceInTile = getSpaceInTile(board, endId);
 
+    console.log("startTile: ", startTile)
+    console.log("endTile: ", endTile)
+    console.log("start space in tile: ", startSpaceInTile)
+    console.log("end space in tile: ", endSpaceInTile)
+
     let rowMov;
     let colMov;
+    let intraTileMove;
 
+    if(startTile === endTile){
+        intraTileMove = true;
+    } else {
     // Check if move is orthogonal into a row or col from one tile to another
-    for(let row of tileRows){
-        if(row.includes(startTile) && row.includes(endTile)){
-            rowMov = true;
+        for(let row of tileRows){
+            if(row.includes(startTile) && row.includes(endTile)){
+                rowMov = true;
+                break;
+            }
+        }
+    
+        for(let col of tileCols){
+            if(col.includes(startTile) && col.includes(endTile)){
+                colMov = true;
+                break;
+            }
         }
     }
 
-    for(let col of tileCols){
-        if(col.includes(startTile) && col.includes(endTile)){
-            colMov = true;
-        }
-    }
+    
 
     // Check if move to tile is also valid moving from one space to another
-    if(rowMov){
+
+    if(intraTileMove){
+        for(let row of spaceRows){
+            if(row.includes(startSpaceInTile) && row.includes(endSpaceInTile)){
+                return true;
+            }
+        }
+
+        for(let col of spaceCols){
+            if(col.includes(startSpaceInTile) && col.includes(endSpaceInTile)){
+                return true;
+            }
+        }
+
+    } else if(rowMov){
         for(let row of spaceRows){
             if(row.includes(startSpaceInTile) && row.includes(endSpaceInTile)){
                 return true;
@@ -201,7 +234,7 @@ function getTile(board, id){
 function getSpaceInTile(board, id){
     for(let space of board){
         if(space.id === id){
-            return space.getSpaceInTile;
+            return space.spaceInTile;
         }
     }
 }
