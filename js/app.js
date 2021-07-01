@@ -15,7 +15,7 @@ let selectedId = null;
 let darkMode = false;
 
 // touch variables
-let initialX, initialY, currentX, currentY, xEnter, yEnter, active, dragItem, dropZone;
+let initialX, initialY, currentX, currentY, xEnter, yEnter, active, dragItem, dropZone, boardStartId, boardEndId;
 let xOffset = 0;
 let yOffset = 0;
 let isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
@@ -483,9 +483,11 @@ function handleShoot(){
         // handle Chrome vs other browsers
         if(isChrome === true) {
         idVacated = e.path[1].id;
+        boardStartId = idVacated;
         } else if (isChrome === false) {
         let path = getPath(dragItem);
         idVacated = path[1].id;
+        boardStartId = idVacated;
         }
         if(idVacated === "pieces-tray"){
         } else if(dropZone === null){
@@ -513,6 +515,8 @@ function handleShoot(){
         for(let el of dropZoneList){
             // sets the drop zone
             if(el.classList.contains("space")){
+                boardEndId = el.id;
+                let orthogonal = Valid.isOrthogonal(board, boardStartId, boardEndId);
                 if(setupComplete === undefined){
                     if(dragItem.id === "mother-raptor-1"){   
                         if(Valid.canPlaceMotherSetup(board, el.id) === true){
@@ -546,38 +550,42 @@ function handleShoot(){
                         }
                     }
                 } else if(setupComplete === true && gameActive === true){
-                    if(Valid.isPassable(board, el.id)){
-                        if(contains(dragItem.id, "scientist")){
-                            if(Valid.isExit(board, el.id) === false){
+                    if(orthogonal === true){
+                        if(Valid.isPassable(board, el.id)){
+                            if(contains(dragItem.id, "scientist")){
+                                if(Valid.isExit(board, el.id) === false){
+                                    dropZone = el;
+                                    State.occupySpace(board, el.id, dragItem.id);
+                                    State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
+                                } else {
+                                    dragItem.style.removeProperty("transform");
+                                    dragItem.classList.remove("selected");
+                                    alert("Scientists cannot move into exits.");
+                                }
+                            } else if(contains(dragItem.id, "mother")){
+                                if(Valid.isExit(board, el.id) === false){
+                                    dropZone = el;
+                                    State.occupySpace(board, el.id, dragItem.id);
+                                    State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
+                                } else {
+                                    dragItem.style.removeProperty("transform");
+                                    dragItem.classList.remove("selected");
+                                    alert("The mother raptor cannot move into exits.");
+                                }
+                            } else {
                                 dropZone = el;
                                 State.occupySpace(board, el.id, dragItem.id);
                                 State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
-                            } else {
-                                dragItem.style.removeProperty("transform");
-                                dragItem.classList.remove("selected");
-                                alert("Scientists cannot move into exits.");
-                            }
-                        } else if(contains(dragItem.id, "mother")){
-                            if(Valid.isExit(board, el.id) === false){
-                                dropZone = el;
-                                State.occupySpace(board, el.id, dragItem.id);
-                                State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
-                            } else {
-                                dragItem.style.removeProperty("transform");
-                                dragItem.classList.remove("selected");
-                                alert("The mother raptor cannot move into exits.");
+                                let escape = Valid.isExit(board, dropZone.id);
+                                if(escape === true) alert("A baby raptor has escaped and won the game!");
+                                gameActive = false;
+                                console.log(board);
                             }
                         } else {
-                            dropZone = el;
-                            State.occupySpace(board, el.id, dragItem.id);
-                            State.updatePiece(pieces, dragItem.id, "location", dropZone.id);
-                            let escape = Valid.isExit(board, dropZone.id);
-                            if(escape === true) alert("A baby raptor has escaped and won the game!");
-                            gameActive = false;
-                            console.log(board);
+                            alert("No piece can move onto a mountain!");
                         }
                     } else {
-                        alert("No piece can move onto a mountain!");
+                        alert("That move is not orthogonal! Please move only in rows or columns.");
                     }
                 }
             }
