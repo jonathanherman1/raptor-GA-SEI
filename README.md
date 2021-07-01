@@ -1,30 +1,10 @@
 # Raptor
 
-## Initial Schedule
+## Background
+This app is a board game converted for play in a web browser. This simplifies setup and gameplay. The first iteration of the app will be hotseat play in the same session. Eventually, AI and remote play with a server can be supported.
 
-By **Jun 25**, by 1hr before end of class:
-- [x] Choose game
-- [x] Wireframe main game screen (view on [Whimsical](https://whimsical.com/unit-1-project-game-raptor-UbVWrjmUwfCWsbGL3T4fVK))
-- [x] Pseudocode gameplay
-
-By **Jun 25**, by end of class:
-- [x] Share GitHub repo
-
-By **Jun 29**, end of class:
-- [x] Deploy game
-
-On **Jul 2**:
-- [ ] Present project
-- Intro project (paraphrase README)
-- Demonstrate project
-  - Launch game from link in README
-  - Play the game
-- Discuss code
-  - Briefly show HTML & CSS
-  - Show the JS + fav function
-- Share experience
-  - What was the biggest challenge?
-  - What are the key takeaways/learnings? 
+## Game Overview
+A group of scientists are on the hunt to capture three, live, baby raptors to study and then display in a brand new exhibit. A ferocious mother raptor will never let this happen. She'll either kill all the invading scientists, or hang on long enough to allow three of her babies to escape deep into the jungle, never to be found again.
 
 ## Getting Started:
 
@@ -72,6 +52,8 @@ On **Jul 2**:
 ## Features
 - [x] MVC design
 - [x] Has theme
+- [x] Light/Dark mode
+- [x] Basic action validations
 
 ## Next Steps / Future Enhancements:
 - [ ] Set up project in Jira or other task tracker for better organization for development
@@ -90,12 +72,6 @@ On **Jul 2**:
 - [ ] Add single player campaigns
 - [ ] Add server play
 - [ ] Add expansions that include additional factions and expanded maps
-
-## Background
-This app is a board game converted for play in a web browser. This simplifies setup and gameplay. The first iteration of the app will be hotseat play in the same session. Eventually, AI and remote play with a server can be supported.
-
-## Game Overview
-A group of scientists are on the hunt to capture three, live, baby raptors to study and then display in a brand new exhibit. A ferocious mother raptor will never let this happen. She'll either kill all the invading scientists, or hang on long enough to allow three of her babies to escape deep into the jungle, never to be found again.
 
 ## How to Play
 1. Pick a team.
@@ -276,6 +252,32 @@ Each regular action costs 1 action point.
       - Moving through fire removes it
 - Card 9: No effect
 
+
+## Initial Schedule
+
+By **Jun 25**, by 1hr before end of class:
+- [x] Choose game
+- [x] Wireframe main game screen (view on [Whimsical](https://whimsical.com/unit-1-project-game-raptor-UbVWrjmUwfCWsbGL3T4fVK))
+- [x] [Pseudocode gameplay](plan.md)
+
+By **Jun 25**, by end of class:
+- [x] Share GitHub repo
+
+By **Jun 29**, end of class:
+- [x] Deploy game
+
+On **Jul 2**:
+- [ ] Present project
+- Intro project (paraphrase README)
+- Demonstrate project
+  - Launch game from link in README
+  - Play the game
+- Discuss code
+  - Briefly show HTML & CSS
+  - Show the JS + fav function
+- Share experience
+  - What was the biggest challenge?
+  - What are the key takeaways/learnings? 
 
 ## Credits
 
