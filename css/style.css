@@ -331,7 +331,7 @@ img {
     background-image: url("../assets/vecteezy_set-of-jungle-explorers-vector-illustration-best-vector-for-any-kind-of-projects-and-use-enjoy_251665/4_Jungle Explorer.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    background-position-x: -200px;
+    /* background-position-x: -200px; */
 }
 
 .bg-img-how-to-play {
@@ -385,8 +385,8 @@ img {
     background-image: url("../assets/vecteezy_road-to-jungle-neon-signs-style-text-vector_2268148/3_generated.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    background-position-x: -200px;
-    background-position-y: -10px;
+    /* background-position-x: -200px;
+    background-position-y: -10px; */
 }
 
 .dark-intro {
@@ -487,4 +487,201 @@ img {
 
 .captured {
     border: 8px solid rgb(255, 153, 0);
+}
+
+@media (prefers-color-scheme: dark){
+    body {
+        background-image: url("../assets/vecteezy_road-to-jungle-neon-signs-style-text-vector_2268148/3_generated.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    h1 {
+        color: rgb(196, 191, 56);
+    }
+    
+    h2, h3, h4, h5, p {
+        color: white;
+    }
+
+    button.btn-close.text-reset {
+        background-color: white;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(28, 27, 27);
+        color: white;
+        padding: 20px;
+        height: 30vh;
+        border-radius: 10%;
+    }
+
+    .bg-img-intro {
+        background-image: url("../assets/vecteezy_forest-landscape-background-vector-design-illustration_2099767/FOREST_BACKGROUND8_generated.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        /* background-position-x: -200px; */
+    }
+
+    .card {
+        background-color: rgb(28, 27, 27);
+        color: white;
+    }
+
+    .bg-img-how-to-play {
+        background-image: url("../assets/vecteezy_abstract-forest-landscape-scenes-illustration-vector_181746/abstract-forest-landscape-vector.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    #how-to-play {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: rgb(28, 27, 27);
+        color: white;
+        width: 75%;
+        border-radius: 10%;
+        padding: 20px;
+        margin: 30px;
+    }
+
+
+    .bg-img-pick-teams {
+        background-image: url("../assets/vecteezy_mountain-landscape-on-purple-sky-night-with-stardust-vector-illustration_166068/vector-mountain-landscape-with-stardust-background-illustration.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    
+    .bg-img-play {
+        background-image: url("../assets/vecteezy_deer-silhouette-sunset-vector-illustration_2043063/deer_sunset_logo_generated.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    #pick-teams h1 {
+        color: white;
+    }
+    
+    #team-choices {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: column;
+        background-color: rgb(28, 27, 27);
+        color: white;
+        height: 200px;
+        width: 100%;
+        border-radius: 5%;
+        padding: 15px;
+    }
+    
+    #play-btn {
+        width: 40%;
+        font-size: 15px;
+        font-weight: 500;
+        background-color: #6d0e76;
+        border: none;
+    }
+
+    .middle {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        background-image: url(../assets/vecteezy_vector-seamless-tropical-pattern-summer-exotic-plants-ornament-jungle-hand-drawn-texture-nature-illustration-botanical-background_677170/patt3.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;    
+    }
+
+    .space {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 100;
+        height: 5rem;
+        width: 5rem;
+        border: 1px solid rgb(222, 217, 217);
+    }
+    
+    .mountain {
+        background-image: url(../assets/vecteezy_mountain-landscape-on-purple-sky-night-with-stardust-vector-illustration_166068/vector-mountain-landscape-with-stardust-background-illustration.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        /* background-color: rgb(172, 149, 149); */
+    }
+    
+    .bottom-left, .bottom-right, .top-left, .top-right {
+        background-color: lightgray;   
+        background-image: url(../assets/vecteezy_road-to-jungle-neon-signs-style-text-vector_2268148/3_generated.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    
+    .exit1 {
+        background-color: darkgreen;
+        color: white;
+        grid-column: 3;
+        justify-self: end;
+        background-image: url(../assets/vecteezy_illustration-of-chameleon-with-forest-background-in-flat-style-fit-for-desktop-background-or-playground-wallpaper_172917/vector-chameleon-with-forest-background.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    
+    .exit2 {
+        background-color: darkgreen;
+        color: white;
+        grid-column: 1;
+        background-image: url(../assets/vecteezy_illustration-of-anaconda-on-forest-background-fit-for-playground-wallpaper-or-zoo-infographic_173013/anaconda-on-forest-background-vector.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    
+    .exit3 {
+        background-color: darkgreen;
+        color: white;
+        grid-column: 1;
+        background-image: url(../assets/vecteezy_flat-green-jungle-background_2773373/vecteezybackground-green-backgroundfr0521_generated.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;    
+    }
+    
+    .exit4 {
+        background-color: darkgreen;
+        color: white;
+        grid-column: 3;
+        justify-self: end;
+        background-image: url(../assets/vecteezy_background-daun-fresh-green-leaf-background-great-for-wallpaper-and-background_139833/fresh-green-leaf-background-vector.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;   
+    }
+
+    #instructions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 10px;
+        color: white;
+    }
+
+    .btn-primary {
+        background-color: #6d0e76;
+        border: none;
+    }
+
+    .offcanvas {
+        background-color: rgb(28, 27, 27);
+    }
+
+    .playingCard {
+        background-color: #207ada;
+    }
+    .playingCard.outline {
+        background-image: none;
+        /* background-color: rgba(195, 195, 195, 0.5); */
+        border: 0.4em dashed#6d0e76; }
 }
