@@ -698,3 +698,19 @@ function handleDarkModeToggle(e){
 
 newGameFormEl.classList.add("animate__animated");
 newGameFormEl.classList.add("animate__slideInLeft");
+
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    const newColorScheme = e.matches ? "dark" : "light";
+    console.log(newColorScheme);
+    if(newColorScheme === "dark"){
+        document.querySelector("nav").classList.remove("navbar-light")
+        document.querySelector("nav").classList.remove("bg-light")
+        document.querySelector("nav").classList.add("navbar-dark")
+        document.querySelector("nav").classList.add("bg-dark")
+    } else {
+        document.querySelector("nav").classList.remove("navbar-dark")
+        document.querySelector("nav").classList.remove("bg-dark")
+        document.querySelector("nav").classList.add("navbar-light")
+        document.querySelector("nav").classList.add("bg-light")
+    }
+});
