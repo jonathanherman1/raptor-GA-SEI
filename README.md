@@ -33,8 +33,9 @@ By **Jun 29**, end of class:
 5. If you're player 1, pick a team (the other player will be assigned one).
 6. Click "Play!" on the next screen (confirming your choice).
 7. Drag and drop the raptor pieces onto the board according to the rules, and click "Confirm Placement".
+   1. (Note: Only touch drag and drop is supported at the moment. To access on desktop use Chrome Dev Tools `cmd + opt + j` followed by `cmd + shift + m` and test with responsive device).
 8. Drag and drop the scientist pieces onto the board according to the rules, and click "Confirm Placement".
-9. Click "Show Cards" to reveal your card choices.
+9.  Click "Show Cards" to reveal your card choices.
 10. Click a card then click "Confirm Card"
 11. Game development is still in progress so this is a preview with many improvements to come!
 
@@ -45,6 +46,7 @@ By **Jun 29**, end of class:
 ![How to Play](assets/screenshots/V2/How-to-Play.PNG)
 ![Gameplay](assets/screenshots/V2/Gameplay.PNG)
 ![Dark Mode](assets/screenshots/V2/Dark-Mode.PNG)
+![Dark Mode iPad and Automatic Switching Based on System Preferences](assets/screenshots/V2/Raptor-Dark-Mode.png)
 
 ## Technologies Used:
 - HTML
