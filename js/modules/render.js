@@ -322,12 +322,16 @@ function renderSetupInfo(content, i){
         motherImg.setAttribute("id", "mother-raptor-1");
         motherImg.setAttribute("class", "pieces");
         motherImg.setAttribute("src", team.icons[0]);
+        motherImg.setAttribute("draggable", true);
+        motherImg.setAttribute("ondragstart", "event.dataTransfer.setData('text/plain',null)");
         teamArr.push(motherImg);
         for(let i = 1; i <= team.numBabies; i++){
             let babyImg = document.createElement("img");
             babyImg.setAttribute("id", `baby-raptor-${i}`);
             babyImg.setAttribute("class", "pieces");
             babyImg.setAttribute("src", team.icons[1]);
+            babyImg.setAttribute("draggable", true);
+            babyImg.setAttribute("ondragstart", "event.dataTransfer.setData('text/plain',null)");
             teamArr.push(babyImg);
         }
     } 
@@ -341,6 +345,8 @@ function renderSetupInfo(content, i){
             scientistImg.setAttribute("id", `scientist-${i}`);
             scientistImg.setAttribute("class", "pieces");
             scientistImg.setAttribute("src", team.icons[0]);
+            scientistImg.setAttribute("draggable", true);
+            scientistImg.setAttribute("ondragstart", "event.dataTransfer.setData('text/plain',null)");
             teamArr.push(scientistImg);
         }
     }

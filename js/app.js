@@ -21,6 +21,9 @@ let yOffset = 0;
 let isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 let isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
 
+// mouse variables
+let dragged;
+
 /*--------- Cached HTML References ---------*/
 const mainContent = document.querySelector("#main-content");
 const newGameFormEl = document.querySelector("#new-game-form");
@@ -51,11 +54,14 @@ mainContent.addEventListener("touchstart", handleTouchStart);
 mainContent.addEventListener("touchmove", handleTouchMove);
 mainContent.addEventListener("touchend", handleTouchEnd);
 // Mouse Events
-// mainContent.addEventListener("dragstart", handleDragStart);
-// mainContent.addEventListener("dragenter", handleDragEnter);
-// mainContent.addEventListener("dragleave", handleDragLeave);
-// mainContent.addEventListener("drop", handleDrop);
-// mainContent.addEventListener("dragend", handleDragEnd);
+mainContent.addEventListener("drag", handleDrag, false);
+mainContent.addEventListener("dragstart", handleDragStart, false);
+mainContent.addEventListener("dragenter", handleDragEnter, false);
+mainContent.addEventListener("dragover", handleDragOver, false);
+mainContent.addEventListener("dragleave", handleDragLeave, false);
+mainContent.addEventListener("dragend", handleDragEnd, false);
+mainContent.addEventListener("drop", handleDrop, false);
+
 
 // Dark Mode
 darkModeToggle.addEventListener("click", handleDarkModeToggle);
@@ -612,22 +618,65 @@ function handleShoot(){
   }
 
 // Mouse Events:
-  function handleDrop(e){
-    e.preventDefault();
-  } 
+
+function handleDrag(e){
+    // console.log("drag: ", e)
+} 
+
   function handleDragStart(e){
-    e.preventDefault();
+    // e.preventDefault();
+    if(e.target.className === "pieces"){
+        console.log("start: ", e);
+        dragged = e.target;
+        dragged.classList.add("selected");
+        if(e.target === dragged){
+          active = true;
+        }
+        initialX = e.clientX // - xOffset;
+        initialY = e.clientY // - yOffset;
+        let idVacated;
+        // handle Chrome vs other browsers
+        if(isChrome === true) {
+        idVacated = e.path[1].id;
+        boardStartId = idVacated;
+        } else if (isChrome === false) {
+        let path = getPath(dragged);
+        idVacated = path[1].id;
+        boardStartId = idVacated;
+        }
+        if(idVacated === "pieces-tray"){
+        } else if(dropZone === null){
+        } else {
+            // can set state here for space that is now unoccupied
+            State.leaveSpace(board, idVacated);
+        }
+      }
   } 
-  function handleDragEnd(e){
-    e.preventDefault();
-
-  }  
+  
   function handleDragEnter(e){
-    e.preventDefault();
-
+    // console.log("enter: ", e)
   } 
-  function handleDragLeave(e){
+  
+  function handleDragOver(e){
     e.preventDefault();
+  } 
+  
+  function handleDragLeave(e){
+    // console.log("leave: ", e)
+  } 
+
+  function handleDragEnd(e){
+    // console.log("end: ", e)
+  }
+
+  function handleDrop(e){
+    // console.log("drop: ", e);
+    // e.preventDefault();
+    dragged.parentNode.removeChild(dragged);
+    e.target.appendChild(dragged);
+    
+    dragged.classList.remove("selected");
+    dragged = null;
   } 
 
   // this is for Safari which doesn't support path like Chrome does.
